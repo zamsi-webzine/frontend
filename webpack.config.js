@@ -1,5 +1,5 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/main.js',
@@ -83,8 +83,16 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
-}
+  devtool: '#eval-source-map',
+  plugins: [
+    new webpack.ProvidePlugin({
+      $:'jquery',
+      jquery:'jquery',
+      'window.jQuery':'jquery',
+      jQuery:'jquery'
+    })
+  ]
+};
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
