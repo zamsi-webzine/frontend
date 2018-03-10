@@ -11,11 +11,15 @@ import VueAxios from 'vue-axios'
 import jwtDecode from 'jwt-decode'
 import Vuex from 'vuex'
 
-Vue.user(Vuex)
+Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
 /* eslint-disable no-new */
-new Vuex.Store({
+export const store = new Vuex.Store({
+  el: '#app',
+  router,
+  components: {App},
+  template: '<App/>',
   state: {
     jwt: localStorage.getItem('t'),
     endpoints: {
@@ -86,6 +90,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: {App},
   template: '<App/>'
 })
