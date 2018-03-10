@@ -19,7 +19,7 @@
 
   #d-day-title > h1 {
     margin-bottom: 30px;
-    font-weight: 800 !important;
+    font-weight: 700 !important;
   }
 
   #description {

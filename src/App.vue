@@ -9,6 +9,7 @@
 <script>
 import Navbar from '@/components/structure/Navbar'
 import Bottom from '@/components/structure/Bottom'
+
 export default {
   name: 'App',
   components: {
@@ -19,11 +20,11 @@ export default {
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:200i,500,800');
-  @import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
+  @import url('https://fonts.googleapis.com/css?family=Titillium+Web:200,400,700');
 
   body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 400;
   }
 
   #app {
