@@ -4,12 +4,7 @@
 </template>
 
 <script>
-import Navbar from '../structure/Navbar'
-import Bottom from '../structure/Bottom'
-
 export default {
-  Navbar,
-  Bottom
 }
 
 </script>

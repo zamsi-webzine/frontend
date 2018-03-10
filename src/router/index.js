@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/components/view/Index'
+import Home from '@/components/view/Home'
 import Auth from '@/components/view/Auth'
 
 Vue.use(Router)
@@ -8,9 +8,9 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'Index',
-      component: Index
+      path: '',
+      name: 'Home',
+      component: Home
     },
     {
       path: '/login',
