@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <form>
+      <div class="row justify-content-md-center col-sm-6">
+        <h2 id="login-title">Login</h2>
+      </div>
       <div class="form-group row justify-content-md-center">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-6">
@@ -25,13 +28,15 @@
 </template>
 
 <script>
-export default {
-}
+export default {}
 
 </script>
 
 <style scoped>
-form {
-  margin: 200px 0 200px 0;
-}
+  form {
+    margin: 200px 0 200px 0;
+  }
+  #login-title {
+    margin-bottom: 25px;
+  }
 </style>
