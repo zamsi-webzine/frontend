@@ -7,13 +7,12 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
-/* eslint-disable no-new */
-export const store = new Vuex.Store({
+export default new Vuex.Store({
   state: {
     jwt: localStorage.getItem('t'),
     endpoints: {
-      obtainJWT: 'http://localhost:8000/auth/obtain_token',
-      refreshJWT: 'http://localhost:8000/auth/refresh_token'
+      obtainJWT: 'http://localhost:8000/auth/obtain_token/',
+      refreshJWT: 'http://localhost:8000/auth/refresh_token/'
     }
   },
   mutations: {
@@ -27,16 +26,24 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    obtainToken (email, password) {
-      const payload = {
-        username: email,
-        password: password
-      }
-
-      axios.post(this.state.endpoints.obtainJWT, payload)
-        .then((response) => {
-          this.commit('updateToken', response.data.token)
-        })
+    obtainToken ({commit}, formData) {
+      axios({
+        method: 'post',
+        url: this.state.endpoints.obtainJWT,
+        data: {
+          email: formData.email,
+          password: formData.password
+        },
+        headers: {
+          'X-CSRFToken': 'csrfToken',
+          'Content-Type': 'application/json'
+        },
+        xsrfCookieName: 'XSRF-TOKEN',
+        xsrfHeaderName: 'X-XSRFTOKEN',
+        credentials: true
+      }).then((response) => {
+        this.commit('updateToken', response.data.token)
+      })
         .catch((error) => {
           console.log(error)
         })
@@ -72,7 +79,3 @@ export const store = new Vuex.Store({
     }
   }
 })
-
-export default {
-  name: 'store'
-}

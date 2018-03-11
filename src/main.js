@@ -2,12 +2,17 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
-import store from './store'
+import axios from 'axios'
 import 'bootstrap'
 import 'bootstrap/scss/bootstrap.scss'
 
+import router from './router'
+import store from './store'
+
 Vue.config.productionTip = false
+
+axios.defaults.baseURL = 'http://localhost:8000'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 /* eslint-disable no-new */
 new Vue({
