@@ -11,6 +11,7 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+/* Axios Configuration */
 axios.defaults.baseURL = 'http://localhost:8000'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
