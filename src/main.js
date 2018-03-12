@@ -6,7 +6,7 @@ import axios from 'axios'
 import 'bootstrap'
 import 'bootstrap/scss/bootstrap.scss'
 
-import router from './router'
+import router from './router/index'
 import store from './store'
 
 Vue.config.productionTip = false

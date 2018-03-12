@@ -4,6 +4,8 @@ import VueAxios from 'vue-axios'
 import jwtDecode from 'jwt-decode'
 import Vuex from 'vuex'
 
+import router from '@/router/index'
+
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
@@ -13,7 +15,8 @@ export default new Vuex.Store({
     endpoints: {
       obtainJWT: 'http://localhost:8000/auth/obtain_token/',
       refreshJWT: 'http://localhost:8000/auth/refresh_token/'
-    }
+    },
+    msg: ''
   },
   mutations: {
     updateToken (state, newToken) {
@@ -23,6 +26,9 @@ export default new Vuex.Store({
     removeToken (state) {
       localStorage.removeItem('t')
       state.jwt = null
+    },
+    displayError (state, error) {
+      state.msg = error
     }
   },
   actions: {
@@ -43,9 +49,10 @@ export default new Vuex.Store({
         credentials: true
       }).then((response) => {
         this.commit('updateToken', response.data.token)
+        router.replace('/')
       })
         .catch((error) => {
-          console.log(error)
+          this.commit('displayError', error.response.data.message)
         })
     },
     refreshToken () {

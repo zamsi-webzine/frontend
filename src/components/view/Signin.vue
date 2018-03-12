@@ -35,6 +35,16 @@
                 <button type="button" class="btn btn-link" id="btn-forgot">Forgot Password?</button>
               </div>
           </div>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <div v-if="this.$store.state.msg !== ''" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{displayError}}</strong>
+              </div>
+              <div v-else class="alert alert-danger alert-dismissible fade show d-none" role="alert">
+                <strong>{{displayError}}</strong>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
       <div class="col-sm"/>
@@ -56,8 +66,15 @@ export default {
         email: this.email,
         password: this.password
       }
-      console.log(formData)
-      this.$store.dispatch('obtainToken', {email: formData.email, password: formData.password})
+      this.$store.dispatch('obtainToken', {
+        email: formData.email,
+        password: formData.password
+      })
+    }
+  },
+  computed: {
+    displayError () {
+      return this.$store.state.msg
     }
   }
 }
