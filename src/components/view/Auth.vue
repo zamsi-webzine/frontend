@@ -1,37 +1,44 @@
 <template>
   <div class="container">
-    <form @submit.prevent="onSubmit" method="post">
-      <div class="row justify-content-md-center col-sm-6">
-        <h2 id="login-title">Login</h2>
+    <div class="row align-items-end">
+      <div class="col-sm"/>
+      <div class="col-sm-6">
+        <form @submit.prevent="onSubmit" method="post">
+          <div class="form-group row">
+            <h2 id="login-title">Login</h2>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-4 col-form-label">Email</label>
+            <div class="col-sm-8">
+              <input type="email"
+                     class="form-control"
+                     id="inputEmail3"
+                     placeholder="Email"
+                     v-model="email">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-4 col-form-label">Password</label>
+              <div class="col-sm-8">
+                <input type="password"
+                       class="form-control"
+                       id="inputPassword3"
+                       placeholder="Password"
+                       v-model="password">
+              </div>
+          </div>
+          <div class="form-group row">
+              <div class="col-sm-4 col-12">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+              </div>
+              <div class="col-sm-4 col-6">
+                <button type="button" class="btn btn-link" id="btn-forgot">Forgot Password?</button>
+              </div>
+          </div>
+        </form>
       </div>
-      <div class="form-group row justify-content-md-center">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-6">
-          <input type="email"
-                 class="form-control"
-                 id="inputEmail3"
-                 placeholder="Email"
-                 v-model="email">
-        </div>
-      </div>
-      <div class="form-group row justify-content-md-center">
-        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-6">
-          <input type="password"
-                 class="form-control"
-                 id="inputPassword3"
-                 placeholder="Password"
-                 v-model="password">
-        </div>
-      </div>
-      <div class="form-group row justify-content-md-center">
-        <label class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-6">
-          <button type="submit" class="btn btn-primary">Sign in</button>
-          <button type="button" class="btn btn-link">Forgot Password?</button>
-        </div>
-      </div>
-    </form>
+      <div class="col-sm"/>
+    </div>
   </div>
 </template>
 
@@ -62,6 +69,10 @@ export default {
     margin: 200px 0 200px 0;
   }
   #login-title {
+    padding-left: 15px;
     margin-bottom: 25px;
+  }
+  #btn-forgot {
+    padding-left: 0;
   }
 </style>
