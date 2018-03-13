@@ -14,6 +14,7 @@ export default new Vuex.Store({
     // 로컬 스토리지에서 토큰을 불러들인다
     jwt: localStorage.getItem('token'),
     email: localStorage.getItem('email'),
+    nickname: localStorage.getItem('nickname'),
     pk: localStorage.getItem('pk'),
     exp: localStorage.getItem('exp'),
     orig_iat: localStorage.getItem('orig'),
@@ -39,6 +40,9 @@ export default new Vuex.Store({
       // 이메일
       localStorage.setItem('email', result.email)
       state.email = result.email
+      // 닉네임
+      localStorage.setItem('nickname', resData.user.nickname)
+      state.nickname = resData.user.nickname
       // pk
       localStorage.setItem('pk', result.user_id)
       state.pk = result.user_id
@@ -57,6 +61,8 @@ export default new Vuex.Store({
       state.pk = null
       localStorage.removeItem('email')
       state.orig_iat = null
+      localStorage.removeItem('nickname')
+      state.nickname = null
       localStorage.removeItem('exp')
       state.exp = null
       localStorage.removeItem('orig_iat')

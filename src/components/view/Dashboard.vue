@@ -1,13 +1,21 @@
 <template>
   <div class="container">
-      <p>Hello, {{pk}}</p>
+      <p>Hello, {{userInfo.nickname}} ({{userInfo.email}})</p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'dashboard',
-  props: ['pk']
+  props: ['pk'],
+  computed: {
+    userInfo () {
+      return {
+        email: this.$store.state.email,
+        nickname: this.$store.state.nickname
+      }
+    }
+  }
 }
 </script>
 
