@@ -12,8 +12,11 @@ Vue.use(VueAxios, axios)
 export default new Vuex.Store({
   state: {
     // 로컬 스토리지에서 토큰을 불러들인다
-    jwt: localStorage.getItem('t'),
-    pk: localStorage.getItem('p'),
+    jwt: localStorage.getItem('token'),
+    email: localStorage.getItem('email'),
+    pk: localStorage.getItem('pk'),
+    exp: localStorage.getItem('exp'),
+    orig_iat: localStorage.getItem('orig'),
     // 여러 메소드에 사용할 URL 값을 객체화
     endpoints: {
       obtainJWT: 'http://localhost:8000/auth/obtain_token/',
@@ -24,19 +27,40 @@ export default new Vuex.Store({
   mutations: {
     // 토큰 업데이트
     updateInfo (state, resData) {
-      // 사용자의 로컬 스토리지에 새로운 토큰을 추가한다
-      localStorage.setItem('t', resData.token)
-      // Store의 state도 새로운 토큰으로 업데이트한다
+      // localStorage 업데이트 & state 업데이트
+      // 토큰
+      localStorage.setItem('token', resData.token)
       state.jwt = resData.token
-      localStorage.setItem('p', resData.user.pk)
-      state.pk = resData.user.pk
+
+      // 토큰 decode
+      const base64 = resData.token.split('.')[1]
+      const result = JSON.parse(window.atob(base64))
+
+      // 이메일
+      localStorage.setItem('email', result.email)
+      state.email = result.email
+      // pk
+      localStorage.setItem('pk', result.user_id)
+      state.pk = result.user_id
+      // 만료시간
+      localStorage.setItem('exp', result.exp)
+      state.exp = result.exp
+      // 생성시간
+      localStorage.setItem('orig_iat', result.orig_iat)
+      state.orig_iat = result.orig_iat
     },
     // 토큰 삭제
     removeUserInfo (state) {
-      localStorage.removeItem('t')
+      localStorage.removeItem('token')
       state.jwt = null
-      localStorage.removeItem('p')
+      localStorage.removeItem('pk')
       state.pk = null
+      localStorage.removeItem('email')
+      state.orig_iat = null
+      localStorage.removeItem('exp')
+      state.exp = null
+      localStorage.removeItem('orig_iat')
+      state.orig_iat = null
     },
     // 로그인에 실패했을 경우 Store에 에러 메시지를 보낸다
     displayError (state, error) {
@@ -66,7 +90,7 @@ export default new Vuex.Store({
         xsrfHeaderName: 'X-XSRFTOKEN',
         // 인증도 true 값으로 보낸다
         credentials: true
-        //  전송에 성공할 경우
+        // 전송에 성공할 경우
       }).then((response) => {
         // 응답으로 날아온 토큰 값을 updateInfo mutations로 보낸다
         this.commit('updateInfo', response.data)
@@ -74,7 +98,7 @@ export default new Vuex.Store({
           name: 'Dashboard',
           params: {pk: this.state.pk}
         })
-        //  전송에 실패할 경우
+        // 전송에 실패할 경우
       }).catch((error) => {
         // 응답으로 날아온 에러 메시지를 displayError mutations로 보낸다
         if (typeof error.response !== 'undefined') {
