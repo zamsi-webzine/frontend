@@ -77,7 +77,7 @@ export default {
         password: this.password
       }
       // Store에 있는 obtainToken을 호출하면서 이메일, 패스워드를 전송한다
-      this.$store.dispatch('obtainToken', {
+      this.$store.dispatch('obtainInfo', {
         email: formData.email,
         password: formData.password
       })

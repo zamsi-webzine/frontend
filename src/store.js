@@ -13,6 +13,7 @@ export default new Vuex.Store({
   state: {
     // 로컬 스토리지에서 토큰을 불러들인다
     jwt: localStorage.getItem('t'),
+    pk: localStorage.getItem('p'),
     // 여러 메소드에 사용할 URL 값을 객체화
     endpoints: {
       obtainJWT: 'http://localhost:8000/auth/obtain_token/',
@@ -22,16 +23,20 @@ export default new Vuex.Store({
   },
   mutations: {
     // 토큰 업데이트
-    updateToken (state, newToken) {
+    updateInfo (state, resData) {
       // 사용자의 로컬 스토리지에 새로운 토큰을 추가한다
-      localStorage.setItem('t', newToken)
+      localStorage.setItem('t', resData.token)
       // Store의 state도 새로운 토큰으로 업데이트한다
-      state.jwt = newToken
+      state.jwt = resData.token
+      localStorage.setItem('p', resData.user.pk)
+      state.pk = resData.user.pk
     },
     // 토큰 삭제
-    removeToken (state) {
+    removeUserInfo (state) {
       localStorage.removeItem('t')
       state.jwt = null
+      localStorage.removeItem('p')
+      state.pk = null
     },
     // 로그인에 실패했을 경우 Store에 에러 메시지를 보낸다
     displayError (state, error) {
@@ -43,7 +48,7 @@ export default new Vuex.Store({
     // parameters:
     // commit: 상태 변경을 위한 콜백 함수
     // formData: 사용자가 입력하는 이메일, 비밀번호 값
-    obtainToken ({commit}, formData) {
+    obtainInfo ({commit}, formData) {
       // axios를 통해 POST 요청을 보낸다
       axios({
         method: 'post',
@@ -61,17 +66,21 @@ export default new Vuex.Store({
         xsrfHeaderName: 'X-XSRFTOKEN',
         // 인증도 true 값으로 보낸다
         credentials: true
-      //  전송에 성공할 경우
+        //  전송에 성공할 경우
       }).then((response) => {
-        // 응답으로 날아온 토큰 값을 updateToken mutations로 보낸다
-        this.commit('updateToken', response.data.token)
-        // router를 이용해 홈 화면으로 리다이렉트한다
-        router.replace('/')
-      //  전송에 실패할 경우
-      }).catch((error) => {
-          // 응답으로 날아온 에러 메시지를 displayError mutations로 보낸다
-          this.commit('displayError', error.response.data.message)
+        // 응답으로 날아온 토큰 값을 updateInfo mutations로 보낸다
+        this.commit('updateInfo', response.data)
+        router.replace({
+          name: 'Dashboard',
+          params: {pk: this.state.pk}
         })
+        //  전송에 실패할 경우
+      }).catch((error) => {
+        // 응답으로 날아온 에러 메시지를 displayError mutations로 보낸다
+        if (typeof error.response !== 'undefined') {
+          this.commit('displayError', error.response.data.message)
+        }
+      })
     },
     refreshToken () {
       const payload = {
@@ -80,7 +89,7 @@ export default new Vuex.Store({
 
       axios.post(this.state.endpoints.refreshJWT, payload)
         .then((response) => {
-          this.commit('updateToken', response.data.token)
+          this.commit('updateInfo', response.data.token)
         })
         .catch((error) => {
           console.log(error)
