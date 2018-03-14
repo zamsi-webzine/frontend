@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'dashboard',
-  props: ['pk'],
+  props: ['nickname'],
   computed: {
     userInfo () {
       return {

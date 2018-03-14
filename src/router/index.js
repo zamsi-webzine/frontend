@@ -19,7 +19,7 @@ export default new Router({
       component: Signin
     },
     {
-      path: '/dashboard/:pk',
+      path: '/dashboard/:nickname',
       name: 'Dashboard',
       component: Dashboard,
       props: true

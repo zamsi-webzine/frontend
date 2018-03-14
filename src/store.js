@@ -102,7 +102,7 @@ export default new Vuex.Store({
         this.commit('updateInfo', response.data)
         router.replace({
           name: 'Dashboard',
-          params: {pk: this.state.pk}
+          params: {nickname: this.state.nickname}
         })
         // 전송에 실패할 경우
       }).catch((error) => {
