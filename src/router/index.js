@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/view/Home'
-import SignIn from '@/components/view/SignIn'
-import SignUp from '@/components/view/SignUp'
-import Activation from '@/components/view/Activation'
+import SignIn from '@/components/authentication/SignIn'
+import SignUp from '@/components/authentication/SignUp'
+import Activation from '@/components/authentication/Activation'
 import Dashboard from '@/components/view/Dashboard'
 
 Vue.use(Router)
