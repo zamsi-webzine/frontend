@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <p>{{msg}}</p>
+    <div class="row align-items-end">
+      <div class="col-sm"/>
+      <div class="col-sm-6">
+        <div class="alert alert-success text-center" role="alert">
+          <H3>Almost there!</H3>
+          <strong>{{msg}}</strong>
+        </div>
+      </div>
+      <div class="col-sm"/>
+    </div>
   </div>
 </template>
 
@@ -16,5 +25,7 @@ export default {
 </script>
 
 <style scoped>
-
+.col-sm-6 {
+  margin: 200px 0 200px 0;
+}
 </style>
