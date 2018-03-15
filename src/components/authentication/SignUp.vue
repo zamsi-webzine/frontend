@@ -4,7 +4,7 @@
       <div class="col-sm"/>
       <div class="col-sm-6">
         <!--로그인 폼 필드-->
-        <form @submit.prevent="SIGMUP_DATA({
+        <form @submit.prevent="SIGNUP_DATA({
         email: email,
         nickname: nickname,
         password1: password1,
