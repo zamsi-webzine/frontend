@@ -4,7 +4,12 @@
       <div class="col-sm"/>
       <div class="col-sm-6">
         <!--로그인 폼 필드-->
-        <form @submit.prevent="onSubmit" method="post">
+        <form @submit.prevent="SIGMUP_DATA({
+        email: email,
+        nickname: nickname,
+        password1: password1,
+        password2: password2
+        })" method="post">
           <!--제목-->
           <div class="form-group row">
             <h2 id="signUp-title">Sign Up</h2>
@@ -61,16 +66,7 @@
           </div>
           <!--에러 메시지 그룹 (hidden)-->
           <div class="form-group row">
-            <div class="col-sm-12">
-              <!--에러 메시지가 발견되면 창을 띄우고 아니면 가린다-->
-              <div v-if="this.$store.state.msg !== ''" class="alert alert-danger alert-dismissible fade show"
-                   role="alert">
-                <strong>{{displayMessage}}</strong>
-              </div>
-              <div v-else class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-                <strong>{{displayMessage}}</strong>
-              </div>
-            </div>
+            <checkout-message/>
           </div>
         </form>
       </div>
@@ -80,7 +76,11 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import * as types from '@/store/types'
+import CheckoutMessage from '../contents/CheckoutMessage'
 export default {
+  components: {CheckoutMessage},
   name: 'signUp',
   data: function () {
     return {
@@ -91,27 +91,9 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      const formData = {
-        email: this.email,
-        nickname: this.nickname,
-        password1: this.password1,
-        password2: this.password2
-      }
-      this.$store.dispatch('signUpData', {
-        email: formData.email,
-        nickname: formData.nickname,
-        password1: formData.password1,
-        password2: formData.password2
-      })
-    }
-  },
-  computed: {
-    // 게으른 연산: displayMessage
-    // Store에 에러 메시지가 관측되는 순간 그 값을 리턴한다
-    displayMessage () {
-      return this.$store.state.msg
-    }
+    ...mapActions([
+      types.SIGNUP_DATA
+    ])
   }
 }
 </script>

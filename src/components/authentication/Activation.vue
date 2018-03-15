@@ -5,7 +5,7 @@
       <div class="col-sm-6">
         <div class="alert alert-success text-center" role="alert">
           <H3>Almost there!</H3>
-          <strong>{{msg}}</strong>
+          <strong>{{CHECKOUT_MSG}}</strong>
         </div>
       </div>
       <div class="col-sm"/>
@@ -14,12 +14,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import * as types from '@/store/types'
 export default {
   name: 'Activation',
-  data: function () {
-    return {
-      msg: this.$store.state.msg
-    }
+  computed: {
+    ...mapGetters([
+      types.CHECKOUT_MSG
+    ])
   }
 }
 </script>

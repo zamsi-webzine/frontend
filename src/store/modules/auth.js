@@ -64,7 +64,6 @@ const actions = {
       commit(types.CLEAR_MSG)
       // 응답으로 날아온 토큰 값을 updateInfo mutations로 보낸다
       commit(types.UPDATE_INFO, response.data)
-      console.log('woo')
       dispatch(types.GET_DASHBOARD, state)
       // 전송에 실패할 경우
     }).catch((error) => {

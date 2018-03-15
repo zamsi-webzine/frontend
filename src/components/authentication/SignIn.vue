@@ -43,15 +43,7 @@
           </div>
           <!--에러 메시지 그룹 (hidden)-->
           <div class="form-group row">
-            <div class="col-sm-12">
-              <!--에러 메시지가 발견되면 창을 띄우고 아니면 가린다-->
-              <div v-if="CHECKOUT_MSG === null" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-                <strong>{{CHECKOUT_MSG}}</strong>
-              </div>
-              <div v-else class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>{{CHECKOUT_MSG}}</strong>
-              </div>
-            </div>
+            <checkout-message/>
           </div>
         </form>
       </div>
@@ -61,9 +53,11 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 import * as types from '@/store/types'
+import CheckoutMessage from '../contents/CheckoutMessage'
 export default {
+  components: {CheckoutMessage},
   name: 'SignIn',
   data: function () {
     return {
@@ -74,12 +68,6 @@ export default {
   methods: {
     ...mapActions([
       types.OBTAIN_INFO
-    ])
-  },
-  computed: {
-    // Store에 에러 메시지가 관측되는 순간 그 값을 리턴한다
-    ...mapGetters([
-      types.CHECKOUT_MSG
     ])
   }
 }
