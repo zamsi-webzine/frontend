@@ -7,7 +7,7 @@
         <form @submit.prevent="onSubmit" method="post">
           <!--제목-->
           <div class="form-group row">
-            <h2 id="login-title">Login</h2>
+            <h2 id="signin-title">Sign In</h2>
           </div>
           <!--아이디 입력 그룹-->
           <div class="form-group row">
@@ -99,7 +99,7 @@ export default {
   form {
     margin: 200px 0 200px 0;
   }
-  #login-title {
+  #signin-title {
     padding-left: 15px;
     margin-bottom: 25px;
   }

@@ -69,7 +69,7 @@ export default new Vuex.Store({
       localStorage.removeItem('orig_iat')
       state.orig_iat = null
     },
-    // 로그인에 실패했을 경우 Store에 에러 메시지를 보낸다
+    // 상태 메시지를 지우거나 채운다
     clearMessage (state) {
       state.msg = ''
     },
