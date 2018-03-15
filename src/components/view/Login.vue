@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <section class="container">
     <div class="row align-items-end">
       <div class="col-sm"/>
       <div class="col-sm-6">
@@ -56,11 +56,12 @@
       </div>
       <div class="col-sm"/>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
 export default {
+  name: 'Login',
   data: function () {
     return {
       // 사용자가 입력한 이메일과 패스워드 값
