@@ -1,18 +1,18 @@
 <template>
   <div class="container-fluid">
-    <Picture/>
+    <main-picture/>
     <Tagline/>
   </div>
 </template>
 
 <script>
-import Picture from '../contents/Picture'
+import mainPicture from '../contents/Picture'
 import Tagline from '../contents/Tagline'
 
 export default {
   name: 'Index',
   components: {
-    Picture,
+    mainPicture,
     Tagline
   }
 }

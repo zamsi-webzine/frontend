@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'picture',
+  name: 'main-picture',
   data: function () {
     return {
       imagePath: 'https://doy0iundk4hjr.cloudfront.net/static/assets/images/cities/landing_0',
