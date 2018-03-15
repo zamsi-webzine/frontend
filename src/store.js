@@ -23,7 +23,8 @@ export default new Vuex.Store({
       obtainJWT: 'http://localhost:8000/auth/obtain_token/',
       refreshJWT: 'http://localhost:8000/auth/refresh_token/',
       signUp: 'http://localhost:8000/auth/signup/',
-      resetPWD: 'http://localhost:8000/auth/reset-password/'
+      resetPWD: 'http://localhost:8000/auth/reset-password/',
+      dashboard: 'http://localhost:8000/profile/'
     },
     msg: ''
   },
@@ -83,7 +84,7 @@ export default new Vuex.Store({
     // parameters:
     // commit: 상태 변경을 위한 콜백 함수
     // formData: 사용자가 입력하는 이메일, 비밀번호 값
-    obtainInfo ({commit}, formData) {
+    obtainInfo ({commit, dispatch}, formData) {
       // axios를 통해 POST 요청을 보낸다
       axios({
         method: 'post',
@@ -106,10 +107,7 @@ export default new Vuex.Store({
         this.commit('clearMessage')
         // 응답으로 날아온 토큰 값을 updateInfo mutations로 보낸다
         this.commit('updateInfo', response.data)
-        router.replace({
-          name: 'Dashboard',
-          params: {nickname: this.state.nickname}
-        })
+        dispatch('getDashboard')
         // 전송에 실패할 경우
       }).catch((error) => {
         // 응답으로 날아온 에러 메시지를 displayMessage mutations로 보낸다
@@ -204,6 +202,33 @@ export default new Vuex.Store({
       }).catch((error) => {
         if (typeof error.response !== 'undefined') {
           this.commit('clearMessage')
+          this.commit('displayMessage', error.response.data.message)
+        }
+      })
+    },
+    getDashboard () {
+      axios({
+        method: 'get',
+        url: this.state.endpoints.dashboard + this.state.pk.toString() + '/',
+        // django를 위해 CSRF 토큰을 헤더에 실어 보낸다
+        headers: {
+          'X-CSRFToken': 'csrfToken',
+          'Content-Type': 'application/json',
+          'Authorization': 'JWT ' + this.state.jwt
+        },
+        xsrfCookieName: 'XSRF-TOKEN',
+        xsrfHeaderName: 'X-XSRFTOKEN',
+        // 인증도 true 값으로 보낸다
+        credentials: true
+      }).then(() => {
+        router.replace({
+          name: 'Dashboard',
+          params: {nickname: this.state.nickname}
+        })
+      }).catch((error) => {
+        console.log(error)
+        // 응답으로 날아온 에러 메시지를 displayMessage mutations로 보낸다
+        if (typeof error.response !== 'undefined') {
           this.commit('displayMessage', error.response.data.message)
         }
       })
