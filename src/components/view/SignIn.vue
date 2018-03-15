@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container" id="login">
     <div class="row align-items-end">
       <div class="col-sm"/>
       <div class="col-sm-6">
@@ -45,10 +45,10 @@
             <div class="col-sm-12">
               <!--에러 메시지가 발견되면 창을 띄우고 아니면 가린다-->
               <div v-if="this.$store.state.msg !== ''" class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>{{displayError}}</strong>
+                <strong>{{displayMessage}}</strong>
               </div>
               <div v-else class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-                <strong>{{displayError}}</strong>
+                <strong>{{displayMessage}}</strong>
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'SignIn',
   data: function () {
     return {
       // 사용자가 입력한 이메일과 패스워드 값
@@ -85,9 +85,9 @@ export default {
     }
   },
   computed: {
-    // 게으른 연산: displayError
+    // 게으른 연산: displayMessage
     // Store에 에러 메시지가 관측되는 순간 그 값을 리턴한다
-    displayError () {
+    displayMessage () {
       return this.$store.state.msg
     }
   }

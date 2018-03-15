@@ -21,7 +21,8 @@ export default new Vuex.Store({
     // 여러 메소드에 사용할 URL 값을 객체화
     endpoints: {
       obtainJWT: 'http://localhost:8000/auth/obtain_token/',
-      refreshJWT: 'http://localhost:8000/auth/refresh_token/'
+      refreshJWT: 'http://localhost:8000/auth/refresh_token/',
+      signUp: 'http://localhost:8000/auth/signup/'
     },
     msg: ''
   },
@@ -69,8 +70,11 @@ export default new Vuex.Store({
       state.orig_iat = null
     },
     // 로그인에 실패했을 경우 Store에 에러 메시지를 보낸다
-    displayError (state, error) {
-      state.msg = error
+    clearMessage (state) {
+      state.msg = ''
+    },
+    displayMessage (state, msg) {
+      state.msg = msg
     }
   },
   actions: {
@@ -98,6 +102,7 @@ export default new Vuex.Store({
         credentials: true
         // 전송에 성공할 경우
       }).then((response) => {
+        this.commit('clearMessage')
         // 응답으로 날아온 토큰 값을 updateInfo mutations로 보낸다
         this.commit('updateInfo', response.data)
         router.replace({
@@ -106,9 +111,9 @@ export default new Vuex.Store({
         })
         // 전송에 실패할 경우
       }).catch((error) => {
-        // 응답으로 날아온 에러 메시지를 displayError mutations로 보낸다
+        // 응답으로 날아온 에러 메시지를 displayMessage mutations로 보낸다
         if (typeof error.response !== 'undefined') {
-          this.commit('displayError', error.response.data.message)
+          this.commit('displayMessage', error.response.data.message)
         }
       })
     },
@@ -140,6 +145,38 @@ export default new Vuex.Store({
 
         }
       }
+    },
+    signUpData ({commit}, formData) {
+      axios({
+        method: 'post',
+        url: this.state.endpoints.signUp,
+        data: {
+          email: formData.email,
+          nickname: formData.nickname,
+          password1: formData.password1,
+          password2: formData.password2
+        },
+        // django를 위해 CSRF 토큰을 헤더에 실어 보낸다
+        headers: {
+          'X-CSRFToken': 'csrfToken',
+          'Content-Type': 'application/json'
+        },
+        xsrfCookieName: 'XSRF-TOKEN',
+        xsrfHeaderName: 'X-XSRFTOKEN',
+        // 인증도 true 값으로 보낸다
+        credentials: true
+      }).then((response) => {
+        this.commit('clearMessage')
+        this.commit('displayMessage', response.data.message)
+        router.replace({
+          name: 'Activation'
+        })
+      }).catch((error) => {
+        if (typeof error.response !== 'undefined') {
+          this.commit('clearMessage')
+          this.commit('displayMessage', error.response.data.message)
+        }
+      })
     }
   }
 })
