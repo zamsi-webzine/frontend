@@ -4,6 +4,7 @@ import Home from '@/components/view/Home'
 import SignIn from '@/components/authentication/SignIn'
 import SignUp from '@/components/authentication/SignUp'
 import Activation from '@/components/authentication/Activation'
+import Forgot from '@/components/authentication/Forgot'
 import Dashboard from '@/components/view/Dashboard'
 
 Vue.use(Router)
@@ -29,6 +30,11 @@ export default new Router({
       path: '/activation',
       name: 'Activation',
       component: Activation
+    },
+    {
+      path: '/forgot-password',
+      name: Forgot,
+      component: Forgot
     },
     {
       path: '/dashboard/:nickname',

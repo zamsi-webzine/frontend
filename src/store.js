@@ -22,7 +22,8 @@ export default new Vuex.Store({
     endpoints: {
       obtainJWT: 'http://localhost:8000/auth/obtain_token/',
       refreshJWT: 'http://localhost:8000/auth/refresh_token/',
-      signUp: 'http://localhost:8000/auth/signup/'
+      signUp: 'http://localhost:8000/auth/signup/',
+      resetPWD: 'http://localhost:8000/auth/reset-password/'
     },
     msg: ''
   },
@@ -155,6 +156,35 @@ export default new Vuex.Store({
           nickname: formData.nickname,
           password1: formData.password1,
           password2: formData.password2
+        },
+        // django를 위해 CSRF 토큰을 헤더에 실어 보낸다
+        headers: {
+          'X-CSRFToken': 'csrfToken',
+          'Content-Type': 'application/json'
+        },
+        xsrfCookieName: 'XSRF-TOKEN',
+        xsrfHeaderName: 'X-XSRFTOKEN',
+        // 인증도 true 값으로 보낸다
+        credentials: true
+      }).then((response) => {
+        this.commit('clearMessage')
+        this.commit('displayMessage', response.data.message)
+        router.replace({
+          name: 'Activation'
+        })
+      }).catch((error) => {
+        if (typeof error.response !== 'undefined') {
+          this.commit('clearMessage')
+          this.commit('displayMessage', error.response.data.message)
+        }
+      })
+    },
+    resetPWD ({commit}, formData) {
+      axios({
+        method: 'post',
+        url: this.state.endpoints.resetPWD,
+        data: {
+          email: formData.email
         },
         // django를 위해 CSRF 토큰을 헤더에 실어 보낸다
         headers: {

@@ -1,13 +1,12 @@
 <template>
-  <section class="container" id="signin">
+  <div class="container" id="forgot-password">
     <div class="row align-items-end">
-      <div class="col-sm"/>
+      <div class="col-sm"></div>
       <div class="col-sm-6">
-        <!--로그인 폼 필드-->
-        <form @submit.prevent="onSubmit" method="post">
+        <form @submit.prevent="resetPWD" method="post">
           <!--제목-->
           <div class="form-group row">
-            <h2 id="signin-title">Sign In</h2>
+            <h2 id="forgot-title">Reset Password</h2>
           </div>
           <!--아이디 입력 그룹-->
           <div class="form-group row">
@@ -20,25 +19,11 @@
                      v-model="email">
             </div>
           </div>
-          <!--비밀번호 입력 그룹-->
-          <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-4 col-form-label">Password</label>
-              <div class="col-sm-8">
-                <input type="password"
-                       class="form-control"
-                       id="inputPassword3"
-                       placeholder="Password"
-                       v-model="password">
-              </div>
-          </div>
           <!--submit 그룹-->
           <div class="form-group row">
-              <div class="col-sm-4 col-12">
-                <button type="submit" class="btn btn-primary">Sign in</button>
-              </div>
-              <div class="col-sm-4 col-6">
-                <a type="button" class="btn btn-link" id="btn-forgot" href="/#/forgot-password">Forgot Password?</a>
-              </div>
+            <div class="col-sm-4 col-12">
+              <button type="submit" class="btn btn-primary">Reset Password</button>
+            </div>
           </div>
           <!--에러 메시지 그룹 (hidden)-->
           <div class="form-group row">
@@ -54,33 +39,26 @@
           </div>
         </form>
       </div>
-      <div class="col-sm"/>
+      <div class="col-sm"></div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'SignIn',
+  name: 'Forgot',
   data: function () {
     return {
-      // 사용자가 입력한 이메일과 패스워드 값
-      email: '',
-      password: ''
+      email: ''
     }
   },
   methods: {
-    // 사용자가 'signin' 요청을 했을 경우의 메소드
-    onSubmit () {
-      // 사용자가 입력한 값을 formData 상수 값에 넣는다
+    resetPWD () {
       const formData = {
-        email: this.email,
-        password: this.password
+        email: this.email
       }
-      // Store에 있는 obtainToken을 호출하면서 이메일, 패스워드를 전송한다
-      this.$store.dispatch('obtainInfo', {
-        email: formData.email,
-        password: formData.password
+      this.$store.dispatch('resetPWD', {
+        email: formData.email
       })
     }
   },
@@ -92,18 +70,14 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
   form {
     margin: 200px 0 200px 0;
   }
-  #signin-title {
+  #forgot-title {
     padding-left: 15px;
     margin-bottom: 25px;
-  }
-  #btn-forgot {
-    padding-left: 0;
   }
 </style>
