@@ -3,7 +3,6 @@ import axios from 'axios/index'
 
 import router from '@/router/index'
 import * as types from '../types'
-import profile from './profile'
 
 // state
 const state = {
@@ -27,7 +26,13 @@ const state = {
 
 // getters
 const getters = {
-  [types.CHECKOUT_MSG]: state => state.msg
+  [types.CHECKOUT_MSG]: state => state.msg,
+  [types.GET_INFO]: state => {
+    return {
+      email: state.email,
+      nickname: state.nickname
+    }
+  }
 }
 
 // actions
@@ -60,12 +65,12 @@ const actions = {
       // 응답으로 날아온 토큰 값을 updateInfo mutations로 보낸다
       commit(types.UPDATE_INFO, response.data)
       console.log('woo')
-      profile.dispatch(types.GET_DASHBOARD)
-      console.log('hah')
+      dispatch(types.GET_DASHBOARD, state)
       // 전송에 실패할 경우
     }).catch((error) => {
       // 응답으로 날아온 에러 메시지를 setMessage mutations로 보낸다
       if (typeof error.response !== 'undefined') {
+        commit(types.CLEAR_MSG)
         commit(types.SET_MSG, error.response.data.message)
       }
     })

@@ -4,7 +4,7 @@ import router from '@/router/index'
 import * as types from '../types'
 
 const actions = {
-  [types.GET_DASHBOARD] ({commit, state}) {
+  [types.GET_DASHBOARD] ({commit}, state) {
     axios({
       method: 'get',
       url: state.endpoints.dashboard + state.pk.toString() + '/',
@@ -27,7 +27,8 @@ const actions = {
       console.log(error)
       // 응답으로 날아온 에러 메시지를 displayMessage mutations로 보낸다
       if (typeof error.response !== 'undefined') {
-        commit('displayMessage', error.response.data.message)
+        commit(types.CLEAR_MSG)
+        commit(types.SET_MSG, error.response.data.message)
       }
     })
   }

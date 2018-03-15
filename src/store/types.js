@@ -1,5 +1,6 @@
 // getters
 export const CHECKOUT_MSG = 'CHECKOUT_MSG'
+export const GET_INFO = 'GET_INFO'
 
 // actions: auth
 export const OBTAIN_INFO = 'OBTAIN_INFO'

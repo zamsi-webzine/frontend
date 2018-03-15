@@ -1,20 +1,19 @@
 <template>
   <div class="container">
-      <p>Hello, {{userInfo.nickname}} ({{userInfo.email}})</p>
+      <p>Hello, {{GET_INFO.nickname}} ({{GET_INFO.email}})</p>
   </div>
 </template>
 
 <script>
+import * as types from '@/store/types'
+import { mapGetters } from 'vuex'
 export default {
   name: 'dashboard',
   props: ['nickname'],
   computed: {
-    userInfo () {
-      return {
-        email: this.$store.state.email,
-        nickname: this.$store.state.nickname
-      }
-    }
+    ...mapGetters([
+      types.GET_INFO
+    ])
   }
 }
 </script>
