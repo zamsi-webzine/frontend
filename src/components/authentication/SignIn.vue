@@ -4,7 +4,7 @@
       <div class="col-sm"/>
       <div class="col-sm-6">
         <!--로그인 폼 필드-->
-        <form @submit.prevent="onSubmit" method="post">
+        <form @submit.prevent="OBTAIN_INFO({email: email, password: password})" method="post">
           <!--제목-->
           <div class="form-group row">
             <h2 id="signin-title">Sign In</h2>
@@ -17,7 +17,8 @@
                      class="form-control"
                      id="inputEmail3"
                      placeholder="Email"
-                     v-model="email">
+                     v-model="email"
+              >
             </div>
           </div>
           <!--비밀번호 입력 그룹-->
@@ -44,11 +45,11 @@
           <div class="form-group row">
             <div class="col-sm-12">
               <!--에러 메시지가 발견되면 창을 띄우고 아니면 가린다-->
-              <div v-if="this.$store.state.msg !== ''" class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>{{displayMessage}}</strong>
+              <div v-if="CHECKOUT_MSG === null" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
+                <strong>{{CHECKOUT_MSG}}</strong>
               </div>
-              <div v-else class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-                <strong>{{displayMessage}}</strong>
+              <div v-else class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{CHECKOUT_MSG}}</strong>
               </div>
             </div>
           </div>
@@ -60,36 +61,26 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+import * as types from '@/store/types'
 export default {
   name: 'SignIn',
   data: function () {
     return {
-      // 사용자가 입력한 이메일과 패스워드 값
       email: '',
       password: ''
     }
   },
   methods: {
-    // 사용자가 'signin' 요청을 했을 경우의 메소드
-    onSubmit () {
-      // 사용자가 입력한 값을 formData 상수 값에 넣는다
-      const formData = {
-        email: this.email,
-        password: this.password
-      }
-      // Store에 있는 obtainToken을 호출하면서 이메일, 패스워드를 전송한다
-      this.$store.dispatch('obtainInfo', {
-        email: formData.email,
-        password: formData.password
-      })
-    }
+    ...mapActions([
+      types.OBTAIN_INFO
+    ])
   },
   computed: {
-    // 게으른 연산: displayMessage
     // Store에 에러 메시지가 관측되는 순간 그 값을 리턴한다
-    displayMessage () {
-      return this.$store.state.msg
-    }
+    ...mapGetters([
+      types.CHECKOUT_MSG
+    ])
   }
 }
 

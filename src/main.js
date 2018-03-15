@@ -7,7 +7,7 @@ import 'bootstrap'
 import 'bootstrap/scss/bootstrap.scss'
 
 import router from './router/index'
-import store from './store'
+import store from './store/index'
 
 Vue.config.productionTip = false
 
