@@ -1,12 +1,15 @@
 <template>
-    <div class="row">
+  <div class="container-fluid p-0">
+    <div class="row m-0">
       <sidebar/>
-      <main class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"></main>
+      <my-posts/>
     </div>
+  </div>
 </template>
 
 <script>
 import Sidebar from '../contents/Sidebar'
+import MyPosts from '../contents/MyPosts'
 import * as types from '@/store/types'
 import { mapGetters } from 'vuex'
 export default {
@@ -18,7 +21,8 @@ export default {
     ])
   },
   components: {
-    Sidebar
+    Sidebar,
+    MyPosts
   }
 }
 </script>

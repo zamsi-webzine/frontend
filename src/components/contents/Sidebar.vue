@@ -1,5 +1,5 @@
 <template>
-  <nav class="col-md-2 d-md-block bg-light sidebar">
+  <nav class="col-md-2 d-md-block d-none bg-light sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
@@ -52,24 +52,19 @@ export default {
     margin: 70px 0 70px 0;
   }
   #user-title {
-    padding-left: 16px;
+    padding-left: 10px;
   }
   #email-break {
     display: inline-block;
     word-break: break-all;
-    padding-left: 16px;
+    padding-left: 10px;
   }
   #hr-line {
-    margin-left: 16px;
+    margin-left: 10px;
   }
   .nav-link {
     text-decoration: none;
     color: black;
 
-  }
-  @media (max-width: 825px) {
-    .sidebar {
-      visibility: hidden;
-    }
   }
 </style>
