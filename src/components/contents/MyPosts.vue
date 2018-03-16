@@ -14,9 +14,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'my-posts'
-  }
+export default {
+  name: 'my-posts'
+}
 </script>
 
 <style scoped>

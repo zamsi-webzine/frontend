@@ -12,19 +12,19 @@
             <hr id="hr-line">
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link">
               <i class="fas fa-pencil-alt"></i>
               My Posts
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link">
               <i class="fas fa-user-circle"></i>
               Profile
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link">
               <i class="fas fa-sign-out-alt"></i>
               Sign Out
             </a>
