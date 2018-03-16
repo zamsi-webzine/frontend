@@ -3,10 +3,10 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <h3 id="user-title">{{}}</h3>
+            <h3 id="user-title">{{getInfo.email}}</h3>
           </li>
           <li class="nav-item">
-            <span id="email-break">{{}}</span>
+            <span id="email-break">{{getInfo.nickname}}</span>
           </li>
           <li class="nav-item">
             <hr id="hr-line">

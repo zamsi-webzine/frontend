@@ -33,7 +33,6 @@ const state = {
   message: null
 }
 
-
 export default new Vuex.Store({
   modules: {
     state,
