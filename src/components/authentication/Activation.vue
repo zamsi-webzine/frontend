@@ -1,18 +1,17 @@
 <template>
   <div class="alert alert-success text-center" role="alert">
     <H3>Almost there!</H3>
-    <strong>{{CHECKOUT_MSG}}</strong>
+    <strong>{{checkoutMessage}}</strong>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import * as types from '@/store/types'
 export default {
   name: 'Activation',
   computed: {
     ...mapGetters([
-      types.CHECKOUT_MSG
+      'checkoutMessage'
     ])
   }
 }
