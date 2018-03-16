@@ -21,6 +21,10 @@ export default new Router({
       component: Home
     },
     {
+      path: '*',
+      redirect: '/'
+    },
+    {
       path: '/auth',
       component: Auth,
       children: [
