@@ -24,7 +24,7 @@
             </a>
           </router-link>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="" @click="LOGOUT" class="nav-link">
               <img src="../../assets/icons/sign-out-alt.svg" class="icons" alt="out-icon">
               Sign Out
             </a>
@@ -36,9 +36,14 @@
 
 <script>
 import * as types from '@/store/types'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'sidebar',
+  methods: {
+    ...mapActions([
+      types.LOGOUT
+    ])
+  },
   computed: {
     ...mapGetters([
       types.GET_INFO

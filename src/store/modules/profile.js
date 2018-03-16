@@ -30,6 +30,12 @@ const actions = {
         commit(types.SET_MSG, error.response.data.message)
       }
     })
+  },
+  [types.LOGOUT]: ({commit}) => {
+    commit(types.REMOVE_INFO)
+    router.replace({
+      name: 'Home'
+    })
   }
 }
 

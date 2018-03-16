@@ -1,12 +1,14 @@
 // getters
 export const CHECKOUT_MSG = 'CHECKOUT_MSG'
 export const GET_INFO = 'GET_INFO'
+export const GET_TOKEN = 'GET_TOKEN'
 
 // actions: auth
 export const OBTAIN_INFO = 'OBTAIN_INFO'
 export const REFRESH_TOKEN = 'REFRESH_TOKEN'
 export const SIGNUP_DATA = 'SIGNUP_DATA'
 export const RESET_PW = 'RESET_PW'
+export const LOGOUT = 'LOGOUT'
 
 // actions: profile
 export const GET_DASHBOARD = 'GET_DASHBOARD'

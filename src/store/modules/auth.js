@@ -32,7 +32,8 @@ const getters = {
       email: state.email,
       nickname: state.nickname
     }
-  }
+  },
+  [types.GET_TOKEN]: state => state.jwt
 }
 
 // actions
