@@ -2,20 +2,20 @@
   <div class="container-fluid p-0">
     <div class="row m-0">
       <sidebar/>
-      <my-posts/>
+      <profile/>
     </div>
   </div>
 </template>
 
 <script>
 import Sidebar from '../contents/Sidebar'
-import MyPosts from '../contents/MyPosts'
+import Profile from '../contents/Profile'
 export default {
-  name: 'dashboard',
+  name: 'profile-setting',
   props: ['nickname'],
   components: {
     Sidebar,
-    MyPosts
+    Profile
   }
 }
 </script>

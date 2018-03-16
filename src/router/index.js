@@ -6,6 +6,7 @@ import SignUp from '@/components/authentication/SignUp'
 import Activation from '@/components/authentication/Activation'
 import Forgot from '@/components/authentication/Forgot'
 import Dashboard from '@/components/view/Dashboard'
+import ProfileSetting from '@/components/view/ProfileSetting'
 
 Vue.use(Router)
 
@@ -41,7 +42,15 @@ export default new Router({
       path: '/dashboard/:nickname',
       name: 'Dashboard',
       component: Dashboard,
-      props: true
+      props: true,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/profile/:nickname',
+      name: 'Profile',
+      component: ProfileSetting,
+      props: true,
+      meta: {requiresAuth: true}
     }
   ]
 })
