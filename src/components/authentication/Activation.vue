@@ -1,7 +1,7 @@
 <template>
   <div class="alert alert-success text-center" role="alert">
     <H3>Almost there!</H3>
-    <strong>{{checkoutMessage}}</strong>
+    <strong>{{checkoutMsg}}</strong>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   name: 'Activation',
   computed: {
     ...mapGetters([
-      'checkoutMessage'
+      'checkoutMsg'
     ])
   }
 }

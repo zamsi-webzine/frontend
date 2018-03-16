@@ -1,8 +1,5 @@
 <template>
-  <form @submit.prevent="signIn({
-  email: email,
-  password: password
-  })" method="post">
+  <form @submit.prevent="onSubmit" method="post">
     <!--제목-->
     <div class="form-group row">
       <h2 id="signin-title">Sign In</h2>
@@ -47,11 +44,10 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import CheckoutMessage from '../contents/CheckoutMessage'
 export default {
   components: {CheckoutMessage},
-  name: 'SignIn',
+  name: 'login',
   data: function () {
     return {
       email: '',
@@ -59,9 +55,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'signIn'
-    ])
+    onSubmit () {
+      const formData = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('login', {email: formData.email, password: formData.password})
+    }
   }
 }
 
