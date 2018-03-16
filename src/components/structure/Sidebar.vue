@@ -36,14 +36,9 @@
 
 <script>
 import * as types from '@/store/types'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'sidebar',
-  methods: {
-    ...mapActions([
-      types.GET_DASHBOARD
-    ])
-  },
   computed: {
     ...mapGetters([
       types.GET_INFO
