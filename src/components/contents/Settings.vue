@@ -2,20 +2,81 @@
   <main role="main" class="col-md-9 col-sm-12 ml-auto mr-auto">
     <div class="d-flex">
       <h1 class="mr-auto pt-3">Settings</h1>
-      <div class="pt-4">
-        <a role="button" class="btn btn-outline-secondary p-2" href="">
-          Submit
-        </a>
-      </div>
     </div>
     <hr>
+    <div class="d-flex">
+      <form @submit.prevent="patchProfile({
+      nickname: new_nickname,
+      password1: password1,
+      password2: password2
+      })" method="post">
+        <!--닉네임 입력 그룹-->
+        <div class="form-group row">
+          <label for="inputNickname3" class="col-sm-4 col-form-label">Nickname</label>
+          <div class="col-sm-8">
+            <input type="text"
+                   class="form-control"
+                   id="inputNickname3"
+                   :placeholder="nickname"
+                   v-model="new_nickname">
+          </div>
+        </div>
+        <!--비밀번호1 입력 그룹-->
+        <div class="form-group row">
+          <label for="inputPassword1" class="col-sm-4 col-form-label">Password 1</label>
+          <div class="col-sm-8">
+            <input type="password"
+                   class="form-control"
+                   id="inputPassword1"
+                   placeholder="New Password"
+                   v-model="password1">
+          </div>
+        </div>
+        <!--비밀번호2 입력 그룹-->
+        <div class="form-group row">
+          <label for="inputPassword2" class="col-sm-4 col-form-label">Password 2</label>
+          <div class="col-sm-8">
+            <input type="password"
+                   class="form-control"
+                   id="inputPassword2"
+                   placeholder="Password Repeat"
+                   v-model="password2">
+          </div>
+        </div>
+        <!--submit 그룹-->
+        <div class="form-group row">
+          <div class="col-sm-4 col-12">
+            <button type="submit" class="btn btn-outline-secondary">Confirm</button>
+          </div>
+        </div>
+        <!--에러 메시지 그룹 (hidden)-->
+        <div class="form-group row">
+          <checkout-message/>
+        </div>
+      </form>
+    </div>
   </main>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import CheckoutMessage from '../contents/CheckoutMessage'
 export default {
+  components: {CheckoutMessage},
   name: 'profile',
-  props: ['nickname']
+  props: ['nickname'],
+  data: function () {
+    return {
+      new_nickname: '',
+      password1: '',
+      password2: ''
+    }
+  },
+  methods: {
+    ...mapActions([
+      'patchProfile'
+    ])
+  }
 }
 </script>
 

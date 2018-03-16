@@ -1,5 +1,7 @@
 <template>
-  <form @submit.prevent="RESET_PW" method="post">
+  <form @submit.prevent="resetPassword({
+  email: email
+  })" method="post">
     <!--제목-->
     <div class="form-group row">
       <h2 id="forgot-title">Reset Password</h2>
@@ -30,7 +32,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import * as types from '@/store/types'
 import CheckoutMessage from '../contents/CheckoutMessage'
 export default {
   components: {CheckoutMessage},
@@ -42,7 +43,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      types.RESET_PW
+      'resetPassword'
     ])
   }
 }

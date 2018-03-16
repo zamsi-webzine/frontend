@@ -1,10 +1,10 @@
 <template>
-  <form @submit.prevent="SIGNUP_DATA({
-        email: email,
-        nickname: nickname,
-        password1: password1,
-        password2: password2
-        })" method="post">
+  <form @submit.prevent="signUp({
+  email: email,
+  nickname: nickname,
+  password1: password1,
+  password2: password2
+  })" method="post">
     <!--제목-->
     <div class="form-group row">
       <h2 id="signUp-title">Sign Up</h2>
@@ -68,7 +68,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import * as types from '@/store/types'
 import CheckoutMessage from '../contents/CheckoutMessage'
 export default {
   components: {CheckoutMessage},
@@ -83,7 +82,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      types.SIGNUP_DATA
+      'signUp'
     ])
   }
 }

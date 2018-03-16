@@ -1,8 +1,8 @@
 <template>
-  <form @submit.prevent="OBTAIN_INFO({
-        email: email,
-        password: password
-        })" method="post">
+  <form @submit.prevent="signIn({
+  email: email,
+  password: password
+  })" method="post">
     <!--제목-->
     <div class="form-group row">
       <h2 id="signin-title">Sign In</h2>
@@ -48,7 +48,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import * as types from '@/store/types'
 import CheckoutMessage from '../contents/CheckoutMessage'
 export default {
   components: {CheckoutMessage},
@@ -61,7 +60,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      types.OBTAIN_INFO
+      'signIn'
     ])
   }
 }

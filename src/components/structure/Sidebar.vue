@@ -3,28 +3,28 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <h3 id="user-title">{{GET_INFO.nickname}}</h3>
+            <h3 id="user-title">{{}}</h3>
           </li>
           <li class="nav-item">
-            <span id="email-break">{{GET_INFO.email}}</span>
+            <span id="email-break">{{}}</span>
           </li>
           <li class="nav-item">
             <hr id="hr-line">
           </li>
-          <router-link :to="{name: 'MyPosts', params: {nickname: GET_INFO.nickname}}" tag="li" class="nav-item">
+          <router-link :to="{name: 'MyPosts', params: {nickname: getInfo.email }}" tag="li" class="nav-item">
             <a href="" class="nav-link">
               <img src="../../assets/icons/pencil-alt.svg" class="icons" alt="pencil-icon">
               My Posts
             </a>
           </router-link>
-          <router-link :to="{name: 'Settings', params: {nickname: GET_INFO.nickname}}" tag="li" class="nav-item">
+          <router-link :to="{name: 'Settings', params: {nickname: getInfo.nickname }}" tag="li" class="nav-item">
             <a href="" class="nav-link">
               <img src="../../assets/icons/user-circle.svg" class="icons" alt="user-icon">
               Settings
             </a>
           </router-link>
           <li class="nav-item">
-            <a href="" @click="LOGOUT" class="nav-link">
+            <a @click="signOut" class="nav-link">
               <img src="../../assets/icons/sign-out-alt.svg" class="icons" alt="out-icon">
               Sign Out
             </a>
@@ -35,18 +35,17 @@
 </template>
 
 <script>
-import * as types from '@/store/types'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'sidebar',
   methods: {
     ...mapActions([
-      types.LOGOUT
+      'signOut'
     ])
   },
   computed: {
     ...mapGetters([
-      types.GET_INFO
+      'getInfo'
     ])
   }
 }
