@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/view/Home'
+import Auth from '@/components/authentication/Auth'
 import SignIn from '@/components/authentication/SignIn'
 import SignUp from '@/components/authentication/SignUp'
 import Activation from '@/components/authentication/Activation'
@@ -19,24 +20,18 @@ export default new Router({
       component: Home
     },
     {
-      path: '/signin',
-      name: 'SignIn',
-      component: SignIn
-    },
-    {
-      path: '/signup',
-      name: 'SignUp',
-      component: SignUp
+      path: '/auth',
+      component: Auth,
+      children: [
+        {name: 'SignIn', path: 'signin', component: SignIn},
+        {name: 'SignUp', path: 'signup', component: SignUp},
+        {name: 'Forgot', path: 'forgot-password', component: Forgot}
+      ]
     },
     {
       path: '/activation',
       name: 'Activation',
       component: Activation
-    },
-    {
-      path: '/forgot-password',
-      name: Forgot,
-      component: Forgot
     },
     {
       path: '/dashboard/:nickname',

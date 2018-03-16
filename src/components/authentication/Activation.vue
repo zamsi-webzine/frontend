@@ -1,15 +1,7 @@
 <template>
-  <div class="container">
-    <div class="row align-items-end">
-      <div class="col-sm"/>
-      <div class="col-sm-6">
-        <div class="alert alert-success text-center" role="alert">
-          <H3>Almost there!</H3>
-          <strong>{{CHECKOUT_MSG}}</strong>
-        </div>
-      </div>
-      <div class="col-sm"/>
-    </div>
+  <div class="alert alert-success text-center" role="alert">
+    <H3>Almost there!</H3>
+    <strong>{{CHECKOUT_MSG}}</strong>
   </div>
 </template>
 
