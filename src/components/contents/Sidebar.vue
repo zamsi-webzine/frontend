@@ -13,16 +13,19 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <i class="fas fa-pencil-alt"></i>
               My Posts
             </a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <i class="fas fa-user-circle"></i>
               Profile
             </a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
               Sign Out
             </a>
           </li>
@@ -33,9 +36,14 @@
 
 <script>
 import * as types from '@/store/types'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'sidebar',
+  methods: {
+    ...mapActions([
+      types.GET_DASHBOARD
+    ])
+  },
   computed: {
     ...mapGetters([
       types.GET_INFO

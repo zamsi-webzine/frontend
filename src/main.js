@@ -5,6 +5,7 @@ import App from './App'
 import axios from 'axios'
 import 'bootstrap'
 import 'bootstrap/scss/bootstrap.scss'
+import '../static/fontawesome-all.min'
 
 import router from './router/index'
 import store from './store/index'
