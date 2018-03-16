@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode'
 import axios from 'axios/index'
 
-import router from '@/router/index'
+import {router} from '../../main'
 import * as types from '../types'
 
 // state

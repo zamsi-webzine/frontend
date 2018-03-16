@@ -1,6 +1,6 @@
 import axios from 'axios/index'
 
-import router from '@/router/index'
+import {router} from '../../main'
 import * as types from '../types'
 
 const actions = {
@@ -24,7 +24,6 @@ const actions = {
         params: {nickname: state.nickname}
       })
     }).catch((error) => {
-      console.log(error)
       // 응답으로 날아온 에러 메시지를 displayMessage mutations로 보낸다
       if (typeof error.response !== 'undefined') {
         commit(types.CLEAR_MSG)
