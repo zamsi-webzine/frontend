@@ -1,7 +1,7 @@
 <template>
   <main role="main" class="col-md-9 col-sm-12 ml-auto mr-auto">
     <div class="d-flex">
-      <h1 class="mr-auto pt-3">Profile</h1>
+      <h1 class="mr-auto pt-3">Settings</h1>
       <div class="pt-4">
         <a role="button" class="btn btn-outline-secondary p-2" href="">
           <i class="fas fa-edit"></i>
@@ -15,7 +15,8 @@
 
 <script>
 export default {
-  name: 'profile'
+  name: 'profile',
+  props: ['nickname']
 }
 </script>
 

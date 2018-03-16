@@ -11,23 +11,8 @@
 </template>
 
 <script>
-import signIn from './SignIn'
-import signUp from './SignUp'
-import forgot from './Forgot'
-import Activation from './Activation'
 export default {
-  name: 'auth',
-  data: function () {
-    return {
-      selectedComponent: 'signIn'
-    }
-  },
-  components: {
-    signIn: signIn,
-    signUp: signUp,
-    forgot: forgot,
-    Activation: Activation
-  }
+  name: 'auth'
 }
 </script>
 

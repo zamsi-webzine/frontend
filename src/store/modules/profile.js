@@ -20,7 +20,7 @@ const actions = {
       credentials: true
     }).then(() => {
       router.replace({
-        name: 'Dashboard',
+        name: 'MyPosts',
         params: {nickname: state.nickname}
       })
     }).catch((error) => {

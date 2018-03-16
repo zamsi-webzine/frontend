@@ -11,16 +11,16 @@
           <li class="nav-item">
             <hr id="hr-line">
           </li>
-          <router-link :to="{name: 'Dashboard', params: {nickname: GET_INFO.nickname}}" tag="li" class="nav-item">
+          <router-link :to="{name: 'MyPosts', params: {nickname: GET_INFO.nickname}}" tag="li" class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-pencil-alt"></i>
               My Posts
             </a>
           </router-link>
-          <router-link :to="{name: 'Profile', params: {nickname: GET_INFO.nickname}}" tag="li" class="nav-item">
+          <router-link :to="{name: 'Settings', params: {nickname: GET_INFO.nickname}}" tag="li" class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-user-circle"></i>
-              Profile
+              Settings
             </a>
           </router-link>
           <li class="nav-item">

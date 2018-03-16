@@ -2,20 +2,18 @@
   <div class="container-fluid p-0">
     <div class="row m-0">
       <sidebar/>
-      <profile/>
+      <router-view/>
     </div>
   </div>
 </template>
 
 <script>
-import Sidebar from '../contents/Sidebar'
-import Profile from '../contents/Profile'
+import Sidebar from '../structure/Sidebar'
 export default {
-  name: 'profile-setting',
+  name: 'dashboard',
   props: ['nickname'],
   components: {
-    Sidebar,
-    Profile
+    Sidebar
   }
 }
 </script>
