@@ -13,19 +13,19 @@
           </li>
           <router-link :to="{name: 'MyPosts', params: {nickname: GET_INFO.nickname}}" tag="li" class="nav-item">
             <a href="" class="nav-link">
-              <i class="fas fa-pencil-alt"></i>
+              <img src="../../assets/icons/pencil-alt.svg" class="icons" alt="pencil-icon">
               My Posts
             </a>
           </router-link>
           <router-link :to="{name: 'Settings', params: {nickname: GET_INFO.nickname}}" tag="li" class="nav-item">
             <a href="" class="nav-link">
-              <i class="fas fa-user-circle"></i>
+              <img src="../../assets/icons/user-circle.svg" class="icons" alt="user-icon">
               Settings
             </a>
           </router-link>
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="fas fa-sign-out-alt"></i>
+              <img src="../../assets/icons/sign-out-alt.svg" class="icons" alt="out-icon">
               Sign Out
             </a>
           </li>
@@ -70,5 +70,10 @@ export default {
     color: black;
     padding-left: 7px;
 
+  }
+  .icons {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
   }
 </style>

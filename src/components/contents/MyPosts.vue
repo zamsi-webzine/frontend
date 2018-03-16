@@ -4,7 +4,6 @@
       <h1 class="mr-auto pt-3">My Posts</h1>
       <div class="pt-4">
         <a role="button" class="btn btn-outline-secondary p-2" href="">
-          <i class="fas fa-edit"></i>
           Let's Post
         </a>
       </div>
