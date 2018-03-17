@@ -68,13 +68,11 @@ module.exports = {
         }
       },
       {
-        test: /\.(woff(2)?|ttf|eot)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]?[hash]'
-          }
-        }]
+        test: /\.(woff|woff2)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
       }
     ]
   },
@@ -92,15 +90,7 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map',
-  plugins: [
-    new webpack.ProvidePlugin({
-      $:'jquery',
-      jquery:'jquery',
-      'window.jQuery':'jquery',
-      jQuery:'jquery'
-    })
-  ]
+  devtool: '#eval-source-map'
 };
 
 if (process.env.NODE_ENV === 'production') {
@@ -120,12 +110,6 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    }),
-    new webpack.ProvidePlugin({
-      $:'jquery',
-      jquery:'jquery',
-      'window.jQuery':'jquery',
-      jQuery:'jquery'
     })
   ])
 }
