@@ -23,7 +23,7 @@
 <style scoped lang="scss">
   .container-fluid {
     padding: 0;
-    margin: 0 0 70px 0;
+    margin: 0;
     > .nav {
       padding: 0;
       background: linear-gradient(to right, #0081D5, #A133D5) !important;

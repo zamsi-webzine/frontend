@@ -18,11 +18,6 @@ export default {
 }
 </script>
 
-<style>
-  header {
-    margin: 0 !important;
-  }
-  footer {
-    margin: 0 !important;
-  }
+<style scoped>
+
 </style>

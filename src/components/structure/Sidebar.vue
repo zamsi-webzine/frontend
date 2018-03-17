@@ -3,10 +3,10 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <h3 id="user-title">{{getInfo.email}}</h3>
+            <h3 id="user-title">{{getInfo.nickname}}</h3>
           </li>
           <li class="nav-item">
-            <span id="email-break">{{getInfo.nickname}}</span>
+            <span id="email-break">{{getInfo.email}}</span>
           </li>
           <li class="nav-item">
             <hr id="hr-line">
@@ -24,7 +24,7 @@
             </a>
           </router-link>
           <li class="nav-item">
-            <a @click="signOut" class="nav-link">
+            <a @click="signOut" class="nav-link" id="sign-out-btn">
               <img src="../../assets/icons/sign-out-alt.svg" class="icons" alt="out-icon">
               Sign Out
             </a>
@@ -79,5 +79,8 @@ export default {
     width: 16px;
     height: 16px;
     margin-right: 6px;
+  }
+  #sign-out-btn{
+    cursor: pointer;
   }
 </style>

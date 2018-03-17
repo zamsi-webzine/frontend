@@ -42,6 +42,7 @@ export default {
 
 <style scoped>
   #picture {
+    margin-top: 70px;
     padding: 50px 0 50px 0;
   }
 

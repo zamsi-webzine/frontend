@@ -15,6 +15,7 @@
 
   #tagline {
     padding: 0;
+    margin-bottom: 70px;
   }
 
   #d-day-title > h1 {
