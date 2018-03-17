@@ -11,7 +11,26 @@
 </template>
 
 <style scoped>
-  @import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
+  @font-face {
+    font-family: 'Noto Serif';
+    font-style: normal;
+    font-weight: 200;
+    src: url("/src/assets/fonts/NotoSerifCJKkr-Light-subset.woff2") format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Noto Serif';
+    font-style: normal;
+    font-weight: 400;
+    src: url("/src/assets/fonts/NotoSerifCJKkr-Medium-subset.woff2") format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Noto Serif';
+    font-style: normal;
+    font-weight: 600;
+    src: url("/src/assets/fonts/NotoSerifCJKkr-Bold-subset.woff2") format('woff2');
+  }
 
   #tagline {
     padding: 0;
@@ -24,7 +43,8 @@
   }
 
   #description {
-    font-family: 'KoPub Batang', serif;
+    font-family: 'Noto Serif', serif;
+    font-weight: 400;
   }
 
   @media (max-width: 1680px) {

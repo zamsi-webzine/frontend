@@ -23,7 +23,26 @@ export default {
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Titillium+Web:200,400,700');
+  @font-face {
+    font-family: 'Titillium Web';
+    font-style: italic;
+    font-weight: 200;
+    src: url("/src/assets/fonts/TitilliumWeb-ExtraLightItalic.woff2") format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 400;
+    src: url("/src/assets/fonts/TitilliumWeb-Regular.woff2") format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 700;
+    src: url("/src/assets/fonts/TitilliumWeb-Bold.woff2") format('woff2');
+  }
 
   body {
     font-family: 'Titillium Web', sans-serif;
