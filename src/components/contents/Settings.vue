@@ -74,7 +74,6 @@ import CheckoutMessage from '../contents/CheckoutMessage'
 export default {
   components: {CheckoutMessage},
   name: 'profile',
-  props: ['nickname'],
   data: function () {
     return {
       new_nickname: '',

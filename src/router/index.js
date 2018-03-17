@@ -74,16 +74,14 @@ export const routes = [
     children: [
       {
         name: 'MyPosts',
-        path: ':nickname/posts',
+        path: 'posts',
         component: MyPosts,
-        props: true,
         meta: {requiresAuth: true}
       },
       {
         name: 'Settings',
-        path: ':nickname/settings',
+        path: 'settings',
         component: Settings,
-        props: true,
         meta: {requiresAuth: true}
       }
     ]

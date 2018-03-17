@@ -104,8 +104,7 @@ export const getProfile = ({commit, state}) => {
     credentials: true
   }).then(() => {
     router.replace({
-      name: 'MyPosts',
-      params: {nickname: localStorage.getItem('nickname')}
+      name: 'MyPosts'
     })
   })
 }
@@ -128,9 +127,8 @@ export const patchProfile = ({commit, state, dispatch}, payload) => {
   }).then((response) => {
     commit('clearMessage')
     commit('updateInfo', response.data)
-    router.push({
-      name: 'MyPosts',
-      params: {nickname: localStorage.getItem('nickname')}
+    router.replace({
+      name: 'MyPosts'
     })
   }).catch((error) => {
     if (typeof error.response !== 'undefined') {
