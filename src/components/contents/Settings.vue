@@ -27,7 +27,7 @@
             <input type="text"
                    class="form-control"
                    id="inputNickname3"
-                   :placeholder="'current: '+ nickname"
+                   :placeholder="'current: '+ getInfo.nickname"
                    v-model="new_nickname">
           </div>
         </div>
