@@ -137,7 +137,7 @@ export const patchProfile = ({commit, state, dispatch}, payload) => {
   })
 }
 // 회원 탈퇴
-export const destroyProfile = ({commit, state}) => {
+export const destroyProfile = ({commit, state, dispatch}) => {
   axios({
     method: 'delete',
     url: state.endpoints.baseUrl + state.endpoints.profile + localStorage.getItem('pk') + '/',
@@ -147,8 +147,11 @@ export const destroyProfile = ({commit, state}) => {
     },
     xsrfHeaderName: 'X-XSRF-TOKEN',
     credentials: true
-  }).then((response) => {
+  }).then(() => {
     commit('removeInfo')
+    router.replace({
+      name: 'Home'
+    })
   }).catch((error) => {
     if (typeof error.response !== 'undefined') {
       commit('clearMessage')

@@ -2,10 +2,38 @@
   <main role="main" class="col-md-9 col-sm-12 ml-auto mr-auto">
     <div class="d-flex">
       <h1 class="mr-auto pt-3">Settings</h1>
+      <div class="pt-4">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#destroyModal">
+          <strong>Delete Account</strong>
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="destroyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Do you really want to delete your account?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" data-dismiss="modal" @click="destroySubmit" class="btn btn-danger"><strong>Delete Anyway</strong></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <hr>
     <div class="ml-sm-auto mr-sm-auto col-sm-6">
-      <form @submit.prevent="onSubmit" method="post">
+      <form @submit.prevent="patchSubmit" method="post">
         <!--이메일은 수정 불가-->
         <div class="form-group row">
           <label for="staticEmail" class="col-sm-4 col-form-label">Email</label>
@@ -79,7 +107,7 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+    patchSubmit () {
       const formData = {
         nickname: this.newNickname,
         password1: this.password1,
@@ -87,6 +115,9 @@ export default {
       }
       this.$emit('updateNickname', this.newNickname)
       this.$store.dispatch('patchProfile', formData)
+    },
+    destroySubmit () {
+      this.$store.dispatch('destroyProfile')
     }
   },
   computed: {
