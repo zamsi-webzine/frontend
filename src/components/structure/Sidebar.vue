@@ -11,7 +11,7 @@
           <li class="nav-item">
             <hr id="hr-line">
           </li>
-          <router-link :to="{name: 'MyPosts', params: {nickname: getInfo.email }}" tag="li" class="nav-item">
+          <router-link :to="{name: 'MyPosts', params: {nickname: getInfo.nickname }}" tag="li" class="nav-item">
             <a href="" class="nav-link hovering">
               <img src="../../assets/icons/pencil-alt.svg" class="icons" alt="pencil-icon">
               My Posts
