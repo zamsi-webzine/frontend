@@ -1,14 +1,14 @@
 import Home from '@/components/view/Home'
 
-const Auth = resolve => {
-  require.ensure(['@/components/view/Auth'], () => {
-    resolve(require('@/components/view/Auth'))
+const Activation = resolve => {
+  require.ensure(['@/components/authentication/Activation'], () => {
+    resolve(require('@/components/authentication/Activation'))
   })
 }
 
-const Profile = resolve => {
-  require.ensure(['@/components/view/Profile'], () => {
-    resolve(require('@/components/view/Profile'))
+const Forgot = resolve => {
+  require.ensure(['@/components/authentication/Forgot'], () => {
+    resolve(require('@/components/authentication/Forgot'))
   })
 }
 
@@ -24,18 +24,6 @@ const SignUp = resolve => {
   })
 }
 
-const Forgot = resolve => {
-  require.ensure(['@/components/authentication/Forgot'], () => {
-    resolve(require('@/components/authentication/Forgot'))
-  })
-}
-
-const Activation = resolve => {
-  require.ensure(['@/components/authentication/Activation'], () => {
-    resolve(require('@/components/authentication/Activation'))
-  })
-}
-
 const MyPosts = resolve => {
   require.ensure(['@/components/contents/MyPosts'], () => {
     resolve(require('@/components/contents/MyPosts'))
@@ -45,6 +33,18 @@ const MyPosts = resolve => {
 const Settings = resolve => {
   require.ensure(['@/components/contents/Settings'], () => {
     resolve(require('@/components/contents/Settings'))
+  })
+}
+
+const Auth = resolve => {
+  require.ensure(['@/components/view/Auth'], () => {
+    resolve(require('@/components/view/Auth'))
+  })
+}
+
+const Profile = resolve => {
+  require.ensure(['@/components/view/Profile'], () => {
+    resolve(require('@/components/view/Profile'))
   })
 }
 
