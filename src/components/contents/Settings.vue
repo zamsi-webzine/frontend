@@ -129,9 +129,6 @@ export default {
 </script>
 
 <style scoped>
-  main {
-    border: 1px solid black;
-  }
   form {
     margin: 200px 0 200px 0;
   }

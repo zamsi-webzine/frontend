@@ -19,9 +19,6 @@ export default {
 </script>
 
 <style scoped>
-  main {
-    border: 1px solid black;
-  }
   .btn-outline-secondary {
     color: #0081D5;
     border-color: #0081D5;
