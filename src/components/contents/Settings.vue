@@ -5,11 +5,7 @@
     </div>
     <hr>
     <div class="ml-sm-auto mr-sm-auto col-sm-6">
-      <form @submit.prevent="patchProfile({
-      nickname: new_nickname,
-      password1: password1,
-      password2: password2
-      })" method="post">
+      <form @submit.prevent="onSubmit" method="post">
         <!--이메일은 수정 불가-->
         <div class="form-group row">
           <label for="staticEmail" class="col-sm-4 col-form-label">Email</label>
@@ -27,8 +23,8 @@
             <input type="text"
                    class="form-control"
                    id="inputNickname3"
-                   :placeholder="'current: '+ getInfo.nickname"
-                   v-model="new_nickname">
+                   :placeholder="'current: '+ property"
+                   v-model="newNickname">
           </div>
         </div>
         <!--비밀번호1 입력 그룹-->
@@ -69,22 +65,29 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import CheckoutMessage from '../contents/CheckoutMessage'
 export default {
   components: {CheckoutMessage},
   name: 'profile',
+  props: ['property'],
   data: function () {
     return {
-      new_nickname: '',
+      newNickname: '',
       password1: '',
       password2: ''
     }
   },
   methods: {
-    ...mapActions([
-      'patchProfile'
-    ])
+    onSubmit () {
+      const formData = {
+        nickname: this.newNickname,
+        password1: this.password1,
+        password2: this.password2
+      }
+      this.$emit('updateNickname', this.newNickname)
+      this.$store.dispatch('patchProfile', formData)
+    }
   },
   computed: {
     ...mapGetters([

@@ -3,7 +3,7 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <h3 id="user-title">{{getInfo.nickname}}</h3>
+            <h3 id="user-title">{{property}}</h3>
           </li>
           <li class="nav-item">
             <span id="email-break">{{getInfo.email}}</span>
@@ -38,6 +38,7 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'sidebar',
+  props: ['property'],
   methods: {
     ...mapActions([
       'signOut'

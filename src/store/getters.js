@@ -5,6 +5,6 @@ export const checkoutMsg = state => state.message
 export const getInfo = state => {
   return {
     email: localStorage.getItem('email'),
-    nickname: localStorage.getItem('nickname')
+    nickname: state.nickname
   }
 }
