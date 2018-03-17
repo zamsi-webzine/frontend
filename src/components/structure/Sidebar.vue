@@ -12,18 +12,18 @@
             <hr id="hr-line">
           </li>
           <router-link :to="{name: 'MyPosts', params: {nickname: getInfo.email }}" tag="li" class="nav-item">
-            <a href="" class="nav-link">
+            <a href="" class="nav-link hovering">
               <img src="../../assets/icons/pencil-alt.svg" class="icons" alt="pencil-icon">
               My Posts
             </a>
           </router-link>
           <router-link :to="{name: 'Settings', params: {nickname: getInfo.nickname }}" tag="li" class="nav-item">
-            <a href="" class="nav-link">
+            <a href="" class="nav-link hovering">
               <img src="../../assets/icons/user-circle.svg" class="icons" alt="user-icon">
               Settings
             </a>
           </router-link>
-          <li class="nav-item">
+          <li class="nav-item hovering">
             <a @click="signOut" class="nav-link" id="sign-out-btn">
               <img src="../../assets/icons/sign-out-alt.svg" class="icons" alt="out-icon">
               Sign Out
@@ -68,6 +68,9 @@ export default {
   }
   #hr-line {
     margin-left: 7px;
+  }
+  .hovering:hover {
+    color: #A133D5;
   }
   .nav-link {
     text-decoration: none;
