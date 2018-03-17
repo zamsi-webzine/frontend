@@ -47,7 +47,7 @@
 import CheckoutMessage from '../contents/CheckoutMessage'
 export default {
   components: {CheckoutMessage},
-  name: 'login',
+  name: 'signIn',
   data: function () {
     return {
       email: '',
@@ -60,7 +60,7 @@ export default {
         email: this.email,
         password: this.password
       }
-      this.$store.dispatch('login', {email: formData.email, password: formData.password})
+      this.$store.dispatch('signIn', {email: formData.email, password: formData.password})
     }
   }
 }
