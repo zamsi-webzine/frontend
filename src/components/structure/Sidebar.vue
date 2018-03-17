@@ -11,13 +11,13 @@
           <li class="nav-item">
             <hr id="hr-line">
           </li>
-          <router-link :to="{name: 'MyPosts', params: {nickname: getInfo.nickname }}" tag="li" class="nav-item">
+          <router-link :to="{name: 'MyPosts'}" tag="li" class="nav-item">
             <a href="" class="nav-link hovering">
               <img src="../../assets/icons/pencil-alt.svg" class="icons" alt="pencil-icon">
               My Posts
             </a>
           </router-link>
-          <router-link :to="{name: 'Settings', params: {nickname: getInfo.nickname }}" tag="li" class="nav-item">
+          <router-link :to="{name: 'Settings'}" tag="li" class="nav-item">
             <a href="" class="nav-link hovering">
               <img src="../../assets/icons/user-circle.svg" class="icons" alt="user-icon">
               Settings

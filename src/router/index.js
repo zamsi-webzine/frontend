@@ -50,7 +50,7 @@ const Profile = resolve => {
 
 export const routes = [
   {
-    path: '',
+    path: '/',
     name: 'Home',
     component: Home
   },

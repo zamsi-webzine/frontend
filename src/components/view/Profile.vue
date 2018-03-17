@@ -11,7 +11,6 @@
 import Sidebar from '../structure/Sidebar'
 export default {
   name: 'dashboard',
-  props: ['nickname'],
   components: {
     Sidebar
   }

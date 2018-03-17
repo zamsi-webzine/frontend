@@ -127,7 +127,7 @@ export const patchProfile = ({commit, state, dispatch}, payload) => {
     commit('clearMessage')
     commit('updateInfo', response.data)
     router.replace({
-      name: 'Home'
+      name: 'MyPosts'
     })
   }).catch((error) => {
     if (typeof error.response !== 'undefined') {

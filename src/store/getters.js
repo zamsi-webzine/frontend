@@ -2,7 +2,7 @@
 export const checkoutMsg = state => state.message
 
 // 유저 정보 가져오기
-export const getInfo = () => {
+export const getInfo = state => {
   return {
     email: localStorage.getItem('email'),
     nickname: localStorage.getItem('nickname')
