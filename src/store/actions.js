@@ -3,7 +3,7 @@ import { router } from '../main'
 
 // 회원가입
 export const signUp = ({commit, state}, payload) => {
-  return axios({
+  axios({
     method: 'post',
     url: state.endpoints.baseUrl + state.endpoints.auth + state.endpoints.signUp,
     data: {
@@ -33,7 +33,7 @@ export const signUp = ({commit, state}, payload) => {
 }
 // 로그인
 export const signIn = ({commit, state, dispatch}, payload) => {
-  return axios({
+  axios({
     method: 'post',
     url: state.endpoints.baseUrl + state.endpoints.auth + state.endpoints.signIn,
     data: {
@@ -50,7 +50,6 @@ export const signIn = ({commit, state, dispatch}, payload) => {
     commit('updateInfo', response.data)
     dispatch('getProfile')
   }).catch((error) => {
-    console.log(error)
     if (typeof error.response !== 'undefined') {
       commit('clearMessage')
       commit('setMessage', error.response.data.message)
@@ -138,6 +137,22 @@ export const patchProfile = ({commit, state, dispatch}, payload) => {
   })
 }
 // 회원 탈퇴
-export const destroyProfile = () => {
-
+export const destroyProfile = ({commit, state}) => {
+  axios({
+    method: 'delete',
+    url: state.endpoints.baseUrl + state.endpoints.profile + localStorage.getItem('pk') + '/',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('removeInfo')
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data.message)
+    }
+  })
 }
