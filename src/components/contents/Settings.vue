@@ -4,12 +4,22 @@
       <h1 class="mr-auto pt-3">Settings</h1>
     </div>
     <hr>
-    <div class="d-flex">
+    <div class="ml-sm-auto mr-sm-auto col-sm-6">
       <form @submit.prevent="patchProfile({
       nickname: new_nickname,
       password1: password1,
       password2: password2
       })" method="post">
+        <!--이메일은 수정 불가-->
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-4 col-form-label">Email</label>
+          <div class="col-sm-8">
+            <input type="text"
+                   readonly class="form-control-plaintext"
+                   id="staticEmail"
+                   :value="getInfo.email">
+          </div>
+        </div>
         <!--닉네임 입력 그룹-->
         <div class="form-group row">
           <label for="inputNickname3" class="col-sm-4 col-form-label">Nickname</label>
@@ -17,7 +27,7 @@
             <input type="text"
                    class="form-control"
                    id="inputNickname3"
-                   :placeholder="nickname"
+                   :placeholder="'current: '+ nickname"
                    v-model="new_nickname">
           </div>
         </div>
@@ -59,7 +69,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import CheckoutMessage from '../contents/CheckoutMessage'
 export default {
   components: {CheckoutMessage},
@@ -76,6 +86,11 @@ export default {
     ...mapActions([
       'patchProfile'
     ])
+  },
+  computed: {
+    ...mapGetters([
+      'getInfo'
+    ])
   }
 }
 </script>
@@ -83,6 +98,9 @@ export default {
 <style scoped>
   main {
     border: 1px solid black;
+  }
+  form {
+    margin: 200px 0 200px 0;
   }
   .btn-outline-secondary {
     color: #0081D5;
