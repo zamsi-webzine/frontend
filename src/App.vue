@@ -69,21 +69,21 @@ export default {
     font-family: 'Noto Serif';
     font-style: normal;
     font-weight: 300;
-    src: url("./assets/fonts/NotoSerifCJKkr-Light-subset.woff2") format('woff2');
+    src: url("./assets/fonts/NotoSerifCJKkr/NotoSerifCJKkr-Light-subset.woff2") format('woff2');
   }
 
   @font-face {
     font-family: 'Noto Serif';
     font-style: normal;
     font-weight: 500;
-    src: url("./assets/fonts/NotoSerifCJKkr-Medium-subset.woff2") format('woff2');
+    src: url("./assets/fonts/NotoSerifCJKkr/NotoSerifCJKkr-Medium-subset.woff2") format('woff2');
   }
 
   @font-face {
     font-family: 'Noto Serif';
     font-style: normal;
     font-weight: 700;
-    src: url("./assets/fonts/NotoSerifCJKkr-Bold-subset.woff2") format('woff2');
+    src: url("./assets/fonts/NotoSerifCJKkr/NotoSerifCJKkr-Bold-subset.woff2") format('woff2');
   }
 
   body {
