@@ -1,52 +1,20 @@
-import Home from '@/components/view/Home'
+const Home = () => import('../components/view/Home')
 
-const Activation = resolve => {
-  require.ensure(['@/components/authentication/Activation'], () => {
-    resolve(require('@/components/authentication/Activation'))
-  })
-}
+const Activation = () => import('../components/authentication/Activation')
 
-const Forgot = resolve => {
-  require.ensure(['@/components/authentication/Forgot'], () => {
-    resolve(require('@/components/authentication/Forgot'))
-  })
-}
+const Forgot = () => import('../components/authentication/Forgot')
 
-const SignIn = resolve => {
-  require.ensure(['@/components/authentication/SignIn'], () => {
-    resolve(require('@/components/authentication/SignIn'))
-  })
-}
+const SignIn = () => import('../components/authentication/SignIn')
 
-const SignUp = resolve => {
-  require.ensure(['@/components/authentication/SignUp'], () => {
-    resolve(require('@/components/authentication/SignUp'))
-  })
-}
+const SignUp = () => import('../components/authentication/SignUp')
 
-const MyPosts = resolve => {
-  require.ensure(['@/components/contents/MyPosts'], () => {
-    resolve(require('@/components/contents/MyPosts'))
-  })
-}
+const MyPosts = () => import('../components/contents/MyPosts')
 
-const Settings = resolve => {
-  require.ensure(['@/components/contents/Settings'], () => {
-    resolve(require('@/components/contents/Settings'))
-  })
-}
+const Settings = () => import('../components/contents/Settings')
 
-const Auth = resolve => {
-  require.ensure(['@/components/view/Auth'], () => {
-    resolve(require('@/components/view/Auth'))
-  })
-}
+const Auth = () => import('../components/view/Auth')
 
-const Profile = resolve => {
-  require.ensure(['@/components/view/Profile'], () => {
-    resolve(require('@/components/view/Profile'))
-  })
-}
+const Profile = () => import('../components/view/Profile')
 
 export const routes = [
   {
