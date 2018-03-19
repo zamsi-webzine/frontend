@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <!--Header Navigation bar-->
-    <Navbar/>
+    <navbar/>
     <!--Main Contents-->
     <router-view/>
     <!--Footer-->
-    <Bottom/>
+    <bottom/>
   </div>
 </template>
 
@@ -16,6 +16,8 @@ import Bottom from '@/components/structure/Bottom'
 export default {
   name: 'App',
   components: {
+    // 항상 호출되는 자식 컴포넌트 정의 (헤더와 푸터)
+    // 그 사이에 있는 router-view를 통해 세 가지 주요 컴포넌트 (Home, Auth, Profile)가 호출된다
     Navbar,
     Bottom
   }
@@ -23,6 +25,7 @@ export default {
 </script>
 
 <style>
+  /* 폰트 정의 시작 */
   @font-face {
     font-family: 'Titillium Web';
     font-style: normal;
@@ -86,14 +89,11 @@ export default {
     src: url("./assets/fonts/NotoSerifCJKkr/NotoSerifCJKkr-Bold-subset.woff2") format('woff2');
   }
 
-  body {
-    font-family: 'Titillium Web', sans-serif, 'Noto Serif', serif;
-    font-weight: 500;
-  }
-
   #app {
     padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 500;
   }
 </style>

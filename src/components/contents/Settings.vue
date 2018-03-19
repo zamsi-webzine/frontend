@@ -99,7 +99,7 @@ export default {
   components: {CheckoutMessage},
   name: 'profile',
   props: ['property'],
-  data: function () {
+  data () {
     return {
       newNickname: '',
       password1: '',
@@ -107,16 +107,22 @@ export default {
     }
   },
   methods: {
+    // 회원 정보 수정을 위한 메소드
     patchSubmit () {
       const formData = {
         nickname: this.newNickname,
         password1: this.password1,
         password2: this.password2
       }
+      // 부모 컴포넌트에 'updateNickname'이라는 이름의 이벤트를 전파
+      // 이때 parameter 값은 this.newNickname
       this.$emit('updateNickname', this.newNickname)
+      // Vuex store에 지정된 patchProfile action 호출
       this.$store.dispatch('patchProfile', formData)
     },
+    // 회원 삭제를 위한 메소드
     destroySubmit () {
+      // Vuex store에 지정된 destroyProfile action 호출
       this.$store.dispatch('destroyProfile')
     }
   },

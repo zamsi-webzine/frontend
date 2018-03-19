@@ -18,7 +18,4 @@ export default {
 </script>
 
 <style scoped>
-.col-sm-6 {
-  margin: 200px 0 200px 0;
-}
 </style>
