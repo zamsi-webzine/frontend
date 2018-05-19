@@ -13,8 +13,8 @@
 <script>
 import { mapGetters } from 'vuex'
 import Sidebar from '../structure/Sidebar'
-import MyPosts from '../contents/MyPosts'
-import Settings from '../contents/Settings'
+import MyPosts from '../contents/admin/MyPosts'
+import Settings from '../contents/admin/Settings'
 export default {
   name: 'dashboard',
   data () {

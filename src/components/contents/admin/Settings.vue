@@ -94,7 +94,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import CheckoutMessage from '../contents/CheckoutMessage'
+import CheckoutMessage from '../common/CheckoutMessage'
 export default {
   components: {CheckoutMessage},
   name: 'profile',

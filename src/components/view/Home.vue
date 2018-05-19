@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import mainPicture from '../contents/Picture'
-import Tagline from '../contents/Tagline'
+import mainPicture from '../contents/client/Picture'
+import Tagline from '../contents/client/Tagline'
 
 export default {
   name: 'Index',

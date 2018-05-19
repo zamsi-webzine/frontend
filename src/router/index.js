@@ -9,9 +9,9 @@ const SignIn = () => import('../components/authentication/SignIn')
 
 const SignUp = () => import('../components/authentication/SignUp')
 
-const MyPosts = () => import('../components/contents/MyPosts')
+const MyPosts = () => import('../components/contents/admin/MyPosts')
 
-const Settings = () => import('../components/contents/Settings')
+const Settings = () => import('../components/contents/admin/Settings')
 
 const Auth = () => import('../components/view/Auth')
 
