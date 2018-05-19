@@ -1,21 +1,15 @@
-// 지연된 로딩을 위해 라우터에 쓰이는 모든 컴포넌트를 별도의 단위로 분할
-const Home = () => import('../components/view/Home')
-
-const Activation = () => import('../components/authentication/Activation')
-
-const Forgot = () => import('../components/authentication/Forgot')
-
-const SignIn = () => import('../components/authentication/SignIn')
-
-const SignUp = () => import('../components/authentication/SignUp')
-
-const MyPosts = () => import('../components/contents/admin/MyPosts')
-
-const Settings = () => import('../components/contents/admin/Settings')
-
-const Auth = () => import('../components/view/Auth')
-
-const Profile = () => import('../components/view/Profile')
+import {
+  Home,
+  Auth,
+  SignIn,
+  SignUp,
+  Forgot,
+  Activation,
+  Profile,
+  MyPosts,
+  Settings,
+  PostCreate
+} from './lazy'
 
 export const routes = [
   {
@@ -26,6 +20,13 @@ export const routes = [
   {
     path: '*',
     redirect: '/'
+  },
+  {
+    name: 'NewPost',
+    path: 'new-post',
+    component: PostCreate,
+    // Authentication 검사를 위해 메타 태그 추가
+    meta: {requiresAuth: true}
   },
   {
     path: '/auth',
