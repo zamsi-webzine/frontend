@@ -20,6 +20,7 @@ const state = {
     profile: 'profile/',
     signIn: 'signin/',
     signUp: 'signup/',
+    thumbnail: 'thumbnail/',
     resetPassword: 'reset-password/'
   },
   // 서버에서 돌아오는 메시지

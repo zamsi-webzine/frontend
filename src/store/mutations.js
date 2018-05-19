@@ -3,11 +3,12 @@ export const updateInfo = (state, response) => {
   const base64 = response.token.split('.')[1]
   const result = JSON.parse(window.atob(base64))
 
-  localStorage.setItem('token', response.token)
+  localStorage.setItem('token', String(response.token))
 
   localStorage.setItem('pk', result.user_id)
   localStorage.setItem('email', result.email)
   localStorage.setItem('nickname', response.user.nickname)
+  localStorage.setItem('thumbnail', response.user.thumbnail)
   localStorage.setItem('orig', result.orig_iat)
   localStorage.setItem('exp', result.exp)
 }
@@ -18,6 +19,7 @@ export const removeInfo = () => {
   localStorage.removeItem('pk')
   localStorage.removeItem('email')
   localStorage.removeItem('nickname')
+  localStorage.removeItem('thumbnail')
   localStorage.removeItem('orig')
   localStorage.removeItem('exp')
 }
