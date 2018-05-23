@@ -21,6 +21,7 @@ const state = {
     signIn: 'signin/',
     signUp: 'signup/',
     thumbnail: 'thumbnail/',
+    post: 'post/',
     resetPassword: 'reset-password/'
   },
   // 서버에서 돌아오는 메시지

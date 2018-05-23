@@ -182,3 +182,27 @@ export const destroyProfile = ({commit, state, dispatch}) => {
     }
   })
 }
+
+// 글쓰기
+export const uploadPost = ({commit, state}, payload) => {
+  axios({
+    method: 'post',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/',
+    data: payload,
+    headers: {
+      'Content-Type': 'multipart/form-data;boundary="boundary"',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then(() => {
+    router.push({
+      name: 'MyPosts'
+    })
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
