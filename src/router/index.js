@@ -23,7 +23,7 @@ export const routes = [
   },
   {
     name: 'NewPost',
-    path: 'new-post',
+    path: '/new-post',
     component: PostCreate,
     // Authentication 검사를 위해 메타 태그 추가
     meta: {requiresAuth: true}
