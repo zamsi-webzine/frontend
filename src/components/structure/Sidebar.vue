@@ -1,6 +1,6 @@
 <template>
   <nav class="col-md-2 d-md-block d-none bg-light sidebar">
-      <div class="sidebar-sticky">
+      <div class="sidebar-sticky mt-5 mb-5">
         <ul class="nav flex-column">
           <li class="nav-item mx-auto mb-3">
             <button class="btn btn-link p-0"
@@ -177,9 +177,6 @@ export default {
   nav {
     border-right: 1px solid lightgrey;
   }
-  .sidebar-sticky {
-    margin: 70px 0 70px 0;
-  }
   #user-title {
     padding-left: 7px;
   }
@@ -199,11 +196,11 @@ export default {
     color: black;
     padding-left: 7px;
   }
-
+  /*썸네일 정사각형으로 만들기*/
   .thumbnail {
     object-fit: cover;
-    height: 10rem;
-    width: 10rem;
+    height: 7rem;
+    width: 7rem;
     border-radius: 50%;
   }
   .icons {
