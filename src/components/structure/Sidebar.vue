@@ -78,8 +78,6 @@
 </template>
 
 <script>
-import axios from 'axios/index'
-import {router} from '../../main'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'sidebar',
@@ -140,26 +138,7 @@ export default {
        */
       formData.append('thumbnail', this.file)
 
-      axios({
-        method: 'patch',
-        url: this.$store.state.endpoints.baseUrl + this.$store.state.endpoints.profile +
-        localStorage.getItem('pk') + '/' + this.$store.state.endpoints.thumbnail,
-        data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data;boundary="boundary"',
-          'Authorization': 'JWT ' + localStorage.getItem('token')
-        },
-        xsrfHeaderName: 'X-XSRF-TOKEN',
-        credentials: true
-      }).then((response) => {
-        localStorage.setItem('thumbnail', response.data.thumbnail)
-        router.go(router.currentRoute)
-      }).catch((error) => {
-        if (typeof error.response !== 'undefined') {
-          this.$store.commit('clearMessage')
-          this.$store.commit('setMessage', error.response.data)
-        }
-      })
+      this.$store.dispatch('patchThumbnail', formData)
     },
     ...mapActions([
       'signOut'

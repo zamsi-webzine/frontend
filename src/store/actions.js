@@ -136,6 +136,29 @@ export const patchProfile = ({commit, state, dispatch}, payload) => {
     }
   })
 }
+// 썸네일 수정
+export const patchThumbnail = ({commit, state}, payload) => {
+  axios({
+    method: 'patch',
+    url: state.endpoints.baseUrl + state.endpoints.profile +
+    localStorage.getItem('pk') + '/' + state.endpoints.thumbnail,
+    data: payload,
+    headers: {
+      'Content-Type': 'multipart/form-data;boundary="boundary"',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    localStorage.setItem('thumbnail', response.data.thumbnail)
+    router.go(router.currentRoute)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
 // 회원 탈퇴
 export const destroyProfile = ({commit, state, dispatch}) => {
   axios({
