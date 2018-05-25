@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5 mb-5">
+  <div class="mt-5 mb-5">
     <form @submit.prevent="getContents">
       <div class="title">
         <h2>New Story</h2>
