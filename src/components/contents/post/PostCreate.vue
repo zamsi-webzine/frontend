@@ -16,12 +16,11 @@
             </div>
             <div class="ml-3">
               <p class="mb-0">{{getInfo.nickname}}</p>
-              <p class="mb-0 text-muted">draft</p>
+              <p class="mb-0 text-muted">상태: 초고 <small class="text-info">(발행은 초고 저장이 끝난 뒤에 가능합니다)</small></p>
             </div>
           </div>
           <div class="d-flex">
-            <button class="btn btn-outline-info mr-2">임시 저장</button>
-            <button type="submit" class="btn btn-primary ml-2"><strong>발행</strong></button>
+            <button type="submit" class="btn btn-primary ml-2"><strong>저장</strong></button>
           </div>
         </div>
       </div>
