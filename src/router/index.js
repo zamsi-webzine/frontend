@@ -32,12 +32,12 @@ export const routes = [
       {
         name: 'NewPost',
         path: 'new',
-        component: PostCreate,
+        component: PostCreate
       },
       {
         name: 'AuthorPostDetail',
         path: 'author-only/:pk',
-        component: PostDetail,
+        component: PostDetail
       }
     ]
   },
