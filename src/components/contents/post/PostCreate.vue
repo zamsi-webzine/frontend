@@ -34,6 +34,7 @@
       <div ref="editor">
       </div>
     </form>
+    <cheeckout-message/>
   </div>
 </template>
 
@@ -44,8 +45,12 @@ import 'quill/dist/quill.bubble.css'
 import 'quill/dist/quill.core.css'
 import $ from 'jquery/dist/jquery.min'
 import {mapGetters} from 'vuex'
+import CheeckoutMessage from '../../contents/common/CheckoutMessage'
 export default {
   name: 'PostCreate',
+  components: {
+    CheeckoutMessage
+  },
   data () {
     return {
       title: '',
@@ -73,7 +78,9 @@ export default {
     getContents () {
       let form = document.querySelector('form')
       let post = document.querySelector('input[name=post]')
+
       post.value = JSON.stringify(this.quill.getContents())
+
       const result = $(form).serializeArray()
 
       let formData = new FormData()
