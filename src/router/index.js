@@ -8,7 +8,9 @@ import {
   Profile,
   MyPosts,
   Settings,
-  PostCreate
+  Post,
+  PostCreate,
+  PostDetail
 } from './lazy'
 
 export const routes = [
@@ -22,11 +24,22 @@ export const routes = [
     redirect: '/'
   },
   {
-    name: 'NewPost',
-    path: '/new-post',
-    component: PostCreate,
+    path: '/post',
+    component: Post,
     // Authentication 검사를 위해 메타 태그 추가
-    meta: {requiresAuth: true}
+    meta: {requiresAuth: true},
+    children: [
+      {
+        name: 'NewPost',
+        path: 'new',
+        component: PostCreate,
+      },
+      {
+        name: 'AuthorPostDetail',
+        path: 'author-only/:pk',
+        component: PostDetail,
+      }
+    ]
   },
   {
     path: '/auth',

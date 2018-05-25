@@ -17,4 +17,8 @@ export const Auth = () => import('../components/view/Auth')
 
 export const Profile = () => import('../components/view/Profile')
 
+export const Post = () => import('../components/view/Post')
+
 export const PostCreate = () => import('../components/contents/post/PostCreate')
+
+export const PostDetail = () => import('../components/contents/post/PostDetail')
