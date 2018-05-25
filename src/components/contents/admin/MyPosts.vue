@@ -9,14 +9,14 @@
       </div>
     </div>
     <hr>
-    <div class="">
-      <div class="card" v-for="index in getUserPostList" :key="index.id">
+      <div class="card mb-3" v-for="index in getUserPostList" :key="index.id">
+        <router-link :to="{name: 'AuthorPostDetail', params: {pk: index.pk}}">
         <div class="card-body">
           <h5 class="card-title"><strong>{{index.title}}</strong></h5>
           <p>{{index.date_created}}</p>
         </div>
+        </router-link>
       </div>
-    </div>
   </main>
 </template>
 
