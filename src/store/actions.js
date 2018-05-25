@@ -206,3 +206,24 @@ export const uploadPost = ({commit, state}, payload) => {
     }
   })
 }
+
+// 글 목록
+export const getUserPostList = ({commit, state}) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('updateUserPostList', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}

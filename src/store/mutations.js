@@ -24,6 +24,11 @@ export const removeInfo = () => {
   localStorage.removeItem('exp')
 }
 
+// 유저 글 목록 업데이트
+export const updateUserPostList = (state, payload) => {
+  state.posts = payload
+}
+
 // 서버 메시지 세팅
 export const setMessage = (state, message) => {
   state.message = message

@@ -24,6 +24,12 @@ const state = {
     post: 'post/',
     resetPassword: 'reset-password/'
   },
+  posts: {
+    count: '',
+    next: '',
+    previous: '',
+    results: ''
+  },
   // 서버에서 돌아오는 메시지
   message: null
 }

@@ -9,3 +9,6 @@ export const getInfo = () => {
     thumbnail: localStorage.getItem('thumbnail')
   }
 }
+
+// 유저 글 목록 가져오기
+export const getUserPostList = state => state.posts.results
