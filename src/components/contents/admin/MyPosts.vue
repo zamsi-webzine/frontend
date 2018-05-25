@@ -9,7 +9,7 @@
       </div>
     </div>
     <hr>
-      <div class="card mb-3" v-for="index in getUserPostList" :key="index.id">
+      <div class="card mb-3" v-for="index in getAuthorPostList" :key="index.id">
         <router-link :to="{name: 'AuthorPostDetail', params: {pk: index.pk}}">
         <div class="card-body">
           <h5 class="card-title"><strong>{{index.title}}</strong></h5>
@@ -29,12 +29,12 @@ export default {
   },
   methods: {
     fetchData () {
-      this.$store.dispatch('getUserPostList')
+      this.$store.dispatch('getAuthorPostList')
     }
   },
   computed: {
     ...mapGetters([
-      'getUserPostList'
+      'getAuthorPostList'
     ])
   }
 }
