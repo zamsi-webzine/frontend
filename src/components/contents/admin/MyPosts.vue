@@ -9,12 +9,34 @@
       </div>
     </div>
     <hr>
+    <div class="">
+      <div class="card" v-for="index in getUserPostList" :key="index.id">
+        <div class="card-body">
+          <h5 class="card-title"><strong>{{index.title}}</strong></h5>
+          <p>{{index.date_created}}</p>
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
-  name: 'my-posts'
+  name: 'my-posts',
+  created () {
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      this.$store.dispatch('getUserPostList')
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'getUserPostList'
+    ])
+  }
 }
 </script>
 
