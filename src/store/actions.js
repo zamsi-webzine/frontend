@@ -219,11 +219,33 @@ export const getAuthorPostList = ({commit, state}) => {
     xsrfHeaderName: 'X-XSRF-TOKEN',
     credentials: true
   }).then((response) => {
-    commit('updateUserPostList', response.data)
+    commit('updateAuthorPostList', response.data)
   }).catch((error) => {
     if (typeof error.response !== 'undefined') {
       commit('clearMessage')
       commit('setMessage', error.response.data)
+    }
+  })
+}
+
+// 글 디테일
+export const getAuthorPostRetrieve = ({commit, state}, payload) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/' + payload + '/',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearAuthorPostDetail')
+    commit('updateAuthorPostDetail', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data.message)
     }
   })
 }
