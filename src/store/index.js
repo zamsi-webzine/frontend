@@ -22,13 +22,22 @@ const state = {
     signUp: 'signup/',
     thumbnail: 'thumbnail/',
     post: 'post/',
+    author: 'author-only/',
     resetPassword: 'reset-password/'
   },
-  posts: {
+  postList: {
     count: '',
     next: '',
     previous: '',
     results: ''
+  },
+  postDetail: {
+    pk: '',
+    author: '',
+    title: '',
+    post: '',
+    date_created: '',
+    is_published: ''
   },
   // 서버에서 돌아오는 메시지
   message: null

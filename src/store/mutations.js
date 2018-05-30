@@ -25,8 +25,25 @@ export const removeInfo = () => {
 }
 
 // 유저 글 목록 업데이트
-export const updateUserPostList = (state, payload) => {
-  state.posts = payload
+export const updateAuthorPostList = (state, payload) => {
+  state.postList = payload
+}
+
+// 유저 글 디테일 삭제
+export const clearAuthorPostDetail = state => {
+  state.postDetail = {
+    pk: '',
+    author: '',
+    title: '',
+    post: '',
+    date_created: '',
+    is_published: ''
+  }
+}
+
+// 유저 글 디테일 업데이트
+export const updateAuthorPostDetail = (state, payload) => {
+  state.postDetail = payload
 }
 
 // 서버 메시지 세팅

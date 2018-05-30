@@ -11,4 +11,10 @@ export const getInfo = () => {
 }
 
 // 유저 글 목록 가져오기
-export const getUserPostList = state => state.posts.results
+export const getAuthorPostList = state => state.postList.results
+
+// 유저 글 디테일 가져오기
+export const getAuthorPostRetrieve = state => state.postDetail
+
+// 유저 글 quill JSON 객체 가져오기
+export const getAuthorQuillObject = state => state.postDetail.post
