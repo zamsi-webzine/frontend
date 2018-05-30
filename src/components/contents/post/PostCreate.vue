@@ -59,7 +59,7 @@ export default {
           toolbar: [
             [{header: [1, 2, false]}],
             ['bold', 'italic', 'underline'],
-            ['image', 'link']
+            ['image', 'video', 'link']
           ]
         },
         placeholder: 'Tell your story...',
