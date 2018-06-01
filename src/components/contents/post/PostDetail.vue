@@ -21,8 +21,7 @@
         <button type="submit" class="btn btn-primary ml-2"><strong>저장</strong></button>
       </div>
     </div>
-    <div v-show="false" ref="editor"></div>
-    <div id="content"></div>
+    <div ref="editor" id="content" class="mx-auto"></div>
   </div>
 </template>
 
@@ -54,8 +53,6 @@ export default {
         const delta = JSON.parse(this.getAuthorQuillObject)
 
         this.quill.setContents(delta)
-        let content = window.document.getElementById('content')
-        content.innerHTML = this.quill.root.innerHTML
       }, 100)
     }
   },
@@ -77,5 +74,8 @@ export default {
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
+  }
+  #content {
+    max-width: 700px;
   }
 </style>
