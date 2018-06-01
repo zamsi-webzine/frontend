@@ -208,10 +208,10 @@ export const uploadPost = ({commit, state}, payload) => {
 }
 
 // 글 목록
-export const getAuthorPostList = ({commit, state}) => {
+export const getAuthorPostList = ({commit, state}, payload) => {
   axios({
     method: 'get',
-    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/' + payload,
     headers: {
       'Content-Type': 'application/json',
       'authorization': 'JWT ' + localStorage.getItem('token')

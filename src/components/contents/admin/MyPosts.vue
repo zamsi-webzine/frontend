@@ -9,14 +9,24 @@
       </div>
     </div>
     <hr>
-      <div class="card mb-3" v-for="index in getAuthorPostList" :key="index.id">
+    {{getAuthorPostList.count}}
+    <div class="card mb-3" v-for="index in getAuthorPostList.results" :key="index.id">
         <router-link :to="{name: 'AuthorPostDetail', params: {pk: index.pk}}">
         <div class="card-body">
           <h5 class="card-title"><strong>{{index.title}}</strong></h5>
-          <p>{{index.date_created}}</p>
+          <p>{{dateCreated(index.date_created)}}</p>
         </div>
         </router-link>
       </div>
+    <div class="m-2">
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" v-for="num in pageListCount" :key="num.id">
+            <button @click="callPaginatedList(num)" class="page-link">{{num}}</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </main>
 </template>
 
@@ -28,14 +38,38 @@ export default {
     this.fetchData()
   },
   methods: {
+    // 리스트로 들어오는 파이썬 생성 일자를 자바스크립트 생성 일자로 변환
+    dateCreated (payload) {
+      const date = new Date(payload)
+      return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    },
+    callPaginatedList (payload) {
+      const pageNum = '?page=' + String(payload)
+      this.$store.dispatch('getAuthorPostList', pageNum)
+    },
     fetchData () {
-      this.$store.dispatch('getAuthorPostList')
+      this.$store.dispatch('getAuthorPostList', '?page=1')
     }
   },
   computed: {
     ...mapGetters([
       'getAuthorPostList'
-    ])
+    ]),
+    pageListCount () {
+      let total
+      let resultArray = []
+
+      if (Number.isInteger(parseInt(this.getAuthorPostList.count) / 6)) {
+        total = parseInt(this.getAuthorPostList.count) / 6
+      } else {
+        total = parseInt(this.getAuthorPostList.count / 6) + 1
+      }
+
+      for (let key = 1; key < total + 1; key++) {
+        resultArray.push(key)
+      }
+      return resultArray
+    }
   }
 }
 </script>
