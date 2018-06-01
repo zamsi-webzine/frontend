@@ -57,8 +57,11 @@ export default {
       options: {
         modules: {
           toolbar: [
-            [{header: [1, 2, false]}],
-            ['bold', 'italic', 'underline'],
+            [{ 'size': ['small', false, 'large', 'huge'] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{ 'indent': '-1'}, { 'indent': '+1' }],
+            [{ 'align': [] }],
+            [{ 'color': [] }, { 'background': [] }],
             ['image', 'video', 'link']
           ]
         },
