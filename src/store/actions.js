@@ -250,6 +250,30 @@ export const getAuthorPostRetrieve = ({commit, state}, payload) => {
   })
 }
 
+// 글 발행 상태 변경
+export const authorPostPublish = ({commit, state}, payload) => {
+  axios({
+    method: 'patch',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/' + payload.pk + '/',
+    data: {
+      'is_published': payload.is_published
+    },
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then(() => {
+    router.go(router.currentRoute)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
 // 글 삭제
 export const authorPostDestroy = ({commit, state}, payload) => {
   axios({
