@@ -249,3 +249,26 @@ export const getAuthorPostRetrieve = ({commit, state}, payload) => {
     }
   })
 }
+
+// 글 삭제
+export const authorPostDestroy = ({commit, state}, payload) => {
+  axios({
+    method: 'delete',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/' + payload + '/',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then(() => {
+    router.replace({
+      name: 'MyPosts'
+    })
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}

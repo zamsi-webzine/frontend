@@ -24,7 +24,27 @@
       <div class="d-flex">
         <button type="button" class="btn btn-primary ml-2"><strong>발행</strong></button>
         <button type="button" class="btn btn-outline-warning ml-2"><strong>수정</strong></button>
-        <button type="button" class="btn btn-outline-danger ml-2"><strong>삭제</strong></button>
+        <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#destroyModal"><strong>삭제</strong></button>
+        <!-- Modal -->
+        <div class="modal fade" id="destroyModal" tabindex="-1" role="dialog" aria-labelledby="destroyModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="destroyModalLabel">포스트 삭제</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                정말 삭제하시겠습니까?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+                <button type="button" @click="destroyPost" class="btn btn-danger" data-dismiss="modal">삭제</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div ref="editor" id="content" class="mx-auto"></div>
@@ -60,6 +80,9 @@ export default {
 
         this.quill.setContents(delta)
       }, 100)
+    },
+    destroyPost () {
+      this.$store.dispatch('authorPostDestroy', this.getAuthorPostRetrieve.pk)
     }
   },
   computed: {
