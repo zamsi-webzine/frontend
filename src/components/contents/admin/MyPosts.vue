@@ -9,16 +9,22 @@
       </div>
     </div>
     <hr>
-    {{getAuthorPostList.count}}
+    <div class="clearfix">
+      <p class="float-right">포스트 총 <span class="text-primary">{{getAuthorPostList.count}}</span> 개</p>
+    </div>
     <div class="card mb-3" v-for="index in getAuthorPostList.results" :key="index.id">
-        <router-link :to="{name: 'AuthorPostDetail', params: {pk: index.pk}}">
+        <router-link :to="{name: 'AuthorPostDetail', params: {pk: index.pk}}" class="text-dark hovering">
         <div class="card-body">
           <h5 class="card-title"><strong>{{index.title}}</strong></h5>
           <p>{{dateCreated(index.date_created)}}</p>
+          <div class="">
+            <span v-if="index.is_published === true" class="badge badge-pill badge-primary">발행 중</span>
+            <span v-if="index.is_published === false" class="badge badge-pill badge-secondary">미발행</span>
+          </div>
         </div>
         </router-link>
       </div>
-    <div class="m-2">
+    <div class="mt-5 mb-5">
       <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
           <li class="page-item" v-for="num in pageListCount" :key="num.id">
@@ -83,5 +89,12 @@ export default {
     color: #fff;
     border-color: #fff;
     background-color: #A133D5;
+  }
+  .card:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    transition: box-shadow .4s;
+  }
+  .hovering:hover {
+    text-decoration: none;
   }
 </style>
