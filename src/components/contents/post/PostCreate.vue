@@ -30,7 +30,7 @@
                placeholder="Title" name="title" required>
       </div>
       <input name="post" type="hidden">
-      <div ref="editor">
+      <div id="editor" ref="editor">
       </div>
     </form>
     <cheeckout-message/>
@@ -110,5 +110,9 @@ export default {
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
+  }
+  /*에디터 높이 조정*/
+  #editor {
+    height: 500px;
   }
 </style>
