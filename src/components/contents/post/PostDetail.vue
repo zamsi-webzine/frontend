@@ -14,11 +14,17 @@
         </div>
         <div class="ml-3">
           <p class="mb-0">{{getAuthorPostRetrieve.author.nickname}}</p>
-          <p class="mb-0 text-muted">{{getPostCreatedTime}}</p>
+          <p class="mb-0 text-muted">
+            <span>{{getPostCreatedTime}}</span>
+            <span v-if="getAuthorPostRetrieve.is_published === true" class="ml-2 badge badge-pill badge-primary">발행 중</span>
+            <span v-if="getAuthorPostRetrieve.is_published === false" class="ml-2 badge badge-pill badge-secondary">미발행</span>
+          </p>
         </div>
       </div>
       <div class="d-flex">
-        <button type="submit" class="btn btn-primary ml-2"><strong>저장</strong></button>
+        <button type="button" class="btn btn-primary ml-2"><strong>발행</strong></button>
+        <button type="button" class="btn btn-outline-warning ml-2"><strong>수정</strong></button>
+        <button type="button" class="btn btn-outline-danger ml-2"><strong>삭제</strong></button>
       </div>
     </div>
     <div ref="editor" id="content" class="mx-auto"></div>
