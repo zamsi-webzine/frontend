@@ -59,6 +59,7 @@ export const signIn = ({commit, state, dispatch}, payload) => {
 // 로그아웃
 export const signOut = ({commit}) => {
   commit('removeInfo')
+  commit('clearAuthorPostList')
   router.replace({
     name: 'Home'
   })
@@ -244,6 +245,7 @@ export const getAuthorPostList = ({commit, state}, payload) => {
     xsrfHeaderName: 'X-XSRF-TOKEN',
     credentials: true
   }).then((response) => {
+    commit('clearAuthorPostList')
     commit('updateAuthorPostList', response.data)
   }).catch((error) => {
     if (typeof error.response !== 'undefined') {

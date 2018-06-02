@@ -29,6 +29,16 @@ export const updateAuthorPostList = (state, payload) => {
   state.postList = payload
 }
 
+// 유저 글 목록 삭제
+export const clearAuthorPostList = state => {
+  state.postList = {
+    count: '',
+    next: '',
+    previous: '',
+    results: ''
+  }
+}
+
 // 유저 글 디테일 삭제
 export const clearAuthorPostDetail = state => {
   state.postDetail = {
