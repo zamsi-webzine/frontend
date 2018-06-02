@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5 mb-5">
-    <h2 class="mb-4"><strong>{{getAuthorPostRetrieve.title}}</strong></h2>
+    <h2 id="post-title" class="mb-4"><strong>{{getAuthorPostRetrieve.title}}</strong></h2>
     <div class="d-flex justify-content-between mb-5">
       <div class="d-flex">
         <div class="">
@@ -144,7 +144,13 @@ export default {
     width: 3rem;
     border-radius: 50%;
   }
+  #post-title {
+    font-family: 'Noto Serif', serif;
+    font-weight: 400;
+  }
   #content {
     max-width: 700px;
+    font-family: 'Noto Serif', serif;
+    font-weight: 400;
   }
 </style>

@@ -111,8 +111,10 @@ export default {
     width: 3rem;
     border-radius: 50%;
   }
-  /*에디터 높이 조정*/
+  /*에디터 높이 조정 및 폰트*/
   #editor {
     height: 500px;
+    font-family: 'Noto Serif', serif;
+    font-weight: 400;
   }
 </style>

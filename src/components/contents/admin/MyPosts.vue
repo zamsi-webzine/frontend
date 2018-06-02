@@ -97,4 +97,8 @@ export default {
   .hovering:hover {
     text-decoration: none;
   }
+  .card-title {
+    font-family: 'Noto Serif', serif;
+    font-weight: 400;
+  }
 </style>
