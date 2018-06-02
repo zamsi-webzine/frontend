@@ -27,3 +27,13 @@ export const getPostCreatedTime = state => {
   const date = new Date(state.postDetail.date_created)
   return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
 }
+
+// 글 카테고리 가져오기
+export const callCategory = state => {
+  const categoryObject = {
+    'R': 'Re-View',
+    'E': 'Enter-View',
+    'O': 'Over-View'
+  }
+  return categoryObject[state.postDetail.category]
+}

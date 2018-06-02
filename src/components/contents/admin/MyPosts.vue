@@ -16,7 +16,10 @@
         <router-link :to="{name: 'AuthorPostDetail', params: {pk: index.pk}}" class="text-dark hovering">
         <div class="card-body">
           <h5 class="card-title"><strong>{{index.title}}</strong></h5>
-          <p>{{dateCreated(index.date_created)}}</p>
+          <p><span>{{dateCreated(index.date_created)}}</span>
+            <span>|</span>
+            <span>{{callCategory(index.category)}}</span>
+          </p>
           <div class="">
             <span v-if="index.is_published === true" class="badge badge-pill badge-primary">발행 중</span>
             <span v-if="index.is_published === false" class="badge badge-pill badge-secondary">미발행</span>
@@ -52,6 +55,14 @@ export default {
     callPaginatedList (payload) {
       const pageNum = '?page=' + String(payload)
       this.$store.dispatch('getAuthorPostList', pageNum)
+    },
+    callCategory (payload) {
+      const categoryObject = {
+        'R': 'Re-View',
+        'E': 'Enter-View',
+        'O': 'Over-View'
+      }
+      return categoryObject[payload]
     },
     fetchData () {
       this.$store.dispatch('getAuthorPostList', '?page=1')

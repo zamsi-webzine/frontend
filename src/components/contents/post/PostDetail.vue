@@ -16,6 +16,8 @@
           <p class="mb-0">{{getAuthorPostRetrieve.author.nickname}}</p>
           <p class="mb-0 text-muted">
             <span>{{getPostCreatedTime}}</span>
+            <span>|</span>
+            <span>{{callCategory}}</span>
             <span v-if="getAuthorPostRetrieve.is_published === true" class="ml-2 badge badge-pill badge-primary">발행 중</span>
             <span v-if="getAuthorPostRetrieve.is_published === false" class="ml-2 badge badge-pill badge-secondary">미발행</span>
           </p>
@@ -130,7 +132,8 @@ export default {
       'getAuthorPostRetrieve',
       'getAuthorQuillObject',
       'getAuthorThumbnail',
-      'getPostCreatedTime'
+      'getPostCreatedTime',
+      'callCategory'
     ])
   }
 }
