@@ -207,6 +207,31 @@ export const uploadPost = ({commit, state}, payload) => {
   })
 }
 
+// 글 수정
+export const updatePost = ({commit, state}, payload) => {
+  axios({
+    method: 'patch',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/' + payload.pk + '/',
+    data: payload.formData,
+    headers: {
+      'Content-Type': 'multipart/form-data;boundary="boundary"',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    router.replace({
+      name: 'AuthorPostDetail',
+      params: {pk: response.data.pk}
+    })
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
 // 글 목록
 export const getAuthorPostList = ({commit, state}, payload) => {
   axios({

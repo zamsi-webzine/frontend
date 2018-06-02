@@ -54,7 +54,9 @@
             </div>
           </div>
         </div>
-        <button type="button" class="btn btn-outline-warning ml-2"><strong>수정</strong></button>
+
+        <router-link :to="{name: 'UpdatePost', params: {pk: getAuthorPostRetrieve.pk}}" tag="button" class="btn btn-outline-warning ml-2"><strong>수정</strong></router-link>
+
         <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#destroyModal"><strong>삭제</strong></button>
         <!-- Modal -->
         <div class="modal fade" id="destroyModal" tabindex="-1" role="dialog" aria-labelledby="destroyModalLabel" aria-hidden="true">

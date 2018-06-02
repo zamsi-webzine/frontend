@@ -10,7 +10,8 @@ import {
   Settings,
   Post,
   PostCreate,
-  PostDetail
+  PostDetail,
+  PostUpdate
 } from './lazy'
 
 export const routes = [
@@ -38,6 +39,11 @@ export const routes = [
         name: 'AuthorPostDetail',
         path: 'author-only/:pk',
         component: PostDetail
+      },
+      {
+        name: 'UpdatePost',
+        path: 'update/:pk',
+        component: PostUpdate
       }
     ]
   },
