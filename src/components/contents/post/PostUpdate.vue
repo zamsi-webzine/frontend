@@ -25,6 +25,27 @@
         </div>
       </div>
       <hr>
+      <div class="mb-4">
+        <h5><strong>Category</strong></h5>
+        <div class="form-check">
+          <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios1" value="R" checked>
+          <label class="form-check-label" for="categoryRadios1">
+            Re-View
+          </label>
+        </div>
+        <div class="form-check">
+          <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios2" value="E">
+          <label class="form-check-label" for="categoryRadios2">
+            Enter-View
+          </label>
+        </div>
+        <div class="form-check">
+          <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios3" value="O">
+          <label class="form-check-label" for="categoryRadios3">
+            Over-View
+          </label>
+        </div>
+      </div>
       <div class="form-group">
         <input v-model="title" type="text" class="form-control" id="titleInput" aria-describedby="titleHelp"
                :placeholder="'기존 제목: ' + getAuthorPostRetrieve.title" name="title" required>
@@ -54,6 +75,7 @@ export default {
     return {
       title: '',
       quill: '',
+      category: 'R',
       options: {
         modules: {
           toolbar: [
@@ -94,8 +116,9 @@ export default {
 
       let formData = new FormData()
 
-      formData.append('title', result[0]['value'])
-      formData.append('post', result[1]['value'])
+      formData.append('category', result[0]['value'])
+      formData.append('title', result[1]['value'])
+      formData.append('post', result[2]['value'])
 
       const payload = {
         pk: this.$route.params.pk,
