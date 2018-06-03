@@ -323,3 +323,24 @@ export const authorPostDestroy = ({commit, state}, payload) => {
     }
   })
 }
+
+// 클라이언트 전체 글 목록
+export const getClientPostList = ({commit, state}) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + 'all/',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearAuthorPostList')
+    commit('updateAuthorPostList', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
