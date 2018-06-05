@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5 mb-5">
-    <form @submit.prevent="getContents">
+    <form enctype="multipart/form-data" @submit.prevent="getContents">
       <div class="title">
         <h2>New Story</h2>
         <div class="d-flex justify-content-between">
@@ -25,25 +25,34 @@
         </div>
       </div>
       <hr>
-      <div class="mb-4">
-        <h5><strong>Category</strong></h5>
-        <div class="form-check">
-          <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios1" value="R" checked>
-          <label class="form-check-label" for="categoryRadios1">
-            Re-View
-          </label>
+      <div class="row mb-4">
+        <div class="col-6">
+          <h5><strong>Category</strong></h5>
+          <div class="form-check">
+            <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios1" value="R" checked>
+            <label class="form-check-label" for="categoryRadios1">
+              Re-View
+            </label>
+          </div>
+          <div class="form-check">
+            <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios2" value="E">
+            <label class="form-check-label" for="categoryRadios2">
+              Enter-View
+            </label>
+          </div>
+          <div class="form-check">
+            <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios3" value="O">
+            <label class="form-check-label" for="categoryRadios3">
+              Over-View
+            </label>
+          </div>
         </div>
-        <div class="form-check">
-          <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios2" value="E">
-          <label class="form-check-label" for="categoryRadios2">
-            Enter-View
-          </label>
-        </div>
-        <div class="form-check">
-          <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios3" value="O">
-          <label class="form-check-label" for="categoryRadios3">
-            Over-View
-          </label>
+        <div class="col-6">
+          <div class="form-group">
+            <h5><strong>Post Thumbnail</strong></h5>
+            <input type="file" class="form-control-file" ref="file" accept="image/*" id="thumbnailUpload" @change="handleFileUpload()">
+          </div>
+          <img :src="imagePreview" v-show="showPreview" class="img-fluid"/>
         </div>
       </div>
       <div class="form-group">
@@ -76,6 +85,9 @@ export default {
       title: '',
       quill: '',
       category: 'R',
+      file: null,
+      imagePreview: '',
+      showPreview: false,
       options: {
         modules: {
           toolbar: [
@@ -108,14 +120,52 @@ export default {
       post.value = JSON.stringify(this.quill.getContents())
 
       const result = $(form).serializeArray()
-
+      console.log(result)
       let formData = new FormData()
 
       formData.append('category', result[0]['value'])
       formData.append('title', result[1]['value'])
       formData.append('post', result[2]['value'])
+      formData.append('thumbnail', this.file)
 
       this.$store.dispatch('uploadPost', formData)
+    },
+    handleFileUpload () {
+      /*
+       Set the local file variable to what the user has selected.
+       */
+      this.file = this.$refs.file.files[0]
+      /*
+       Initialize a File Reader object
+       */
+      let reader = new FileReader()
+
+      /*
+       Add an event listener to the reader that when the file
+       has been loaded, we flag the show preview as true and set the
+       image to be what was read from the reader.
+       */
+      reader.addEventListener('load', function () {
+        this.showPreview = true
+        this.imagePreview = reader.result
+      }.bind(this), false)
+
+      /*
+       Check to see if the file is not empty.
+       */
+      if (this.file) {
+        /*
+         Ensure the file is an image file.
+         */
+        if (/\.(jpe?g|png|gif)$/i.test(this.file.name)) {
+          /*
+           Fire the readAsDataURL method which will read the file in and
+           upon completion fire a 'load' event which we will listen to and
+           display the image in the preview.
+           */
+          reader.readAsDataURL(this.file)
+        }
+      }
     }
   },
   computed: {

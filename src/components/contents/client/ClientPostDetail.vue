@@ -22,6 +22,7 @@
         </div>
       </div>
     </div>
+    <img v-if="getPostRetrieve.thumbnail" :src="getPostRetrieve.thumbnail" class="img-fluid d-block mx-auto"/>
     <div ref="editor" id="content" class="mx-auto"></div>
   </div>
 </template>

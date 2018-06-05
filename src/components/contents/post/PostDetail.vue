@@ -57,7 +57,7 @@
           </div>
         </div>
 
-        <router-link :to="{name: 'UpdatePost', params: {pk: params}}" tag="button" class="btn btn-outline-warning ml-2"><strong>수정</strong></router-link>
+        <router-link :to="{name: 'UpdatePost', params: {pk: params}}" tag="button" class="btn btn-info ml-2"><strong>수정</strong></router-link>
 
         <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#destroyModal"><strong>삭제</strong></button>
         <!-- Modal -->
@@ -82,6 +82,7 @@
         </div>
       </div>
     </div>
+    <img v-if="getPostRetrieve.thumbnail" :src="getPostRetrieve.thumbnail" class="img-fluid d-block mx-auto"/>
     <div ref="editor" id="content" class="mx-auto"></div>
   </div>
 </template>

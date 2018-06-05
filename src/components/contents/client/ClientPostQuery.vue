@@ -6,6 +6,7 @@
                    class="card mb-3 hovering text-dark"
                    v-for="(value, index) in getPostList.results"
                    :key="index.id">
+        <img v-if="value.thumbnail" :src="value.thumbnail" class="card-img-top pt-3" alt="post-thumbnail">
         <div class="card-body">
           <h3 class="card-title">{{value.title}}</h3>
           <p class="card-text">
