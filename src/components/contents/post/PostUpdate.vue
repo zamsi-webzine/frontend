@@ -6,16 +6,16 @@
         <div class="d-flex justify-content-between">
           <div class="d-flex">
             <div class="">
-              <img v-if="getAuthorThumbnail !== 'null'"
+              <img v-if="getThumbnail !== 'null'"
                    class="thumbnail"
-                   :src="getAuthorThumbnail" alt="user-thumbnail">
+                   :src="getThumbnail" alt="user-thumbnail">
               <img v-else
                    class="img-fluid"
                    width="100rem"
                    src="../../../assets/icons/user-circle.svg" alt="default-user-thumbnail">
             </div>
             <div class="ml-3">
-              <p class="mb-0">{{getAuthorPostRetrieve.author.nickname}}</p>
+              <p class="mb-0">{{getPostRetrieve.author.nickname}}</p>
               <p class="mb-0 text-muted">상태: 수정 <small class="text-info">(발행은 저장이 끝난 뒤에 가능합니다)</small></p>
             </div>
           </div>
@@ -48,7 +48,7 @@
       </div>
       <div class="form-group">
         <input v-model="title" type="text" class="form-control" id="titleInput" aria-describedby="titleHelp"
-               :placeholder="'기존 제목: ' + getAuthorPostRetrieve.title" name="title" required>
+               :placeholder="'기존 제목: ' + getPostRetrieve.title" name="title" required>
       </div>
       <input name="post" type="hidden">
       <div id="editor" ref="editor">
@@ -98,10 +98,10 @@ export default {
   },
   methods: {
     setQuill () {
-      this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk)
+      this.$store.dispatch('getPostRetrieve', this.$route.params.pk)
       setTimeout(() => {
         this.quill = new Quill(this.$refs.editor, this.options)
-        const delta = JSON.parse(this.getAuthorQuillObject)
+        const delta = JSON.parse(this.getQuillObject)
 
         this.quill.setContents(delta)
       }, 100)
@@ -130,9 +130,9 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getAuthorPostRetrieve',
-      'getAuthorQuillObject',
-      'getAuthorThumbnail',
+      'getPostRetrieve',
+      'getQuillObject',
+      'getThumbnail',
       'getPostCreatedTime'
     ])
   }

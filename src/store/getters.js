@@ -11,16 +11,16 @@ export const getInfo = () => {
 }
 
 // 유저 글 목록 가져오기
-export const getAuthorPostList = state => state.postList
+export const getPostList = state => state.postList
 
 // 유저 글 디테일 가져오기
-export const getAuthorPostRetrieve = state => state.postDetail
+export const getPostRetrieve = state => state.postDetail
 
 // 유저 글 quill JSON 객체 가져오기
-export const getAuthorQuillObject = state => state.postDetail.post
+export const getQuillObject = state => state.postDetail.post
 
 // 유저 글 썸네일 가져오기
-export const getAuthorThumbnail = state => state.postDetail.author.thumbnail
+export const getThumbnail = state => state.postDetail.author.thumbnail
 
 // 유저 글 생성 날짜 가져오기
 export const getPostCreatedTime = state => {

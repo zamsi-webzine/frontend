@@ -59,7 +59,7 @@ export const signIn = ({commit, state, dispatch}, payload) => {
 // 로그아웃
 export const signOut = ({commit}) => {
   commit('removeInfo')
-  commit('clearAuthorPostList')
+  commit('clearPostList')
   router.replace({
     name: 'Home'
   })
@@ -245,8 +245,8 @@ export const getAuthorPostList = ({commit, state}, payload) => {
     xsrfHeaderName: 'X-XSRF-TOKEN',
     credentials: true
   }).then((response) => {
-    commit('clearAuthorPostList')
-    commit('updateAuthorPostList', response.data)
+    commit('clearPostList')
+    commit('updatePostList', response.data)
   }).catch((error) => {
     if (typeof error.response !== 'undefined') {
       commit('clearMessage')
@@ -267,8 +267,8 @@ export const getAuthorPostRetrieve = ({commit, state}, payload) => {
     xsrfHeaderName: 'X-XSRF-TOKEN',
     credentials: true
   }).then((response) => {
-    commit('clearAuthorPostDetail')
-    commit('updateAuthorPostDetail', response.data)
+    commit('clearPostDetail')
+    commit('updatePostDetail', response.data)
   }).catch((error) => {
     if (typeof error.response !== 'undefined') {
       commit('clearMessage')
@@ -335,8 +335,29 @@ export const getClientPostList = ({commit, state}) => {
     xsrfHeaderName: 'X-XSRF-TOKEN',
     credentials: true
   }).then((response) => {
-    commit('clearAuthorPostList')
-    commit('updateAuthorPostList', response.data)
+    commit('clearPostList')
+    commit('updatePostList', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
+// 클라이언트 전체 글 디테일
+export const getClientPostRetrieve = ({commit, state}, payload) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + '/' + payload + '/detail/',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearPostDetail')
+    commit('updatePostDetail', response.data)
   }).catch((error) => {
     if (typeof error.response !== 'undefined') {
       commit('clearMessage')

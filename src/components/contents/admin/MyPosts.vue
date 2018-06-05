@@ -10,9 +10,9 @@
     </div>
     <hr>
     <div class="clearfix">
-      <p class="float-right">포스트 총 <span class="text-primary">{{getAuthorPostList.count}}</span> 개</p>
+      <p class="float-right">포스트 총 <span class="text-primary">{{getPostList.count}}</span> 개</p>
     </div>
-    <div class="card mb-3" v-for="index in getAuthorPostList.results" :key="index.id">
+    <div class="card mb-3" v-for="index in getPostList.results" :key="index.id">
         <router-link :to="{name: 'AuthorPostDetail', params: {pk: index.pk}}" class="text-dark hovering">
         <div class="card-body">
           <h5 class="card-title"><strong>{{index.title}}</strong></h5>
@@ -54,7 +54,7 @@ export default {
     },
     callPaginatedList (payload) {
       const pageNum = '?page=' + String(payload)
-      this.$store.dispatch('getAuthorPostList', pageNum)
+      this.$store.dispatch('getPostList', pageNum)
     },
     callCategory (payload) {
       const categoryObject = {
@@ -65,21 +65,21 @@ export default {
       return categoryObject[payload]
     },
     fetchData () {
-      this.$store.dispatch('getAuthorPostList', '?page=1')
+      this.$store.dispatch('getPostList', '?page=1')
     }
   },
   computed: {
     ...mapGetters([
-      'getAuthorPostList'
+      'getPostList'
     ]),
     pageListCount () {
       let total
       let resultArray = []
 
-      if (Number.isInteger(parseInt(this.getAuthorPostList.count) / 6)) {
-        total = parseInt(this.getAuthorPostList.count) / 6
+      if (Number.isInteger(parseInt(this.getPostList.count) / 6)) {
+        total = parseInt(this.getPostList.count) / 6
       } else {
-        total = parseInt(this.getAuthorPostList.count / 6) + 1
+        total = parseInt(this.getPostList.count / 6) + 1
       }
 
       for (let key = 1; key < total + 1; key++) {

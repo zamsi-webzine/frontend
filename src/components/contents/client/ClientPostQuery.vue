@@ -3,7 +3,7 @@
     <div class="row m-5">
       <div :id="index"
            class="card mb-3"
-           v-for="(value, index) in getAuthorPostList.results"
+           v-for="(value, index) in getPostList.results"
            :key="index.id">
         <div class="card-body">
           <h3 class="card-title">{{value.title}}</h3>
@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getAuthorPostList'
+      'getPostList'
     ])
   }
 }

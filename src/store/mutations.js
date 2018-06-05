@@ -25,12 +25,12 @@ export const removeInfo = () => {
 }
 
 // 유저 글 목록 업데이트
-export const updateAuthorPostList = (state, payload) => {
+export const updatePostList = (state, payload) => {
   state.postList = payload
 }
 
 // 유저 글 목록 삭제
-export const clearAuthorPostList = state => {
+export const clearPostList = state => {
   state.postList = {
     count: '',
     next: '',
@@ -40,7 +40,7 @@ export const clearAuthorPostList = state => {
 }
 
 // 유저 글 디테일 삭제
-export const clearAuthorPostDetail = state => {
+export const clearPostDetail = state => {
   state.postDetail = {
     pk: '',
     author: '',
@@ -52,7 +52,7 @@ export const clearAuthorPostDetail = state => {
 }
 
 // 유저 글 디테일 업데이트
-export const updateAuthorPostDetail = (state, payload) => {
+export const updatePostDetail = (state, payload) => {
   state.postDetail = payload
 }
 
