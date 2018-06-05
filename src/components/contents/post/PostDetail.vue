@@ -115,7 +115,7 @@ export default {
         const delta = JSON.parse(this.getQuillObject)
 
         this.quill.setContents(delta)
-      }, 100)
+      }, 1000)
     },
     publishPost (payload) {
       const formData = {
