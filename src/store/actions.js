@@ -349,7 +349,7 @@ export const getClientPostList = ({commit, state}) => {
 export const getClientPostRetrieve = ({commit, state}, payload) => {
   axios({
     method: 'get',
-    url: state.endpoints.baseUrl + state.endpoints.post + '/' + payload + '/detail/',
+    url: state.endpoints.baseUrl + state.endpoints.post + payload + '/detail/',
     headers: {
       'Content-Type': 'application/json'
     },
