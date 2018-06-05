@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     setQuill () {
-      this.$store.dispatch('getPostRetrieve', this.$route.params.pk)
+      this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk)
       setTimeout(() => {
         this.quill = new Quill(this.$refs.editor, this.options)
         const delta = JSON.parse(this.getQuillObject)

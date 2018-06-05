@@ -57,7 +57,7 @@
           </div>
         </div>
 
-        <router-link :to="{name: 'UpdatePost', params: {pk: getPostRetrieve.pk}}" tag="button" class="btn btn-outline-warning ml-2"><strong>수정</strong></router-link>
+        <router-link :to="{name: 'UpdatePost', params: {pk: params}}" tag="button" class="btn btn-outline-warning ml-2"><strong>수정</strong></router-link>
 
         <button type="button" class="btn btn-outline-danger ml-2" data-toggle="modal" data-target="#destroyModal"><strong>삭제</strong></button>
         <!-- Modal -->
@@ -96,7 +96,8 @@ export default {
   name: 'PostDetail',
   data () {
     return {
-      quill: ''
+      quill: '',
+      params: this.$route.params.pk
     }
   },
   mounted () {
@@ -108,7 +109,7 @@ export default {
   },
   methods: {
     setQuill () {
-      this.$store.dispatch('getPostRetrieve', this.$route.params.pk)
+      this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk)
       setTimeout(() => {
         this.quill = new Quill(this.$refs.editor)
         const delta = JSON.parse(this.getQuillObject)

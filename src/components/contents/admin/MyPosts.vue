@@ -54,7 +54,7 @@ export default {
     },
     callPaginatedList (payload) {
       const pageNum = '?page=' + String(payload)
-      this.$store.dispatch('getPostList', pageNum)
+      this.$store.dispatch('getAuthorPostList', pageNum)
     },
     callCategory (payload) {
       const categoryObject = {
@@ -65,7 +65,7 @@ export default {
       return categoryObject[payload]
     },
     fetchData () {
-      this.$store.dispatch('getPostList', '?page=1')
+      this.$store.dispatch('getAuthorPostList', '?page=1')
     }
   },
   computed: {
