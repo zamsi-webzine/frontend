@@ -11,7 +11,8 @@ import {
   Post,
   PostCreate,
   PostDetail,
-  PostUpdate
+  PostUpdate,
+  ClientPostDetail
 } from './lazy'
 
 export const routes = [
@@ -25,7 +26,12 @@ export const routes = [
     redirect: '/'
   },
   {
-    path: '/post',
+    path: '/:pk',
+    name: 'ClientPost',
+    component: ClientPostDetail
+  },
+  {
+    path: '/author-post',
     component: Post,
     // Authentication 검사를 위해 메타 태그 추가
     meta: {requiresAuth: true},
@@ -37,12 +43,12 @@ export const routes = [
       },
       {
         name: 'AuthorPostDetail',
-        path: 'author-only/:pk',
+        path: ':pk',
         component: PostDetail
       },
       {
         name: 'UpdatePost',
-        path: 'update/:pk',
+        path: ':pk/update',
         component: PostUpdate
       }
     ]

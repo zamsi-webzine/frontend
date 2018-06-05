@@ -24,3 +24,5 @@ export const PostCreate = () => import('../components/contents/post/PostCreate')
 export const PostDetail = () => import('../components/contents/post/PostDetail')
 
 export const PostUpdate = () => import('../components/contents/post/PostUpdate')
+
+export const ClientPostDetail = () => import('../components/contents/client/ClientPostDetail')

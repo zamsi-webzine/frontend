@@ -1,10 +1,11 @@
 <template>
   <div class="container-fluid">
     <div class="row m-5">
-      <div :id="index"
-           class="card mb-3"
-           v-for="(value, index) in getPostList.results"
-           :key="index.id">
+      <router-link :id="index"
+                   :to="{name: 'ClientPost', params: {pk: value.pk}}"
+                   class="card mb-3"
+                   v-for="(value, index) in getPostList.results"
+                   :key="index.id">
         <div class="card-body">
           <h3 class="card-title">{{value.title}}</h3>
           <p class="card-text">
@@ -13,7 +14,7 @@
             <span>{{callCategory(value.category)}}</span>
           </p>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -25,9 +26,6 @@ export default {
   created () {
     this.fetchData()
   },
-  // mounted () {
-  //   this.makeCSS()
-  // },
   methods: {
     callCategory (payload) {
       const categoryObject = {
