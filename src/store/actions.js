@@ -32,7 +32,7 @@ export const signUp = ({commit, state}, payload) => {
   })
 }
 // 로그인
-export const signIn = ({commit, state, dispatch}, payload) => {
+export const signIn = ({commit, state}, payload) => {
   axios({
     method: 'post',
     url: state.endpoints.baseUrl + state.endpoints.auth + state.endpoints.signIn,
@@ -48,7 +48,10 @@ export const signIn = ({commit, state, dispatch}, payload) => {
   }).then((response) => {
     commit('clearMessage')
     commit('updateInfo', response.data)
-    dispatch('getProfile')
+    router.replace({
+      name: 'MyPosts'
+    })
+    // dispatch('getProfile')
   }).catch((error) => {
     if (typeof error.response !== 'undefined') {
       commit('clearMessage')
@@ -63,6 +66,7 @@ export const signOut = ({commit}) => {
   router.replace({
     name: 'Home'
   })
+  router.go(router.currentRoute)
 }
 // 비밀번호 초기화
 export const resetPassword = ({commit, state}, payload) => {
@@ -91,23 +95,6 @@ export const resetPassword = ({commit, state}, payload) => {
   })
 }
 
-// 프로필 획득
-export const getProfile = ({commit, state}) => {
-  axios({
-    method: 'get',
-    url: state.endpoints.baseUrl + state.endpoints.profile + localStorage.getItem('pk') + '/',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'JWT ' + localStorage.getItem('token')
-    },
-    xsrfHeaderName: 'X-XSRF-TOKEN',
-    credentials: true
-  }).then(() => {
-    router.replace({
-      name: 'MyPosts'
-    })
-  })
-}
 // 프로필 수정
 export const patchProfile = ({commit, state, dispatch}, payload) => {
   axios({
