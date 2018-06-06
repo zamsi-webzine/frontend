@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'Category'
-  }
+export default {
+  name: 'Category'
+}
 </script>
 
 <style scoped>

@@ -365,3 +365,24 @@ export const getClientPostRetrieve = ({commit, state}, payload) => {
     }
   })
 }
+
+// 클라이언트 Enter-View 글 목록
+export const getClientPostEnterViewList = ({commit, state}) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + 'enter/',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearPostList')
+    commit('updatePostList', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
