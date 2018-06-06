@@ -14,7 +14,8 @@ import {
   PostUpdate,
   ClientPostDetail,
   Category,
-  EnterViewQuery
+  EnterViewQuery,
+  ReViewQuery
 } from './lazy'
 
 export const routes = [
@@ -36,6 +37,11 @@ export const routes = [
         path: 'enter-view',
         name: 'EnterView',
         component: EnterViewQuery
+      },
+      {
+        path: 're-view',
+        name: 'ReView',
+        component: ReViewQuery
       }
     ]
   },

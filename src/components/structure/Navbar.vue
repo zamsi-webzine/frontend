@@ -15,8 +15,8 @@
                data-toggle="collapse" data-target=".navbar-collapse.show">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"
-               data-toggle="collapse" data-target=".navbar-collapse.show">Re-View</a>
+            <router-link tag="a" class="nav-link" :to="{name: 'ReView'}"
+               data-toggle="collapse" data-target=".navbar-collapse.show">Re-View</router-link>
           </li>
           <li class="nav-item">
             <router-link tag="a" class="nav-link" :to="{name: 'EnterView'}"

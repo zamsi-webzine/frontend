@@ -386,3 +386,24 @@ export const getClientPostEnterViewList = ({commit, state}) => {
     }
   })
 }
+
+// 클라이언트 Re-View 글 목록
+export const getClientPostReViewList = ({commit, state}) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + 're/',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearPostList')
+    commit('updatePostList', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
