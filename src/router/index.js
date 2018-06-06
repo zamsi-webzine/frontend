@@ -12,7 +12,9 @@ import {
   PostCreate,
   PostDetail,
   PostUpdate,
-  ClientPostDetail
+  ClientPostDetail,
+  Category,
+  EnterViewQuery
 } from './lazy'
 
 export const routes = [
@@ -24,6 +26,18 @@ export const routes = [
   {
     path: '*',
     redirect: '/'
+  },
+  {
+    path: '/category',
+    name: 'Category',
+    component: Category,
+    children: [
+      {
+        path: 'enter-view',
+        name: 'EnterView',
+        component: EnterViewQuery
+      }
+    ]
   },
   {
     path: '/:pk',
