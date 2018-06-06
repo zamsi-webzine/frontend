@@ -14,10 +14,9 @@
         </div>
         <div class="ml-3">
           <p class="mb-0">{{getPostRetrieve.author.nickname}}</p>
-          <p class="mb-0 text-muted">
-            <span>{{getPostCreatedTime}}</span>
-            <span>|</span>
+          <p class="mb-0">
             <span>{{callCategory}}</span>
+            <span class="text-muted"> ❖ <em>{{getPostCreatedTime}}</em></span>
           </p>
         </div>
       </div>
