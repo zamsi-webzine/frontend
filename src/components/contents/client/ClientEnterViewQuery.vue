@@ -16,6 +16,15 @@
         </p>
       </div>
     </router-link>
+    <div class="mt-5 mb-5">
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" v-for="num in pageListCount" :key="num.id">
+            <button @click="callPaginatedList(num)" class="page-link">{{num}}</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </template>
 
@@ -32,6 +41,10 @@ export default {
       const date = new Date(payload)
       return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
     },
+    callPaginatedList (payload) {
+      const pageNum = '?page=' + String(payload)
+      this.$store.dispatch('getClientPostEnterViewList', pageNum)
+    },
     callCategory (payload) {
       const categoryObject = {
         'R': 'Re-View',
@@ -41,13 +54,28 @@ export default {
       return categoryObject[payload]
     },
     fetchData () {
-      this.$store.dispatch('getClientPostEnterViewList')
+      this.$store.dispatch('getClientPostEnterViewList', '?page=1')
     }
   },
   computed: {
     ...mapGetters([
       'getPostList'
-    ])
+    ]),
+    pageListCount () {
+      let total
+      let resultArray = []
+
+      if (Number.isInteger(parseInt(this.getPostList.count) / 6)) {
+        total = parseInt(this.getPostList.count) / 6
+      } else {
+        total = parseInt(this.getPostList.count / 6) + 1
+      }
+
+      for (let key = 1; key < total + 1; key++) {
+        resultArray.push(key)
+      }
+      return resultArray
+    }
   }
 }
 </script>

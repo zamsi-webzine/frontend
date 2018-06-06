@@ -367,10 +367,10 @@ export const getClientPostRetrieve = ({commit, state}, payload) => {
 }
 
 // 클라이언트 Enter-View 글 목록
-export const getClientPostEnterViewList = ({commit, state}) => {
+export const getClientPostEnterViewList = ({commit, state}, payload) => {
   axios({
     method: 'get',
-    url: state.endpoints.baseUrl + state.endpoints.post + 'enter/',
+    url: state.endpoints.baseUrl + state.endpoints.post + 'enter/' + payload,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -388,10 +388,10 @@ export const getClientPostEnterViewList = ({commit, state}) => {
 }
 
 // 클라이언트 Re-View 글 목록
-export const getClientPostReViewList = ({commit, state}) => {
+export const getClientPostReViewList = ({commit, state}, payload) => {
   axios({
     method: 'get',
-    url: state.endpoints.baseUrl + state.endpoints.post + 're/',
+    url: state.endpoints.baseUrl + state.endpoints.post + 're/' + payload,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -409,10 +409,10 @@ export const getClientPostReViewList = ({commit, state}) => {
 }
 
 // 클라이언트 Over-View 글 목록
-export const getClientPostOverViewList = ({commit, state}) => {
+export const getClientPostOverViewList = ({commit, state}, payload) => {
   axios({
     method: 'get',
-    url: state.endpoints.baseUrl + state.endpoints.post + 'over/',
+    url: state.endpoints.baseUrl + state.endpoints.post + 'over/' + payload,
     headers: {
       'Content-Type': 'application/json'
     },
