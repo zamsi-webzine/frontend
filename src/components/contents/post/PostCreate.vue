@@ -92,7 +92,7 @@ export default {
         modules: {
           toolbar: [
             [{'size': ['small', false, 'large', 'huge']}],
-            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            ['bold', 'italic', 'underline', 'strike'],
             [{'list': 'ordered'}, {'list': 'bullet'}],
             [{'script': 'sub'}, {'script': 'super'}],
             [{'indent': '-1'}, {'indent': '+1'}],
