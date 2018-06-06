@@ -48,7 +48,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import CheckoutMessage from '../contents/CheckoutMessage'
+import CheckoutMessage from '../contents/common/CheckoutMessage'
 export default {
   components: {CheckoutMessage},
   name: 'signIn',

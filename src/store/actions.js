@@ -32,7 +32,7 @@ export const signUp = ({commit, state}, payload) => {
   })
 }
 // 로그인
-export const signIn = ({commit, state, dispatch}, payload) => {
+export const signIn = ({commit, state}, payload) => {
   axios({
     method: 'post',
     url: state.endpoints.baseUrl + state.endpoints.auth + state.endpoints.signIn,
@@ -48,7 +48,10 @@ export const signIn = ({commit, state, dispatch}, payload) => {
   }).then((response) => {
     commit('clearMessage')
     commit('updateInfo', response.data)
-    dispatch('getProfile')
+    router.replace({
+      name: 'MyPosts'
+    })
+    // dispatch('getProfile')
   }).catch((error) => {
     if (typeof error.response !== 'undefined') {
       commit('clearMessage')
@@ -59,9 +62,11 @@ export const signIn = ({commit, state, dispatch}, payload) => {
 // 로그아웃
 export const signOut = ({commit}) => {
   commit('removeInfo')
+  commit('clearPostList')
   router.replace({
     name: 'Home'
   })
+  router.go(router.currentRoute)
 }
 // 비밀번호 초기화
 export const resetPassword = ({commit, state}, payload) => {
@@ -90,23 +95,6 @@ export const resetPassword = ({commit, state}, payload) => {
   })
 }
 
-// 프로필 획득
-export const getProfile = ({commit, state}) => {
-  axios({
-    method: 'get',
-    url: state.endpoints.baseUrl + state.endpoints.profile + localStorage.getItem('pk') + '/',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'JWT ' + localStorage.getItem('token')
-    },
-    xsrfHeaderName: 'X-XSRF-TOKEN',
-    credentials: true
-  }).then(() => {
-    router.replace({
-      name: 'MyPosts'
-    })
-  })
-}
 // 프로필 수정
 export const patchProfile = ({commit, state, dispatch}, payload) => {
   axios({
@@ -136,6 +124,29 @@ export const patchProfile = ({commit, state, dispatch}, payload) => {
     }
   })
 }
+// 썸네일 수정
+export const patchThumbnail = ({commit, state}, payload) => {
+  axios({
+    method: 'patch',
+    url: state.endpoints.baseUrl + state.endpoints.profile +
+    localStorage.getItem('pk') + '/' + state.endpoints.thumbnail,
+    data: payload,
+    headers: {
+      'Content-Type': 'multipart/form-data;boundary="boundary"',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    localStorage.setItem('thumbnail', response.data.thumbnail)
+    router.go(router.currentRoute)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
 // 회원 탈퇴
 export const destroyProfile = ({commit, state, dispatch}) => {
   axios({
@@ -156,6 +167,251 @@ export const destroyProfile = ({commit, state, dispatch}) => {
     if (typeof error.response !== 'undefined') {
       commit('clearMessage')
       commit('setMessage', error.response.data.message)
+    }
+  })
+}
+
+// 글쓰기
+export const uploadPost = ({commit, state}, payload) => {
+  axios({
+    method: 'post',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/',
+    data: payload,
+    headers: {
+      'Content-Type': 'multipart/form-data;boundary="boundary"',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then(() => {
+    router.push({
+      name: 'MyPosts'
+    })
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
+// 글 수정
+export const updatePost = ({commit, state}, payload) => {
+  axios({
+    method: 'patch',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/' + payload.pk + '/',
+    data: payload.formData,
+    headers: {
+      'Content-Type': 'multipart/form-data;boundary="boundary"',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    router.replace({
+      name: 'AuthorPostDetail',
+      params: {pk: response.data.pk}
+    })
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
+// 글 목록
+export const getAuthorPostList = ({commit, state}, payload) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/' + payload,
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearPostList')
+    commit('updatePostList', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
+// 글 디테일
+export const getAuthorPostRetrieve = ({commit, state}, payload) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/' + payload + '/',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearPostDetail')
+    commit('updatePostDetail', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data.message)
+    }
+  })
+}
+
+// 글 발행 상태 변경
+export const authorPostPublish = ({commit, state}, payload) => {
+  axios({
+    method: 'patch',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/' + payload.pk + '/',
+    data: {
+      'is_published': payload.is_published
+    },
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then(() => {
+    router.go(router.currentRoute)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
+// 글 삭제
+export const authorPostDestroy = ({commit, state}, payload) => {
+  axios({
+    method: 'delete',
+    url: state.endpoints.baseUrl + state.endpoints.post + localStorage.getItem('pk') + '/' + payload + '/',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT ' + localStorage.getItem('token')
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then(() => {
+    router.replace({
+      name: 'MyPosts'
+    })
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
+// 클라이언트 전체 글 목록
+export const getClientPostList = ({commit, state}) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + 'all/',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearPostList')
+    commit('updatePostList', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
+// 클라이언트 전체 글 디테일
+export const getClientPostRetrieve = ({commit, state}, payload) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + payload + '/detail/',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearPostDetail')
+    commit('updatePostDetail', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
+// 클라이언트 Enter-View 글 목록
+export const getClientPostEnterViewList = ({commit, state}, payload) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + 'enter/' + payload,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearPostList')
+    commit('updatePostList', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
+// 클라이언트 Re-View 글 목록
+export const getClientPostReViewList = ({commit, state}, payload) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + 're/' + payload,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearPostList')
+    commit('updatePostList', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
+    }
+  })
+}
+
+// 클라이언트 Over-View 글 목록
+export const getClientPostOverViewList = ({commit, state}, payload) => {
+  axios({
+    method: 'get',
+    url: state.endpoints.baseUrl + state.endpoints.post + 'over/' + payload,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    credentials: true
+  }).then((response) => {
+    commit('clearPostList')
+    commit('updatePostList', response.data)
+  }).catch((error) => {
+    if (typeof error.response !== 'undefined') {
+      commit('clearMessage')
+      commit('setMessage', error.response.data)
     }
   })
 }

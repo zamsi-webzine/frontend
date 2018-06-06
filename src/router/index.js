@@ -1,20 +1,23 @@
-const Home = () => import('../components/view/Home')
-
-const Activation = () => import('../components/authentication/Activation')
-
-const Forgot = () => import('../components/authentication/Forgot')
-
-const SignIn = () => import('../components/authentication/SignIn')
-
-const SignUp = () => import('../components/authentication/SignUp')
-
-const MyPosts = () => import('../components/contents/MyPosts')
-
-const Settings = () => import('../components/contents/Settings')
-
-const Auth = () => import('../components/view/Auth')
-
-const Profile = () => import('../components/view/Profile')
+import {
+  Home,
+  Auth,
+  SignIn,
+  SignUp,
+  Forgot,
+  Activation,
+  Profile,
+  MyPosts,
+  Settings,
+  Post,
+  PostCreate,
+  PostDetail,
+  PostUpdate,
+  ClientPostDetail,
+  Category,
+  EnterViewQuery,
+  ReViewQuery,
+  OverViewQuery
+} from './lazy'
 
 export const routes = [
   {
@@ -27,8 +30,59 @@ export const routes = [
     redirect: '/'
   },
   {
+    path: '/category',
+    name: 'Category',
+    component: Category,
+    children: [
+      {
+        path: 'enter-view',
+        name: 'EnterView',
+        component: EnterViewQuery
+      },
+      {
+        path: 're-view',
+        name: 'ReView',
+        component: ReViewQuery
+      },
+      {
+        path: 'over-view',
+        name: 'OverView',
+        component: OverViewQuery
+      }
+    ]
+  },
+  {
+    path: '/:pk',
+    name: 'ClientPost',
+    component: ClientPostDetail
+  },
+  {
+    path: '/author-post',
+    component: Post,
+    // Authentication 검사를 위해 메타 태그 추가
+    meta: {requiresAuth: true},
+    children: [
+      {
+        name: 'NewPost',
+        path: 'new',
+        component: PostCreate
+      },
+      {
+        name: 'AuthorPostDetail',
+        path: ':pk',
+        component: PostDetail
+      },
+      {
+        name: 'UpdatePost',
+        path: ':pk/update',
+        component: PostUpdate
+      }
+    ]
+  },
+  {
     path: '/auth',
     component: Auth,
+    // Auth 컴포넌트의 자식 컴포넌트 4가지
     children: [
       {name: 'SignIn', path: 'signin', component: SignIn},
       {name: 'SignUp', path: 'signup', component: SignUp},
@@ -39,17 +93,20 @@ export const routes = [
   {
     path: '/profile',
     component: Profile,
+    // Profile 컴포넌터의 자식 컴포넌트 2가지
     children: [
       {
         name: 'MyPosts',
         path: 'posts',
         component: MyPosts,
+        // Authentication 검사를 위해 메타 태그 추가
         meta: {requiresAuth: true}
       },
       {
         name: 'Settings',
         path: 'settings',
         component: Settings,
+        // Authentication 검사를 위해 메타 태그 추가
         meta: {requiresAuth: true}
       }
     ]

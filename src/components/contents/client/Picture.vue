@@ -24,7 +24,7 @@
 <script>
 export default {
   name: 'main-picture',
-  data: function () {
+  data () {
     return {
       imagePath: 'https://doy0iundk4hjr.cloudfront.net/static/assets/images/cities/landing_0',
       imageNum: 1,
@@ -32,9 +32,8 @@ export default {
     }
   },
   methods: {
-    randomNum: function (event) {
-      let num = Math.floor(Math.random() * 7) + 1
-      this.imageNum = num
+    randomNum (event) {
+      this.imageNum = Math.floor(Math.random() * 7) + 1
     }
   }
 }

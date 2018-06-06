@@ -1,37 +1,18 @@
 <template>
-  <footer class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <p class="text-center text-muted"><em>© 2018. Zamsee all rights reserved.</em></p>
+  <footer class="jumbotron jumbotron-fluid bg-dark align-items-center mb-0">
+    <div class="row">
+      <div class="col-6 offset-3">
+        <p class="text-center text-muted mb-0">
+          <span><em>© 2018. Zamsee all rights reserved.</em></span>
+        </p>
+      </div>
+      <div class="col-3 text-center">
+        <router-link tag="button" class="btn btn-sm btn-outline-secondary"
+                     :to="{name: 'SignIn'}">Editor SignIn</router-link>
+      </div>
     </div>
   </footer>
 </template>
 
 <style scoped>
-  .jumbotron {
-    margin: 0;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @media (max-width: 1680px) {
-    .jumbotron {
-      height: 300px;
-    }
-    .text-center {
-      font-weight: 200;
-      font-size: 1.5rem;
-    }
-  }
-
-  @media (max-width: 414px) {
-    .jumbotron {
-      height: 200px;
-    }
-    .text-center {
-      font-weight: 200;
-      font-size: 1rem;
-    }
-  }
 </style>
