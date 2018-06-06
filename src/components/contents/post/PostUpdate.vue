@@ -10,7 +10,7 @@
                    class="thumbnail"
                    :src="getThumbnail" alt="user-thumbnail">
               <img v-else
-                   class="img-fluid"
+                   class="img-fluid thumbnail"
                    width="100rem"
                    src="../../../assets/icons/user-circle.svg" alt="default-user-thumbnail">
             </div>
