@@ -32,3 +32,5 @@ export const ClientPostDetail = () => import('../components/contents/client/Clie
 export const EnterViewQuery = () => import('../components/contents/client/ClientEnterViewQuery')
 
 export const ReViewQuery = () => import('../components/contents/client/ClientReViewQuery')
+
+export const OverViewQuery = () => import('../components/contents/client/ClientOverViewQuery')

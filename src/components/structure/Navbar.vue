@@ -23,8 +23,8 @@
                          data-toggle="collapse" data-target=".navbar-collapse.show">Enter-View</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"
-               data-toggle="collapse" data-target=".navbar-collapse.show">Over-View</a>
+            <router-link tag="a" class="nav-link" :to="{name: 'OverView'}"
+               data-toggle="collapse" data-target=".navbar-collapse.show">Over-View</router-link>
           </li>
         </ul>
       </div>
