@@ -114,8 +114,11 @@ export default {
       setTimeout(() => {
         this.quill = new Quill(this.$refs.editor)
         const delta = JSON.parse(this.getQuillObject)
-
         this.quill.setContents(delta)
+
+        // 이미지를 반응형으로 만들기 위한 클래스 삽입
+        let images = document.getElementById('content').querySelector('img')
+        images.classList.add('img-fluid')
       }, 1000)
     },
     publishPost (payload) {
