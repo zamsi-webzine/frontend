@@ -1,23 +1,28 @@
 <template>
   <div class="container-fluid" id="main-query">
-    <div class="row m-2 m-md-4">
-      <router-link :id="index"
-                   :to="{name: 'ClientPost', params: {pk: value.pk}}"
-                   class="card mb-3 hovering text-dark"
-                   v-for="(value, index) in getPostList.results"
-                   :key="index.id">
-        <img v-if="value.thumbnail" :src="value.thumbnail" class="card-img-top" alt="post-thumbnail">
-        <div class="card-body">
-          <h3 class="card-title">{{value.title}}</h3>
-          <p class="card-text">
-            <span>{{value.author.nickname}}</span>
-            <br>
-            <span>{{callCategory(value.category)}}</span>
-            <span class="text-muted"> ❖ <em>{{dateCreated(value.date_created)}}</em></span>
-          </p>
-        </div>
-      </router-link>
+    <div v-if="loading" id="loading" class="d-flex justify-content-center align-items-center">
+      <div class="loader mx-auto"></div>
     </div>
+    <transition appear="fade" name="fade">
+      <div v-show="post" class="row m-2 m-md-4">
+        <router-link :id="index"
+                     :to="{name: 'ClientPost', params: {pk: value.pk}}"
+                     class="card mb-3 hovering text-dark"
+                     v-for="(value, index) in getPostList.results"
+                     :key="index.id">
+          <img v-if="value.thumbnail" :src="value.thumbnail" class="card-img-top" alt="post-thumbnail">
+          <div class="card-body">
+            <h3 class="card-title">{{value.title}}</h3>
+            <p class="card-text">
+              <span>{{value.author.nickname}}</span>
+              <br>
+              <span>{{callCategory(value.category)}}</span>
+              <span class="text-muted"> ❖ <em>{{dateCreated(value.date_created)}}</em></span>
+            </p>
+          </div>
+        </router-link>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -25,6 +30,12 @@
 import {mapGetters} from 'vuex'
 export default {
   name: 'ClientPostQuery',
+  data () {
+    return {
+      loading: true,
+      post: false
+    }
+  },
   created () {
     this.fetchData()
   },
@@ -74,9 +85,14 @@ export default {
       }
     },
     fetchData () {
+      this.loading = true
+      this.post = false
+
       this.$store.dispatch('getClientPostList')
       setTimeout(() => {
         this.makeCSS()
+        this.loading = false
+        this.post = true
       }, 1000)
     }
   },
@@ -102,5 +118,37 @@ export default {
   .card-title {
     font-family: 'Noto Serif', serif;
     font-weight: 400;
+  }
+  /*트랜지션 애니메이션*/
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.6s ease-out;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+  #loading {
+    min-height: calc(100vh - 88px);
+  }
+  /*로딩 애니메이션*/
+  .loader {
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 </style>
