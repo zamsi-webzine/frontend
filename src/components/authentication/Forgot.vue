@@ -31,22 +31,23 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import CheckoutMessage from '../contents/common/CheckoutMessage'
+import { mapActions } from 'vuex';
+import CheckoutMessage from '../contents/common/CheckoutMessage.vue';
+
 export default {
-  components: {CheckoutMessage},
+  components: { CheckoutMessage },
   name: 'Forgot',
-  data: function () {
+  data() {
     return {
-      email: ''
-    }
+      email: '',
+    };
   },
   methods: {
     ...mapActions([
-      'resetPassword'
-    ])
-  }
-}
+      'resetPassword',
+    ]),
+  },
+};
 </script>
 
 <style scoped>

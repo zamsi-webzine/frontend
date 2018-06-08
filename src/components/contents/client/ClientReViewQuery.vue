@@ -29,55 +29,56 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'ClientEnterViewQuery',
-  created () {
-    this.fetchData()
+  created() {
+    this.fetchData();
   },
   methods: {
     // 리스트로 들어오는 파이썬 생성 일자를 자바스크립트 생성 일자로 변환
-    dateCreated (payload) {
-      const date = new Date(payload)
-      return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    dateCreated(payload) {
+      const date = new Date(payload);
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     },
-    callPaginatedList (payload) {
-      const pageNum = '?page=' + String(payload)
-      this.$store.dispatch('getClientPostReViewList', pageNum)
+    callPaginatedList(payload) {
+      const pageNum = `?page=${String(payload)}`;
+      this.$store.dispatch('getClientPostReViewList', pageNum);
     },
-    callCategory (payload) {
+    callCategory(payload) {
       const categoryObject = {
-        'R': 'Re-View',
-        'E': 'Enter-View',
-        'O': 'Over-View'
-      }
-      return categoryObject[payload]
+        R: 'Re-View',
+        E: 'Enter-View',
+        O: 'Over-View',
+      };
+      return categoryObject[payload];
     },
-    fetchData () {
-      this.$store.dispatch('getClientPostReViewList', '?page=1')
-    }
+    fetchData() {
+      this.$store.dispatch('getClientPostReViewList', '?page=1');
+    },
   },
   computed: {
     ...mapGetters([
-      'getPostList'
+      'getPostList',
     ]),
-    pageListCount () {
-      let total
-      let resultArray = []
+    pageListCount() {
+      let total;
+      const resultArray = [];
 
-      if (Number.isInteger(parseInt(this.getPostList.count) / 6)) {
-        total = parseInt(this.getPostList.count) / 6
+      if (Number.isInteger(parseInt(this.getPostList.count, 10) / 6)) {
+        total = parseInt(this.getPostList.count, 10) / 6;
       } else {
-        total = parseInt(this.getPostList.count / 6) + 1
+        total = parseInt(this.getPostList.count / 6, 10) + 1;
       }
 
-      for (let key = 1; key < total + 1; key++) {
-        resultArray.push(key)
+      for (let key = 1; key < total + 1; key += 1) {
+        resultArray.push(key);
       }
-      return resultArray
-    }
-  }
-}
+      return resultArray;
+    },
+  },
+};
 </script>
 
 <style scoped>

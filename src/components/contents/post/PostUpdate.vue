@@ -16,7 +16,9 @@
             </div>
             <div class="ml-3">
               <p class="mb-0">{{getPostRetrieve.author.nickname}}</p>
-              <p class="mb-0 text-muted">상태: 수정 <small class="text-info">(발행은 저장이 끝난 뒤에 가능합니다)</small></p>
+              <p class="mb-0 text-muted">상태: 수정
+                <small class="text-info">(발행은 저장이 끝난 뒤에 가능합니다)</small>
+              </p>
             </div>
           </div>
           <div class="d-flex">
@@ -29,19 +31,22 @@
         <div class="col-6">
           <h5><strong>Category</strong></h5>
           <div class="form-check">
-            <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios1" value="R" checked>
+            <input v-model="category" class="form-check-input"
+                   type="radio" name="categoryRadios" id="categoryRadios1" value="R" checked>
             <label class="form-check-label" for="categoryRadios1">
               Re-View
             </label>
           </div>
           <div class="form-check">
-            <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios2" value="E">
+            <input v-model="category" class="form-check-input"
+                   type="radio" name="categoryRadios" id="categoryRadios2" value="E">
             <label class="form-check-label" for="categoryRadios2">
               Enter-View
             </label>
           </div>
           <div class="form-check">
-            <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios3" value="O">
+            <input v-model="category" class="form-check-input"
+                   type="radio" name="categoryRadios" id="categoryRadios3" value="O">
             <label class="form-check-label" for="categoryRadios3">
               Over-View
             </label>
@@ -50,7 +55,8 @@
         <div class="col-6">
           <div class="form-group">
             <h5><strong>Post Thumbnail</strong></h5>
-            <input type="file" class="form-control-file" ref="file" accept="image/*" id="thumbnailUpload" @change="handleFileUpload()">
+            <input type="file" class="form-control-file"
+                   ref="file" accept="image/*" id="thumbnailUpload" @change="handleFileUpload()">
           </div>
           <figure class="figure" v-if="getPostRetrieve.thumbnail">
             <figcaption class="figure-caption">기존 사진</figcaption>
@@ -63,7 +69,8 @@
         </div>
       </div>
       <div class="form-group">
-        <input v-model="title" type="text" class="form-control" id="titleInput" aria-describedby="titleHelp"
+        <input v-model="title" type="text"
+               class="form-control" id="titleInput" aria-describedby="titleHelp"
                :placeholder="'기존 제목: ' + getPostRetrieve.title" name="title" required>
       </div>
       <input name="post" type="hidden">
@@ -75,19 +82,20 @@
 </template>
 
 <script>
-import Quill from 'quill/dist/quill.min'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-import 'quill/dist/quill.core.css'
-import $ from 'jquery/dist/jquery.min'
-import {mapGetters} from 'vuex'
-import CheeckoutMessage from '../../contents/common/CheckoutMessage'
+import Quill from 'quill/dist/quill.min';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+import 'quill/dist/quill.core.css';
+import $ from 'jquery/dist/jquery.min';
+import { mapGetters } from 'vuex';
+import CheeckoutMessage from '../../contents/common/CheckoutMessage.vue';
+
 export default {
   name: 'PostUpdate',
   components: {
-    CheeckoutMessage
+    CheeckoutMessage,
   },
-  data () {
+  data() {
     return {
       title: '',
       quill: '',
@@ -98,74 +106,74 @@ export default {
       options: {
         modules: {
           toolbar: [
-            [{'size': ['small', false, 'large', 'huge']}],
+            [{ size: ['small', false, 'large', 'huge'] }],
             ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-            [{'list': 'ordered'}, {'list': 'bullet'}],
-            [{'script': 'sub'}, {'script': 'super'}],
-            [{'indent': '-1'}, {'indent': '+1'}],
-            [{'align': []}],
-            [{'color': []}, {'background': []}],
-            ['image', 'video', 'link']
-          ]
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            [{ script: 'sub' }, { script: 'super' }],
+            [{ indent: '-1' }, { indent: '+1' }],
+            [{ align: [] }],
+            [{ color: [] }, { background: [] }],
+            ['image', 'video', 'link'],
+          ],
         },
-        theme: 'snow'
-      }
-    }
+        theme: 'snow',
+      },
+    };
   },
-  mounted () {
-    this.setQuill()
+  mounted() {
+    this.setQuill();
   },
   methods: {
-    setQuill () {
-      this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk)
+    setQuill() {
+      this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk);
       setTimeout(() => {
-        this.quill = new Quill(this.$refs.editor, this.options)
-        const delta = JSON.parse(this.getQuillObject)
+        this.quill = new Quill(this.$refs.editor, this.options);
+        const delta = JSON.parse(this.getQuillObject);
 
-        this.quill.setContents(delta)
-      }, 100)
+        this.quill.setContents(delta);
+      }, 100);
     },
-    getContents () {
-      let form = document.querySelector('form')
-      let post = document.querySelector('input[name=post]')
+    getContents() {
+      const form = document.querySelector('form');
+      const post = document.querySelector('input[name=post]');
 
-      post.value = JSON.stringify(this.quill.getContents())
+      post.value = JSON.stringify(this.quill.getContents());
 
-      const result = $(form).serializeArray()
+      const result = $(form).serializeArray();
 
-      let formData = new FormData()
+      const formData = new FormData();
 
-      formData.append('category', result[0]['value'])
-      formData.append('title', result[1]['value'])
-      formData.append('post', result[2]['value'])
-      formData.append('thumbnail', this.file)
+      formData.append('category', result[0].value);
+      formData.append('title', result[1].value);
+      formData.append('post', result[2].value);
+      formData.append('thumbnail', this.file);
 
       const payload = {
         pk: this.$route.params.pk,
-        formData: formData
-      }
+        formData,
+      };
 
-      this.$store.dispatch('updatePost', payload)
+      this.$store.dispatch('updatePost', payload);
     },
-    handleFileUpload () {
+    handleFileUpload() {
       /*
        Set the local file variable to what the user has selected.
        */
-      this.file = this.$refs.file.files[0]
+      this.file = this.$refs.file.files[0];
       /*
        Initialize a File Reader object
        */
-      let reader = new FileReader()
+      const reader = new FileReader();
 
       /*
        Add an event listener to the reader that when the file
        has been loaded, we flag the show preview as true and set the
        image to be what was read from the reader.
        */
-      reader.addEventListener('load', function () {
-        this.showPreview = true
-        this.imagePreview = reader.result
-      }.bind(this), false)
+      reader.addEventListener('load', () => {
+        this.showPreview = true;
+        this.imagePreview = reader.result;
+      }, false);
 
       /*
        Check to see if the file is not empty.
@@ -180,20 +188,20 @@ export default {
            upon completion fire a 'load' event which we will listen to and
            display the image in the preview.
            */
-          reader.readAsDataURL(this.file)
+          reader.readAsDataURL(this.file);
         }
       }
-    }
+    },
   },
   computed: {
     ...mapGetters([
       'getPostRetrieve',
       'getQuillObject',
       'getThumbnail',
-      'getPostCreatedTime'
-    ])
-  }
-}
+      'getPostCreatedTime',
+    ]),
+  },
+};
 </script>
 
 <style scoped>

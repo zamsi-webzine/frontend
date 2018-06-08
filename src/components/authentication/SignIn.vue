@@ -36,7 +36,11 @@
         <button type="submit" class="btn btn-primary">Sign in</button>
       </div>
       <div class="col-sm-4 col-6">
-        <router-link tag="button" type="button" class="btn btn-link" id="btn-forgot" :to="{name: 'Forgot'}">Forgot Password?</router-link>
+        <router-link tag="button"
+                     type="button"
+                     class="btn btn-link"
+                     id="btn-forgot"
+                     :to="{name: 'Forgot'}">Forgot Password?</router-link>
       </div>
     </div>
     <!--에러 메시지 그룹 (hidden)-->
@@ -47,23 +51,24 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import CheckoutMessage from '../contents/common/CheckoutMessage'
+import { mapActions } from 'vuex';
+import CheckoutMessage from '../contents/common/CheckoutMessage.vue';
+
 export default {
-  components: {CheckoutMessage},
+  components: { CheckoutMessage },
   name: 'signIn',
-  data: function () {
+  data() {
     return {
       email: '',
-      password: ''
-    }
+      password: '',
+    };
   },
   methods: {
     ...mapActions([
-      'signIn'
-    ])
-  }
-}
+      'signIn',
+    ]),
+  },
+};
 
 </script>
 

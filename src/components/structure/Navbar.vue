@@ -1,11 +1,15 @@
 <template>
   <header class="container-fluid bg-white shadow-sm" id="main-header">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a id="main-logo" class="nav-link disabled p-0 ml-md-3 ml-sm-0" href="/" data-log-event="home">
+      <a id="main-logo" class="nav-link disabled p-0 ml-md-3 ml-sm-0"
+         href="/" data-log-event="home">
         <img src="../../assets/icons/logo_black.svg" alt="">
       </a>
       <!--hamburger-->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button"
+              data-toggle="collapse" data-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown" aria-expanded="false"
+              aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
@@ -36,20 +40,27 @@
         <!--카테고리 메뉴-->
         <ul class="navbar-nav mr-4">
           <li class="nav-item">
-            <a class="nav-link" href="#"
-               data-toggle="collapse" data-target=".navbar-collapse.show">About</a>
+            <router-link
+                        tag="a" class="nav-link" :to="{name: 'About'}"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse.show">About</router-link>
           </li>
           <li class="nav-item">
-            <router-link tag="a" class="nav-link" :to="{name: 'ReView'}"
-               data-toggle="collapse" data-target=".navbar-collapse.show">Re-View</router-link>
+            <router-link
+                        tag="a" class="nav-link" :to="{name: 'ReView'}"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse.show">Re-View</router-link>
           </li>
           <li class="nav-item">
             <router-link tag="a" class="nav-link" :to="{name: 'EnterView'}"
-                         data-toggle="collapse" data-target=".navbar-collapse.show">Enter-View</router-link>
+                         data-toggle="collapse"
+                         data-target=".navbar-collapse.show">Enter-View</router-link>
           </li>
           <li class="nav-item">
-            <router-link tag="a" class="nav-link" :to="{name: 'OverView'}"
-               data-toggle="collapse" data-target=".navbar-collapse.show">Over-View</router-link>
+            <router-link
+                        tag="a" class="nav-link" :to="{name: 'OverView'}"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse.show">Over-View</router-link>
           </li>
         </ul>
       </div>
@@ -58,24 +69,25 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
-  data () {
+  data() {
     return {
-      token: localStorage.getItem('token')
-    }
+      token: localStorage.getItem('token'),
+    };
   },
   methods: {
     ...mapActions([
-      'signOut'
-    ])
+      'signOut',
+    ]),
   },
   computed: {
     ...mapGetters([
-      'getInfo'
-    ])
-  }
-}
+      'getInfo',
+    ]),
+  },
+};
 </script>
 
 <style scoped>
