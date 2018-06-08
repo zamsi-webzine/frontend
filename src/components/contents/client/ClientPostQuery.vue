@@ -3,7 +3,7 @@
     <div v-if="loading" id="loading" class="d-flex justify-content-center align-items-center">
       <div class="loader mx-auto"></div>
     </div>
-    <transition appear="fade" name="fade">
+    <transition name="fade">
       <div v-show="post" class="row m-2 m-md-4">
         <router-link :id="index"
                      :to="{name: 'ClientPost', params: {pk: value.pk}}"
@@ -119,18 +119,19 @@ export default {
     font-family: 'Noto Serif', serif;
     font-weight: 400;
   }
+
   /*트랜지션 애니메이션*/
   .fade-enter-active, .fade-leave-active {
     transition: opacity 0.6s ease-out;
   }
-
   .fade-enter, .fade-leave-to {
     opacity: 0;
   }
+
+  /*로딩 애니메이션*/
   #loading {
     min-height: calc(100vh - 88px);
   }
-  /*로딩 애니메이션*/
   .loader {
     border: 10px solid #f3f3f3;
     border-radius: 50%;
@@ -146,7 +147,6 @@ export default {
     0% { -webkit-transform: rotate(0deg); }
     100% { -webkit-transform: rotate(360deg); }
   }
-
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }

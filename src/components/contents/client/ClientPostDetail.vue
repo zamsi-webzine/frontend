@@ -22,7 +22,12 @@
       </div>
     </div>
     <img v-if="getPostRetrieve.thumbnail" :src="getPostRetrieve.thumbnail" class="img-fluid d-block mx-auto"/>
-    <div ref="editor" id="content" class="mx-auto"></div>
+    <div v-if="loading" id="loading" class="d-flex justify-content-center align-items-center">
+      <div class="loader mx-auto"></div>
+    </div>
+    <transition name="fade">
+      <div v-show="post" ref="editor" id="content" class="mx-auto"></div>
+    </transition>
   </div>
 </template>
 
@@ -36,6 +41,8 @@ export default {
   name: 'ClientPostDetail',
   data () {
     return {
+      loading: true,
+      post: false,
       quill: ''
     }
   },
@@ -48,6 +55,9 @@ export default {
   },
   methods: {
     setQuill () {
+      this.loading = true
+      this.post = false
+
       this.$store.dispatch('getClientPostRetrieve', this.$route.params.pk)
       setTimeout(() => {
         // Quill 객체에 서버에서 호출한 Delta 객체를 삽입, HTML 형태로 렌더링
@@ -57,7 +67,12 @@ export default {
 
         // 이미지를 반응형으로 만들기 위한 클래스 삽입
         let images = document.getElementById('content').querySelector('img')
-        images.classList.add('img-fluid')
+        if (images) {
+          images.classList.add('img-fluid')
+        }
+
+        this.loading = false
+        this.post = true
       }, 1000)
     }
   },
@@ -89,5 +104,37 @@ export default {
     max-width: 700px;
     font-family: 'Noto Serif', serif;
     font-weight: 400;
+  }
+
+  /*트랜지션 애니메이션*/
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.6s ease-out;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+
+  /*로딩 애니메이션*/
+  #loading {
+    min-height: calc(100vh - 88px);
+  }
+  .loader {
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 </style>
