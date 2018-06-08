@@ -8,15 +8,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'checkout-message',
   computed: {
     ...mapGetters([
-      'checkoutMsg'
-    ])
-  }
-}
+      'checkoutMsg',
+    ]),
+  },
+};
 </script>
 
 <style scoped>

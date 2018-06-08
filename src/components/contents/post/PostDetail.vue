@@ -93,59 +93,60 @@
 </template>
 
 <script>
-import Quill from 'quill/dist/quill.min'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-import 'quill/dist/quill.core.css'
-import {mapGetters} from 'vuex'
+import Quill from 'quill/dist/quill.min';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+import 'quill/dist/quill.core.css';
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'PostDetail',
-  data () {
+  data() {
     return {
       loading: true,
       post: false,
       quill: '',
-      params: this.$route.params.pk
-    }
+      params: this.$route.params.pk,
+    };
   },
-  mounted () {
-    this.setQuill()
+  mounted() {
+    this.setQuill();
   },
-  beforeDestroy () {
-    this.quill = null
-    this.$store.commit('clearPostDetail')
+  beforeDestroy() {
+    this.quill = null;
+    this.$store.commit('clearPostDetail');
   },
   methods: {
-    setQuill () {
-      this.loading = true
-      this.post = false
+    setQuill() {
+      this.loading = true;
+      this.post = false;
 
-      this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk)
+      this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk);
       setTimeout(() => {
-        this.quill = new Quill(this.$refs.editor)
-        const delta = JSON.parse(this.getQuillObject)
-        this.quill.setContents(delta)
+        this.quill = new Quill(this.$refs.editor);
+        const delta = JSON.parse(this.getQuillObject);
+        this.quill.setContents(delta);
 
         // 이미지를 반응형으로 만들기 위한 클래스 삽입
-        let images = document.getElementById('content').querySelector('img')
+        const images = document.getElementById('content').querySelector('img');
         if (images) {
-          images.classList.add('img-fluid')
+          images.classList.add('img-fluid');
         }
 
-        this.loading = false
-        this.post = true
-      }, 1000)
+        this.loading = false;
+        this.post = true;
+      }, 1000);
     },
-    publishPost (payload) {
+    publishPost(payload) {
       const formData = {
         pk: this.getPostRetrieve.pk,
-        is_published: !payload
-      }
-      this.$store.dispatch('authorPostPublish', formData)
+        is_published: !payload,
+      };
+      this.$store.dispatch('authorPostPublish', formData);
     },
-    destroyPost () {
-      this.$store.dispatch('authorPostDestroy', this.getPostRetrieve.pk)
-    }
+    destroyPost() {
+      this.$store.dispatch('authorPostDestroy', this.getPostRetrieve.pk);
+    },
   },
   computed: {
     ...mapGetters([
@@ -153,10 +154,10 @@ export default {
       'getQuillObject',
       'getThumbnail',
       'getPostCreatedTime',
-      'callCategory'
-    ])
-  }
-}
+      'callCategory',
+    ]),
+  },
+};
 </script>
 
 <style scoped>

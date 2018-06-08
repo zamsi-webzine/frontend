@@ -24,19 +24,19 @@
 <script>
 export default {
   name: 'main-picture',
-  data () {
+  data() {
     return {
       imagePath: 'https://doy0iundk4hjr.cloudfront.net/static/assets/images/cities/landing_0',
       imageNum: 1,
-      extensions: '.jpg'
-    }
+      extensions: '.jpg',
+    };
   },
   methods: {
-    randomNum (event) {
-      this.imageNum = Math.floor(Math.random() * 7) + 1
-    }
-  }
-}
+    randomNum(event) {
+      this.imageNum = Math.floor(Math.random() * 7) + 1;
+    },
+  },
+};
 </script>
 
 <style scoped>

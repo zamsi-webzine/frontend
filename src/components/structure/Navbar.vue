@@ -58,24 +58,25 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
-  data () {
+  data() {
     return {
-      token: localStorage.getItem('token')
-    }
+      token: localStorage.getItem('token'),
+    };
   },
   methods: {
     ...mapActions([
-      'signOut'
-    ])
+      'signOut',
+    ]),
   },
   computed: {
     ...mapGetters([
-      'getInfo'
-    ])
-  }
-}
+      'getInfo',
+    ]),
+  },
+};
 </script>
 
 <style scoped>

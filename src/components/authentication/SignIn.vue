@@ -47,23 +47,24 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import CheckoutMessage from '../contents/common/CheckoutMessage'
+import { mapActions } from 'vuex';
+import CheckoutMessage from '../contents/common/CheckoutMessage';
+
 export default {
-  components: {CheckoutMessage},
+  components: { CheckoutMessage },
   name: 'signIn',
-  data: function () {
+  data() {
     return {
       email: '',
-      password: ''
-    }
+      password: '',
+    };
   },
   methods: {
     ...mapActions([
-      'signIn'
-    ])
-  }
-}
+      'signIn',
+    ]),
+  },
+};
 
 </script>
 

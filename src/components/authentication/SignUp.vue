@@ -67,25 +67,26 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import CheckoutMessage from '../contents/common/CheckoutMessage'
+import { mapActions } from 'vuex';
+import CheckoutMessage from '../contents/common/CheckoutMessage';
+
 export default {
-  components: {CheckoutMessage},
+  components: { CheckoutMessage },
   name: 'signUp',
-  data: function () {
+  data() {
     return {
       email: '',
       nickname: '',
       password1: '',
-      password2: ''
-    }
+      password2: '',
+    };
   },
   methods: {
     ...mapActions([
-      'signUp'
-    ])
-  }
-}
+      'signUp',
+    ]),
+  },
+};
 </script>
 
 <style scoped>

@@ -78,37 +78,38 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'sidebar',
   props: ['property'],
-  data () {
+  data() {
     return {
       file: '',
       showPreview: false,
-      imagePreview: ''
-    }
+      imagePreview: '',
+    };
   },
   methods: {
-    handleFileUpload () {
+    handleFileUpload() {
       /*
        Set the local file variable to what the user has selected.
        */
-      this.file = this.$refs.file.files[0]
+      this.file = this.$refs.file.files[0];
       /*
        Initialize a File Reader object
        */
-      let reader = new FileReader()
+      const reader = new FileReader();
 
       /*
        Add an event listener to the reader that when the file
        has been loaded, we flag the show preview as true and set the
        image to be what was read from the reader.
        */
-      reader.addEventListener('load', function () {
-        this.showPreview = true
-        this.imagePreview = reader.result
-      }.bind(this), false)
+      reader.addEventListener('load', () => {
+        this.showPreview = true;
+        this.imagePreview = reader.result;
+      }, false);
 
       /*
        Check to see if the file is not empty.
@@ -123,33 +124,33 @@ export default {
            upon completion fire a 'load' event which we will listen to and
            display the image in the preview.
            */
-          reader.readAsDataURL(this.file)
+          reader.readAsDataURL(this.file);
         }
       }
     },
-    onImageUpload () {
+    onImageUpload() {
       /*
        Initialize the form data
        */
-      let formData = new FormData()
+      const formData = new FormData();
 
       /*
        Add the form data we need to submit
        */
-      formData.append('thumbnail', this.file)
+      formData.append('thumbnail', this.file);
 
-      this.$store.dispatch('patchThumbnail', formData)
+      this.$store.dispatch('patchThumbnail', formData);
     },
     ...mapActions([
-      'signOut'
-    ])
+      'signOut',
+    ]),
   },
   computed: {
     ...mapGetters([
-      'getInfo'
-    ])
-  }
-}
+      'getInfo',
+    ]),
+  },
+};
 </script>
 
 <style scoped>

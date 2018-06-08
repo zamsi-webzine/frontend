@@ -32,49 +32,50 @@
 </template>
 
 <script>
-import Quill from 'quill/dist/quill.min'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-import 'quill/dist/quill.core.css'
-import {mapGetters} from 'vuex'
+import Quill from 'quill/dist/quill.min';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+import 'quill/dist/quill.core.css';
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'ClientPostDetail',
-  data () {
+  data() {
     return {
       loading: true,
       post: false,
-      quill: ''
-    }
+      quill: '',
+    };
   },
-  mounted () {
-    this.setQuill()
+  mounted() {
+    this.setQuill();
   },
-  beforeDestroy () {
-    this.quill = null
-    this.$store.commit('clearPostDetail')
+  beforeDestroy() {
+    this.quill = null;
+    this.$store.commit('clearPostDetail');
   },
   methods: {
-    setQuill () {
-      this.loading = true
-      this.post = false
+    setQuill() {
+      this.loading = true;
+      this.post = false;
 
-      this.$store.dispatch('getClientPostRetrieve', this.$route.params.pk)
+      this.$store.dispatch('getClientPostRetrieve', this.$route.params.pk);
       setTimeout(() => {
         // Quill 객체에 서버에서 호출한 Delta 객체를 삽입, HTML 형태로 렌더링
-        this.quill = new Quill(this.$refs.editor)
-        const delta = JSON.parse(this.getQuillObject)
-        this.quill.setContents(delta)
+        this.quill = new Quill(this.$refs.editor);
+        const delta = JSON.parse(this.getQuillObject);
+        this.quill.setContents(delta);
 
         // 이미지를 반응형으로 만들기 위한 클래스 삽입
-        let images = document.getElementById('content').querySelector('img')
+        const images = document.getElementById('content').querySelector('img');
         if (images) {
-          images.classList.add('img-fluid')
+          images.classList.add('img-fluid');
         }
 
-        this.loading = false
-        this.post = true
-      }, 1000)
-    }
+        this.loading = false;
+        this.post = true;
+      }, 1000);
+    },
   },
   computed: {
     ...mapGetters([
@@ -82,10 +83,10 @@ export default {
       'getQuillObject',
       'getThumbnail',
       'getPostCreatedTime',
-      'callCategory'
-    ])
-  }
-}
+      'callCategory',
+    ]),
+  },
+};
 </script>
 
 <style scoped>
