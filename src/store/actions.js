@@ -148,7 +148,7 @@ export const patchThumbnail = ({ commit, state }, payload) => {
   });
 };
 // 회원 탈퇴
-export const destroyProfile = ({ commit, state, dispatch }) => {
+export const destroyProfile = ({ commit, state }) => {
   axios({
     method: 'delete',
     url: `${state.endpoints.baseUrl + state.endpoints.profile + localStorage.getItem('pk')}/`,
