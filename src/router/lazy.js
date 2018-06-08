@@ -34,3 +34,5 @@ export const EnterViewQuery = () => import('../components/contents/client/Client
 export const ReViewQuery = () => import('../components/contents/client/ClientReViewQuery')
 
 export const OverViewQuery = () => import('../components/contents/client/ClientOverViewQuery')
+
+export const About = () => import('../components/contents/client/About')

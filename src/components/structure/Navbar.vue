@@ -36,8 +36,8 @@
         <!--카테고리 메뉴-->
         <ul class="navbar-nav mr-4">
           <li class="nav-item">
-            <a class="nav-link" href="#"
-               data-toggle="collapse" data-target=".navbar-collapse.show">About</a>
+            <router-link tag="a" class="nav-link" :to="{name: 'About'}"
+               data-toggle="collapse" data-target=".navbar-collapse.show">About</router-link>
           </li>
           <li class="nav-item">
             <router-link tag="a" class="nav-link" :to="{name: 'ReView'}"
