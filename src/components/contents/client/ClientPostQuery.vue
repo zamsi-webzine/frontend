@@ -1,12 +1,12 @@
 <template>
-  <div class="container-fluid">
-    <div class="row m-5">
+  <div class="container-fluid" id="main-query">
+    <div class="row m-2 m-md-4">
       <router-link :id="index"
                    :to="{name: 'ClientPost', params: {pk: value.pk}}"
                    class="card mb-3 hovering text-dark"
                    v-for="(value, index) in getPostList.results"
                    :key="index.id">
-        <img v-if="value.thumbnail" :src="value.thumbnail" class="card-img-top pt-3" alt="post-thumbnail">
+        <img v-if="value.thumbnail" :src="value.thumbnail" class="card-img-top" alt="post-thumbnail">
         <div class="card-body">
           <h3 class="card-title">{{value.title}}</h3>
           <p class="card-text">
@@ -46,16 +46,24 @@ export default {
       // 첫 번째 요소 추출
       const firstEl = document.getElementById('0')
       // 그리드로 쓸 col 요소 생성
-      const newCol = '<div id="other-query" class="col-md-6 col-sm"></div>'
+      const firstCol = '<div id="first-query" class="col-md-6 col-sm p-0 p-md-2"></div>'
+      // 그리드로 쓸 col 요소 생성
+      const secondCol = '<div id="second-query" class="col-md-6 col-sm p-0 p-md-2"></div>'
 
-      // 첫 번째 요소에 col 클래스 추가
-      firstEl.classList.add('col-md-6')
-      firstEl.classList.add('col-sm')
-      // 첫 번째 요소 다음에 newCol 요소 추가
-      firstEl.insertAdjacentHTML('afterend', newCol)
+      // 첫 번째 요소 이전에 firstCol 요소 추가
+      firstEl.insertAdjacentHTML('beforebegin', firstCol)
+      // 첫 번째 요소 다음에 secondCol 요소 추가
+      firstEl.insertAdjacentHTML('afterend', secondCol)
 
-      // 추가된 newCol 요소를 DOM에서 다시 불러들임
-      const otherQuery = document.getElementById('other-query')
+      // 추가된 firstCol 요소를 DOM에서 다시 불러들임
+      const firstQuery = document.getElementById('first-query')
+      // firstCol 요소 안에 첫 번째 카드를 넣는다
+      firstQuery.appendChild(document.getElementById('0'))
+      // '0' 요소에 full-screen 클래스 추가
+      document.getElementById('0').classList.add('full-screen')
+
+      // 추가된 secondCol 요소를 DOM에서 다시 불러들임
+      const otherQuery = document.getElementById('second-query')
       // 클래스 이름이 card인 모든 요소 추출
       const otherEls = document.getElementsByClassName('card')
 
@@ -81,12 +89,12 @@ export default {
 </script>
 
 <style scoped>
-  /*썸네일 정사각형으로 만들기*/
-  .thumbnail {
-    object-fit: cover;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
+  .full-screen {
+    position: -webkit-sticky;
+    position: sticky;
+    width: 100%;
+    height: calc(100vh - 128px);
+    top: 120px;
   }
   .hovering:hover {
     text-decoration: none;

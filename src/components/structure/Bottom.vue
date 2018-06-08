@@ -1,14 +1,16 @@
 <template>
-  <footer class="jumbotron jumbotron-fluid bg-dark align-items-center mb-0">
-    <div class="row">
-      <div class="col-6 offset-3">
-        <p class="text-center text-muted mb-0">
-          <span><em>© 2018. Zamsee all rights reserved.</em></span>
-        </p>
-      </div>
-      <div class="col-3 text-center">
-        <router-link tag="button" class="btn btn-sm btn-outline-secondary"
-                     :to="{name: 'SignIn'}">Editor SignIn</router-link>
+  <footer class="jumbotron jumbotron-fluid bg-dark mb-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 col-sm">
+          <p class="text-center text-muted">
+            <span><em>© 2018. Zamsee all rights reserved.</em></span>
+          </p>
+        </div>
+        <div class="col-md-3 col-sm text-center">
+          <router-link tag="button" class="btn btn-sm btn-outline-secondary"
+                       :to="{name: 'SignIn'}">Editor SignIn</router-link>
+        </div>
       </div>
     </div>
   </footer>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid p-0">
+  <div class="container-fluid">
     <div class="row m-0">
       <!-- v-bind = 부모 컴포넌트의 데이터 'nickname'을 'property'라는 이름으로 자식 컴포넌트에 연결 -->
       <sidebar v-bind:property="nickname"/>
