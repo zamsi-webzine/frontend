@@ -92,7 +92,7 @@ export default {
       title: '',
       quill: '',
       category: 'R',
-      file: null,
+      file: '',
       imagePreview: '',
       showPreview: false,
       options: {

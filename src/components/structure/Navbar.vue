@@ -12,7 +12,8 @@
 
         <!--로그인 시 유저 창-->
         <div v-if="token" class="dropdown mr-2">
-          <a v-if="token" href="#" role="button"
+          <a data-target=".navbar-collapse.show"
+             role="button"
              id="dropdownMenuLink"
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img v-if="getInfo.thumbnail !== 'null'"
