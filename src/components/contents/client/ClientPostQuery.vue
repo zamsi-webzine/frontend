@@ -4,7 +4,7 @@
       <div class="loader mx-auto"></div>
     </div>
     <transition name="fade">
-      <div v-show="post" class="row m-2 m-md-4">
+      <div v-show="post" class="row m-2 mt-4 m-sm-4 m-md-4">
         <router-link :id="index"
                      :to="{name: 'ClientPost', params: {pk: value.pk}}"
                      class="card mb-3 hovering text-dark"
@@ -57,9 +57,9 @@ export default {
       // 첫 번째 요소 추출
       const firstEl = document.getElementById('0')
       // 그리드로 쓸 col 요소 생성
-      const firstCol = '<div id="first-query" class="col-md-6 col-sm p-0 p-md-2"></div>'
+      const firstCol = '<div id="first-query" class="col-md-6 col-sm p-0 p-sm-2 p-md-2 mb-3"></div>'
       // 그리드로 쓸 col 요소 생성
-      const secondCol = '<div id="second-query" class="col-md-6 col-sm p-0 p-md-2"></div>'
+      const secondCol = '<div id="second-query" class="col-md-6 col-sm p-0 p-sm-2 p-md-2 mb-3"></div>'
 
       // 첫 번째 요소 이전에 firstCol 요소 추가
       firstEl.insertAdjacentHTML('beforebegin', firstCol)
@@ -112,6 +112,13 @@ export default {
     height: calc(100vh - 128px);
     top: 120px;
   }
+
+  @media (max-width: 576px) {
+    .full-screen {
+      height: 100%;
+    }
+  }
+
   .hovering:hover {
     text-decoration: none;
   }
