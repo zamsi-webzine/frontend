@@ -1,6 +1,6 @@
 <template>
-  <header class="container-fluid shadow-sm">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <header class="container-fluid bg-white shadow-sm" id="main-header">
+    <nav class="navbar navbar-expand-lg navbar-light">
       <a id="main-logo" class="nav-link disabled p-0 ml-md-3 ml-sm-0" href="/" data-log-event="home">
         <img src="../../assets/icons/logo_black.svg" alt="">
       </a>
@@ -8,7 +8,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
 
         <!--로그인 시 유저 창-->
         <div v-if="token" class="dropdown mr-2">
@@ -25,8 +25,10 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <router-link tag="a" :to="{name: 'MyPosts'}" class="dropdown-item" href="#">My Posts</router-link>
-            <a class="dropdown-item" @click="signOut">Sign Out</a>
+            <router-link tag="a" :to="{name: 'MyPosts'}" class="dropdown-item"
+                         data-target=".navbar-collapse.show">My Posts</router-link>
+            <a class="dropdown-item" @click="signOut"
+               data-target=".navbar-collapse.show">Sign Out</a>
           </div>
         </div>
 
@@ -76,6 +78,12 @@ export default {
 </script>
 
 <style scoped>
+  #main-header {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    min-height: 88px;
+  }
   .container-fluid {
     padding: 0;
     margin: 0;

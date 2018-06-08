@@ -3,7 +3,7 @@
     <!--Header Navigation bar-->
     <navbar/>
     <!--Main Contents-->
-    <router-view/>
+    <router-view id="wrapper"/>
     <!--Footer-->
     <bottom/>
   </div>
@@ -95,5 +95,10 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     font-family: 'Titillium Web', sans-serif;
     font-weight: 500;
+  }
+  #wrapper {
+    padding: 88px 0 0 0;
+    position: relative;
+    min-height: calc(100vh - 88px);
   }
 </style>
