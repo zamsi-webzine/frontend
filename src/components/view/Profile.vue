@@ -12,9 +12,9 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Sidebar from '../structure/Sidebar';
-import MyPosts from '../contents/admin/MyPosts';
-import Settings from '../contents/admin/Settings';
+import Sidebar from '../structure/Sidebar.vue';
+import MyPosts from '../contents/admin/MyPosts.vue';
+import Settings from '../contents/admin/Settings.vue';
 
 export default {
   name: 'dashboard',

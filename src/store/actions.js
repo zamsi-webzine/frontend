@@ -96,7 +96,7 @@ export const resetPassword = ({ commit, state }, payload) => {
 };
 
 // 프로필 수정
-export const patchProfile = ({ commit, state, dispatch }, payload) => {
+export const patchProfile = ({ commit, state }, payload) => {
   axios({
     method: 'patch',
     url: `${state.endpoints.baseUrl + state.endpoints.profile + localStorage.getItem('pk')}/`,

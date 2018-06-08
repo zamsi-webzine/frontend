@@ -10,7 +10,8 @@
                      class="card mb-3 hovering text-dark"
                      v-for="(value, index) in getPostList.results"
                      :key="index.id">
-          <img v-if="value.thumbnail" :src="value.thumbnail" class="card-img-top" alt="post-thumbnail">
+          <img v-if="value.thumbnail" :src="value.thumbnail"
+               class="card-img-top" alt="post-thumbnail">
           <div class="card-body">
             <h3 class="card-title">{{value.title}}</h3>
             <p class="card-text">
@@ -81,7 +82,7 @@ export default {
 
       // 첫 번째 요소를 제외한 나머지 모든 카드를 순회하면서
       // 모든 카드 요소가 newCol 요소의 자식으로 들어가도록 함
-      for (let step = 1; step < otherEls.length; step++) {
+      for (let step = 1; step < otherEls.length; step += 1) {
         otherQuery.appendChild(document.getElementById(String(step)));
       }
     },

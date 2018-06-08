@@ -21,7 +21,9 @@
         </div>
       </div>
     </div>
-    <img v-if="getPostRetrieve.thumbnail" :src="getPostRetrieve.thumbnail" class="img-fluid d-block mx-auto"/>
+    <img v-if="getPostRetrieve.thumbnail"
+         :src="getPostRetrieve.thumbnail"
+         class="img-fluid d-block mx-auto"/>
     <div v-if="loading" id="loading" class="d-flex justify-content-center align-items-center">
       <div class="loader mx-auto"></div>
     </div>

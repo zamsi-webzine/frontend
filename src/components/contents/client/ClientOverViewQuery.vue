@@ -66,13 +66,13 @@ export default {
       let total;
       const resultArray = [];
 
-      if (Number.isInteger(parseInt(this.getPostList.count) / 6)) {
-        total = parseInt(this.getPostList.count) / 6;
+      if (Number.isInteger(parseInt(this.getPostList.count, 10) / 6)) {
+        total = parseInt(this.getPostList.count, 10) / 6;
       } else {
-        total = parseInt(this.getPostList.count / 6) + 1;
+        total = parseInt(this.getPostList.count / 6, 10) + 1;
       }
 
-      for (let key = 1; key < total + 1; key++) {
+      for (let key = 1; key < total + 1; key += 1) {
         resultArray.push(key);
       }
       return resultArray;

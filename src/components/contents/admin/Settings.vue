@@ -4,12 +4,14 @@
       <h1 class="mr-auto pt-3">Settings</h1>
       <div class="pt-4">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#destroyModal">
+        <button type="button" class="btn btn-outline-danger"
+                data-toggle="modal" data-target="#destroyModal">
           <strong>Delete Account</strong>
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="destroyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="destroyModal"
+             tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -24,7 +26,10 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" data-dismiss="modal" @click="destroySubmit" class="btn btn-danger"><strong>Delete Anyway</strong></button>
+                <button type="submit"
+                        data-dismiss="modal" @click="destroySubmit" class="btn btn-danger">
+                  <strong>Delete Anyway</strong>
+                </button>
               </div>
             </div>
           </div>
@@ -94,7 +99,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import CheckoutMessage from '../common/CheckoutMessage';
+import CheckoutMessage from '../common/CheckoutMessage.vue';
 
 export default {
   components: { CheckoutMessage },

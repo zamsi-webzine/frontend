@@ -16,7 +16,9 @@
             </div>
             <div class="ml-3">
               <p class="mb-0">{{getPostRetrieve.author.nickname}}</p>
-              <p class="mb-0 text-muted">상태: 수정 <small class="text-info">(발행은 저장이 끝난 뒤에 가능합니다)</small></p>
+              <p class="mb-0 text-muted">상태: 수정
+                <small class="text-info">(발행은 저장이 끝난 뒤에 가능합니다)</small>
+              </p>
             </div>
           </div>
           <div class="d-flex">
@@ -29,19 +31,22 @@
         <div class="col-6">
           <h5><strong>Category</strong></h5>
           <div class="form-check">
-            <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios1" value="R" checked>
+            <input v-model="category" class="form-check-input"
+                   type="radio" name="categoryRadios" id="categoryRadios1" value="R" checked>
             <label class="form-check-label" for="categoryRadios1">
               Re-View
             </label>
           </div>
           <div class="form-check">
-            <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios2" value="E">
+            <input v-model="category" class="form-check-input"
+                   type="radio" name="categoryRadios" id="categoryRadios2" value="E">
             <label class="form-check-label" for="categoryRadios2">
               Enter-View
             </label>
           </div>
           <div class="form-check">
-            <input v-model="category" class="form-check-input" type="radio" name="categoryRadios" id="categoryRadios3" value="O">
+            <input v-model="category" class="form-check-input"
+                   type="radio" name="categoryRadios" id="categoryRadios3" value="O">
             <label class="form-check-label" for="categoryRadios3">
               Over-View
             </label>
@@ -50,7 +55,8 @@
         <div class="col-6">
           <div class="form-group">
             <h5><strong>Post Thumbnail</strong></h5>
-            <input type="file" class="form-control-file" ref="file" accept="image/*" id="thumbnailUpload" @change="handleFileUpload()">
+            <input type="file" class="form-control-file"
+                   ref="file" accept="image/*" id="thumbnailUpload" @change="handleFileUpload()">
           </div>
           <figure class="figure" v-if="getPostRetrieve.thumbnail">
             <figcaption class="figure-caption">기존 사진</figcaption>
@@ -63,7 +69,8 @@
         </div>
       </div>
       <div class="form-group">
-        <input v-model="title" type="text" class="form-control" id="titleInput" aria-describedby="titleHelp"
+        <input v-model="title" type="text"
+               class="form-control" id="titleInput" aria-describedby="titleHelp"
                :placeholder="'기존 제목: ' + getPostRetrieve.title" name="title" required>
       </div>
       <input name="post" type="hidden">
@@ -81,7 +88,7 @@ import 'quill/dist/quill.bubble.css';
 import 'quill/dist/quill.core.css';
 import $ from 'jquery/dist/jquery.min';
 import { mapGetters } from 'vuex';
-import CheeckoutMessage from '../../contents/common/CheckoutMessage';
+import CheeckoutMessage from '../../contents/common/CheckoutMessage.vue';
 
 export default {
   name: 'PostUpdate',

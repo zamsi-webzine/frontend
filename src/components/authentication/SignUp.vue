@@ -68,7 +68,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-import CheckoutMessage from '../contents/common/CheckoutMessage';
+import CheckoutMessage from '../contents/common/CheckoutMessage.vue';
 
 export default {
   components: { CheckoutMessage },

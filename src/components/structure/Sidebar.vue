@@ -18,7 +18,9 @@
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="thumbnailModal" tabindex="-1" role="dialog" aria-labelledby="thumbnailModalTitle" aria-hidden="true">
+            <div class="modal fade" id="thumbnailModal"
+                 tabindex="-1" role="dialog"
+                 aria-labelledby="thumbnailModalTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -32,13 +34,18 @@
                       <div class="form-group">
                         <p class="card-text">썸네일을 지우려면 아무것도 선택하지 않은 채로 'confirm'을 누르세요.</p>
                         <label for="imageUpload">썸네일 업로드</label>
-                        <input type="file" ref="file" accept="image/*" class="form-control-file" id="imageUpload" @change="handleFileUpload()">
+                        <input type="file" ref="file" accept="image/*"
+                               class="form-control-file" id="imageUpload"
+                               @change="handleFileUpload()">
                       </div>
                       <img :src="imagePreview" v-show="showPreview" class="img-fluid"/>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-outline-primary">Confirm</button>
+                      <button type="button"
+                              class="btn btn-secondary"
+                              data-dismiss="modal">Close</button>
+                      <button type="submit"
+                              class="btn btn-outline-primary">Confirm</button>
                     </div>
                   </form>
                 </div>

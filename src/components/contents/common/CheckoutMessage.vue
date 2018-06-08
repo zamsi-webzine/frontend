@@ -1,7 +1,9 @@
 <template>
   <div class="col-sm-12">
     <!--에러 메시지가 발견되면 창을 띄우고 아니면 가린다-->
-    <div v-show="checkoutMsg !== null" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div v-show="checkoutMsg !== null"
+         class="alert alert-danger alert-dismissible fade show"
+         role="alert">
       <strong>{{ checkoutMsg }}</strong>
     </div>
   </div>

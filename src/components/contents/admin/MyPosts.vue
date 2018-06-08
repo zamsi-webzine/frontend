@@ -10,10 +10,14 @@
     </div>
     <hr>
     <div class="clearfix">
-      <p class="float-right">포스트 총 <span class="text-primary">{{getPostList.count}}</span> 개</p>
+      <p class="float-right">포스트 총
+        <span class="text-primary">
+        {{getPostList.count}}
+        </span> 개</p>
     </div>
     <div class="card mb-3" v-for="index in getPostList.results" :key="index.id">
-        <router-link :to="{name: 'AuthorPostDetail', params: {pk: index.pk}}" class="text-dark hovering">
+        <router-link :to="{name: 'AuthorPostDetail', params: {pk: index.pk}}"
+                     class="text-dark hovering">
         <div class="card-body">
           <h5 class="card-title"><strong>{{index.title}}</strong></h5>
           <p><span>{{dateCreated(index.date_created)}}</span>
@@ -21,8 +25,10 @@
             <span>{{callCategory(index.category)}}</span>
           </p>
           <div class="">
-            <span v-if="index.is_published === true" class="badge badge-pill badge-primary">발행 중</span>
-            <span v-if="index.is_published === false" class="badge badge-pill badge-secondary">미발행</span>
+            <span v-if="index.is_published === true"
+                  class="badge badge-pill badge-primary">발행 중</span>
+            <span v-if="index.is_published === false"
+                  class="badge badge-pill badge-secondary">미발행</span>
           </div>
         </div>
         </router-link>
@@ -77,13 +83,13 @@ export default {
       let total;
       const resultArray = [];
 
-      if (Number.isInteger(parseInt(this.getPostList.count) / 6)) {
-        total = parseInt(this.getPostList.count) / 6;
+      if (Number.isInteger(parseInt(this.getPostList.count, 10) / 6)) {
+        total = parseInt(this.getPostList.count, 10) / 6;
       } else {
-        total = parseInt(this.getPostList.count / 6) + 1;
+        total = parseInt(this.getPostList.count / 6, 10) + 1;
       }
 
-      for (let key = 1; key < total + 1; key++) {
+      for (let key = 1; key < total + 1; key += 1) {
         resultArray.push(key);
       }
       return resultArray;
