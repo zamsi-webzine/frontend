@@ -21,45 +21,63 @@
         </div>
       </div>
     </div>
-    <img v-if="getPostRetrieve.thumbnail" :src="getPostRetrieve.thumbnail" class="img-fluid d-block mx-auto"/>
-    <div ref="editor" id="content" class="mx-auto"></div>
+    <img v-if="getPostRetrieve.thumbnail"
+         :src="getPostRetrieve.thumbnail"
+         class="img-fluid d-block mx-auto"/>
+    <div v-if="loading" id="loading" class="d-flex justify-content-center align-items-center">
+      <div class="loader mx-auto"></div>
+    </div>
+    <transition name="fade">
+      <div v-show="post" ref="editor" id="content" class="mx-auto"></div>
+    </transition>
   </div>
 </template>
 
 <script>
-import Quill from 'quill/dist/quill.min'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-import 'quill/dist/quill.core.css'
-import {mapGetters} from 'vuex'
+import Quill from 'quill/dist/quill.min';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+import 'quill/dist/quill.core.css';
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'ClientPostDetail',
-  data () {
+  data() {
     return {
-      quill: ''
-    }
+      loading: true,
+      post: false,
+      quill: '',
+    };
   },
-  mounted () {
-    this.setQuill()
+  mounted() {
+    this.setQuill();
   },
-  beforeDestroy () {
-    this.quill = null
-    this.$store.commit('clearPostDetail')
+  beforeDestroy() {
+    this.quill = null;
+    this.$store.commit('clearPostDetail');
   },
   methods: {
-    setQuill () {
-      this.$store.dispatch('getClientPostRetrieve', this.$route.params.pk)
+    setQuill() {
+      this.loading = true;
+      this.post = false;
+
+      this.$store.dispatch('getClientPostRetrieve', this.$route.params.pk);
       setTimeout(() => {
         // Quill 객체에 서버에서 호출한 Delta 객체를 삽입, HTML 형태로 렌더링
-        this.quill = new Quill(this.$refs.editor)
-        const delta = JSON.parse(this.getQuillObject)
-        this.quill.setContents(delta)
+        this.quill = new Quill(this.$refs.editor);
+        const delta = JSON.parse(this.getQuillObject);
+        this.quill.setContents(delta);
 
         // 이미지를 반응형으로 만들기 위한 클래스 삽입
-        let images = document.getElementById('content').querySelector('img')
-        images.classList.add('img-fluid')
-      }, 1000)
-    }
+        const images = document.getElementById('content').querySelector('img');
+        if (images) {
+          images.classList.add('img-fluid');
+        }
+
+        this.loading = false;
+        this.post = true;
+      }, 1000);
+    },
   },
   computed: {
     ...mapGetters([
@@ -67,10 +85,10 @@ export default {
       'getQuillObject',
       'getThumbnail',
       'getPostCreatedTime',
-      'callCategory'
-    ])
-  }
-}
+      'callCategory',
+    ]),
+  },
+};
 </script>
 
 <style scoped>
@@ -89,5 +107,37 @@ export default {
     max-width: 700px;
     font-family: 'Noto Serif', serif;
     font-weight: 400;
+  }
+
+  /*트랜지션 애니메이션*/
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.6s ease-out;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+
+  /*로딩 애니메이션*/
+  #loading {
+    min-height: calc(100vh - 88px);
+  }
+  .loader {
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 </style>

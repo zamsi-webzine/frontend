@@ -3,15 +3,15 @@
     <!--Header Navigation bar-->
     <navbar/>
     <!--Main Contents-->
-    <router-view/>
+    <router-view id="wrapper"/>
     <!--Footer-->
     <bottom/>
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/structure/Navbar'
-import Bottom from '@/components/structure/Bottom'
+import Navbar from '@/components/structure/Navbar.vue';
+import Bottom from '@/components/structure/Bottom.vue';
 
 export default {
   name: 'App',
@@ -19,9 +19,9 @@ export default {
     // 항상 호출되는 자식 컴포넌트 정의 (헤더와 푸터)
     // 그 사이에 있는 router-view를 통해 세 가지 주요 컴포넌트 (Home, Auth, Profile)가 호출된다
     Navbar,
-    Bottom
-  }
-}
+    Bottom,
+  },
+};
 </script>
 
 <style>
@@ -95,5 +95,10 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     font-family: 'Titillium Web', sans-serif;
     font-weight: 500;
+  }
+  #wrapper {
+    padding: 88px 0 0 0;
+    position: relative;
+    min-height: calc(100vh - 88px);
   }
 </style>

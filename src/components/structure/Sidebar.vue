@@ -18,7 +18,9 @@
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="thumbnailModal" tabindex="-1" role="dialog" aria-labelledby="thumbnailModalTitle" aria-hidden="true">
+            <div class="modal fade" id="thumbnailModal"
+                 tabindex="-1" role="dialog"
+                 aria-labelledby="thumbnailModalTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -32,13 +34,18 @@
                       <div class="form-group">
                         <p class="card-text">썸네일을 지우려면 아무것도 선택하지 않은 채로 'confirm'을 누르세요.</p>
                         <label for="imageUpload">썸네일 업로드</label>
-                        <input type="file" ref="file" accept="image/*" class="form-control-file" id="imageUpload" @change="handleFileUpload()">
+                        <input type="file" ref="file" accept="image/*"
+                               class="form-control-file" id="imageUpload"
+                               @change="handleFileUpload()">
                       </div>
                       <img :src="imagePreview" v-show="showPreview" class="img-fluid"/>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-outline-primary">Confirm</button>
+                      <button type="button"
+                              class="btn btn-secondary"
+                              data-dismiss="modal">Close</button>
+                      <button type="submit"
+                              class="btn btn-outline-primary">Confirm</button>
                     </div>
                   </form>
                 </div>
@@ -78,37 +85,38 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'sidebar',
   props: ['property'],
-  data () {
+  data() {
     return {
       file: '',
       showPreview: false,
-      imagePreview: ''
-    }
+      imagePreview: '',
+    };
   },
   methods: {
-    handleFileUpload () {
+    handleFileUpload() {
       /*
        Set the local file variable to what the user has selected.
        */
-      this.file = this.$refs.file.files[0]
+      this.file = this.$refs.file.files[0];
       /*
        Initialize a File Reader object
        */
-      let reader = new FileReader()
+      const reader = new FileReader();
 
       /*
        Add an event listener to the reader that when the file
        has been loaded, we flag the show preview as true and set the
        image to be what was read from the reader.
        */
-      reader.addEventListener('load', function () {
-        this.showPreview = true
-        this.imagePreview = reader.result
-      }.bind(this), false)
+      reader.addEventListener('load', () => {
+        this.showPreview = true;
+        this.imagePreview = reader.result;
+      }, false);
 
       /*
        Check to see if the file is not empty.
@@ -123,33 +131,33 @@ export default {
            upon completion fire a 'load' event which we will listen to and
            display the image in the preview.
            */
-          reader.readAsDataURL(this.file)
+          reader.readAsDataURL(this.file);
         }
       }
     },
-    onImageUpload () {
+    onImageUpload() {
       /*
        Initialize the form data
        */
-      let formData = new FormData()
+      const formData = new FormData();
 
       /*
        Add the form data we need to submit
        */
-      formData.append('thumbnail', this.file)
+      formData.append('thumbnail', this.file);
 
-      this.$store.dispatch('patchThumbnail', formData)
+      this.$store.dispatch('patchThumbnail', formData);
     },
     ...mapActions([
-      'signOut'
-    ])
+      'signOut',
+    ]),
   },
   computed: {
     ...mapGetters([
-      'getInfo'
-    ])
-  }
-}
+      'getInfo',
+    ]),
+  },
+};
 </script>
 
 <style scoped>

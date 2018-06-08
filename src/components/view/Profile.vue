@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid p-0">
+  <div class="container-fluid">
     <div class="row m-0">
       <!-- v-bind = 부모 컴포넌트의 데이터 'nickname'을 'property'라는 이름으로 자식 컴포넌트에 연결 -->
       <sidebar v-bind:property="nickname"/>
@@ -11,37 +11,38 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Sidebar from '../structure/Sidebar'
-import MyPosts from '../contents/admin/MyPosts'
-import Settings from '../contents/admin/Settings'
+import { mapGetters } from 'vuex';
+import Sidebar from '../structure/Sidebar.vue';
+import MyPosts from '../contents/admin/MyPosts.vue';
+import Settings from '../contents/admin/Settings.vue';
+
 export default {
   name: 'dashboard',
-  data () {
+  data() {
     return {
       // 부모 컴포넌트의 데이터
-      nickname: localStorage.getItem('nickname')
-    }
+      nickname: localStorage.getItem('nickname'),
+    };
   },
   methods: {
     // 자식 컴포넌트에서 updateNickname 이벤트가 발생하면 작동하는 메소드
     // updateNickname 이벤트에 담겨 온 parameter인 this.newNickname을 부모 컴포넌트의 nickname에 대입
     // 그러면 자식 컴포넌트에서 바뀐 닉네임이 전체 부모 컴포넌트를 통해 sidebar 컴포넌트까지 전파됨
-    updateNickname (nickname) {
-      this.nickname = nickname
-    }
+    updateNickname(nickname) {
+      this.nickname = nickname;
+    },
   },
   computed: {
     ...mapGetters([
-      'getInfo'
-    ])
+      'getInfo',
+    ]),
   },
   components: {
     Sidebar,
     MyPosts,
-    Settings
-  }
-}
+    Settings,
+  },
+};
 </script>
 
 <style scoped>

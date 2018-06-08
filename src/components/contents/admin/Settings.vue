@@ -4,12 +4,14 @@
       <h1 class="mr-auto pt-3">Settings</h1>
       <div class="pt-4">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#destroyModal">
+        <button type="button" class="btn btn-outline-danger"
+                data-toggle="modal" data-target="#destroyModal">
           <strong>Delete Account</strong>
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="destroyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="destroyModal"
+             tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -24,7 +26,10 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" data-dismiss="modal" @click="destroySubmit" class="btn btn-danger"><strong>Delete Anyway</strong></button>
+                <button type="submit"
+                        data-dismiss="modal" @click="destroySubmit" class="btn btn-danger">
+                  <strong>Delete Anyway</strong>
+                </button>
               </div>
             </div>
           </div>
@@ -93,45 +98,46 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import CheckoutMessage from '../common/CheckoutMessage'
+import { mapGetters } from 'vuex';
+import CheckoutMessage from '../common/CheckoutMessage.vue';
+
 export default {
-  components: {CheckoutMessage},
+  components: { CheckoutMessage },
   name: 'profile',
   props: ['property'],
-  data () {
+  data() {
     return {
       newNickname: '',
       password1: '',
-      password2: ''
-    }
+      password2: '',
+    };
   },
   methods: {
     // 회원 정보 수정을 위한 메소드
-    patchSubmit () {
+    patchSubmit() {
       const formData = {
         nickname: this.newNickname,
         password1: this.password1,
-        password2: this.password2
-      }
+        password2: this.password2,
+      };
       // 부모 컴포넌트에 'updateNickname'이라는 이름의 이벤트를 전파
       // 이때 parameter 값은 this.newNickname
-      this.$emit('updateNickname', this.newNickname)
+      this.$emit('updateNickname', this.newNickname);
       // Vuex store에 지정된 patchProfile action 호출
-      this.$store.dispatch('patchProfile', formData)
+      this.$store.dispatch('patchProfile', formData);
     },
     // 회원 삭제를 위한 메소드
-    destroySubmit () {
+    destroySubmit() {
       // Vuex store에 지정된 destroyProfile action 호출
-      this.$store.dispatch('destroyProfile')
-    }
+      this.$store.dispatch('destroyProfile');
+    },
   },
   computed: {
     ...mapGetters([
-      'getInfo'
-    ])
-  }
-}
+      'getInfo',
+    ]),
+  },
+};
 </script>
 
 <style scoped>
