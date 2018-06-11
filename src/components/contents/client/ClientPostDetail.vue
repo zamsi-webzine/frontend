@@ -49,6 +49,9 @@ export default {
       quill: '',
     };
   },
+  created() {
+    this.$store.dispatch('getClientPostRetrieve', this.$route.params.pk);
+  },
   mounted() {
     this.setQuill();
   },
@@ -61,7 +64,6 @@ export default {
       this.loading = true;
       this.post = false;
 
-      this.$store.dispatch('getClientPostRetrieve', this.$route.params.pk);
       setTimeout(() => {
         // Quill 객체에 서버에서 호출한 Delta 객체를 삽입, HTML 형태로 렌더링
         this.quill = new Quill(this.$refs.editor);
