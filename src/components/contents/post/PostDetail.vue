@@ -151,12 +151,12 @@ export default {
         document.getElementById('content').innerHTML = this.quill.root.innerHTML;
 
         // 이미지를 반응형으로 만들기 위한 클래스 삽입
-        const images = document.getElementById('content').querySelectorAll('img')
-        
+        const images = document.getElementById('content').querySelectorAll('img');
+
         if (images) {
           images.forEach((value) => {
-            value.classList.add('img-fluid')
-          })
+            value.classList.add('img-fluid');
+          });
         }
 
         this.loading = false;

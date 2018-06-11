@@ -1,5 +1,5 @@
 module.exports = {
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     // Markdown loader
     config.module
       .rule('md')
@@ -7,6 +7,6 @@ module.exports = {
       .use('html-loader')
       .loader('markdown-loader')
       .loader('html-loader')
-      .end()
-  }
-}
+      .end();
+  },
+};
