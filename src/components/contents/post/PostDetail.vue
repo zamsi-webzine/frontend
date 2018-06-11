@@ -105,7 +105,7 @@
     </div>
     <div v-show="false" ref="editor"></div>
     <transition name="fade">
-      <div v-show="post" id="content" class="mt-5 mx-auto"></div>
+      <div v-show="post" id="content" class="ql-editor mt-5 mx-auto"></div>
     </transition>
   </div>
 </template>
@@ -152,7 +152,7 @@ export default {
 
         // 이미지를 반응형으로 만들기 위한 클래스 삽입
         const images = document.getElementById('content').querySelectorAll('img')
-        
+
         if (images) {
           images.forEach((value) => {
             value.classList.add('img-fluid')
