@@ -126,6 +126,9 @@ export default {
       params: this.$route.params.pk,
     };
   },
+  created() {
+    this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk);
+  },
   mounted() {
     this.setQuill();
   },
@@ -138,7 +141,6 @@ export default {
       this.loading = true;
       this.post = false;
 
-      this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk);
       setTimeout(() => {
         this.quill = new Quill(this.$refs.editor);
         const delta = JSON.parse(this.getQuillObject);
