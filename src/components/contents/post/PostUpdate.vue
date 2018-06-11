@@ -73,9 +73,13 @@
                class="form-control" id="titleInput" aria-describedby="titleHelp"
                :placeholder="'기존 제목: ' + getPostRetrieve.title" name="title" required>
       </div>
-      <input name="post" type="hidden">
-      <div id="editor" ref="editor">
+      <div v-if="loading" id="loading" class="d-flex justify-content-center align-items-center">
+        <div class="loader mx-auto"></div>
       </div>
+      <input name="post" type="hidden">
+      <transition name="fade">
+        <div v-show="post" id="editor" ref="editor"></div>
+      </transition>
     </form>
     <cheeckout-message/>
   </div>
@@ -97,6 +101,8 @@ export default {
   },
   data() {
     return {
+      loading: true,
+      post: false,
       title: '',
       quill: '',
       category: 'R',
@@ -120,18 +126,25 @@ export default {
       },
     };
   },
+  created() {
+    this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk);
+  },
   mounted() {
     this.setQuill();
   },
   methods: {
     setQuill() {
-      this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk);
+      this.loading = true;
+      this.post = false;
+
       setTimeout(() => {
         this.quill = new Quill(this.$refs.editor, this.options);
         const delta = JSON.parse(this.getQuillObject);
-
         this.quill.setContents(delta);
-      }, 100);
+
+        this.loading = false;
+        this.post = true;
+      }, 1000);
     },
     getContents() {
       const form = document.querySelector('form');
@@ -217,5 +230,37 @@ export default {
     height: 500px;
     font-family: 'Noto Serif', serif;
     font-weight: 400;
+  }
+
+  /*트랜지션 애니메이션*/
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.6s ease-out;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+
+  /*로딩 애니메이션*/
+  #loading {
+    min-height: calc(100vh - 88px);
+  }
+  .loader {
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 </style>

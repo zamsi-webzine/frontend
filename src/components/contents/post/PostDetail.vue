@@ -103,8 +103,9 @@
     <div v-if="loading" id="loading" class="d-flex justify-content-center align-items-center">
       <div class="loader mx-auto"></div>
     </div>
+    <div v-show="false" ref="editor"></div>
     <transition name="fade">
-        <div v-show="post" ref="editor" id="content" class="mx-auto"></div>
+      <div v-show="post" id="content" class="mt-5 mx-auto"></div>
     </transition>
   </div>
 </template>
@@ -126,6 +127,9 @@ export default {
       params: this.$route.params.pk,
     };
   },
+  created() {
+    this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk);
+  },
   mounted() {
     this.setQuill();
   },
@@ -138,16 +142,21 @@ export default {
       this.loading = true;
       this.post = false;
 
-      this.$store.dispatch('getAuthorPostRetrieve', this.$route.params.pk);
       setTimeout(() => {
         this.quill = new Quill(this.$refs.editor);
         const delta = JSON.parse(this.getQuillObject);
         this.quill.setContents(delta);
 
+        // quill 객체의 HTML 값을 새로운 div에 삽입
+        document.getElementById('content').innerHTML = this.quill.root.innerHTML;
+
         // 이미지를 반응형으로 만들기 위한 클래스 삽입
-        const images = document.getElementById('content').querySelector('img');
+        const images = document.getElementById('content').querySelectorAll('img')
+        
         if (images) {
-          images.classList.add('img-fluid');
+          images.forEach((value) => {
+            value.classList.add('img-fluid')
+          })
         }
 
         this.loading = false;
