@@ -29,7 +29,7 @@
     </div>
     <div v-show="false" ref="editor"></div>
     <transition name="fade">
-      <div v-show="post" id="content" class="mt-5 mx-auto"></div>
+      <div v-show="post" id="content" class="ql-editor mt-5 mx-auto"></div>
     </transition>
   </div>
 </template>
